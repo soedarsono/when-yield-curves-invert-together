@@ -1,0 +1,85 @@
+\section{Supplementary evidence and robustness}
+\label{app:inherited-robustness}
+
+All exercises in this appendix use the same historical sample on which the state was assessed. They measure sensitivity and economic breadth; they do not create a frozen out-of-sample test.
+
+\subsection{Distribution and episode influence}
+
+Removing each portfolio's full-sample bottom-decile months leaves negative carry spot and total state effects. Because the deletion conditions on the realized outcome, it diagnoses tail concentration rather than estimating a preferred conditional mean.
+
+\input{generated/tables/inherited_tail_robustness.tex}
+
+The median and every reported lower quantile also move left. For carry spot returns, the monthly median changes from 0.35 percent outside the state to $-0.76$ percent inside, the 25th percentile from $-0.93$ to $-1.98$, and the 10th percentile from $-2.35$ to $-3.94$. This evidence is more informative about a broad distributional shift than the fact that all five worst months occur under the lagged state.
+
+Leave-one-episode-out carry estimates remain within roughly one-third of the full-sample coefficient. The high-beta effect remains statistically detectable under every one-episode deletion, with a largest reported bootstrap $p$-value of 0.006. These checks reduce dependence on a single episode but do not overcome the limited number of episodes.
+
+\subsection{Calendar stability}
+
+The carry-spot coefficient is negative in both calendar halves. The high-beta result is less stable and is concentrated after 2005. The split is descriptive because the rule was not frozen on the first half before evaluation on the second.
+
+\input{generated/tables/inherited_split_sample.tex}
+
+\subsection{State-definition sensitivity}
+
+The original grids vary breadth, release confirmation, and the short maturity. Exactly one live inversion has positive carry coefficients, while exactly two produces the largest negative coefficients. At-least-three and at-least-four rules have fewer active months and later coverage. Releasing after one steepening month is noisier; requiring three retains the state longer. Rebuilding the state with a 10Y--3M rather than 10Y--2Y slope preserves the broad adverse ordering but changes episode timing.
+
+The raw current-inversion state is active in 165 months, compared with 92 for the live state. It captures fewer of the worst carry months and has smaller return coefficients. The live state can retain losses that arrive after curves begin to re-steepen, but its additional tail coverage is partly mechanical because the historical crash chronology helped motivate persistence.
+
+A reciprocal-age version of the current-inversion count separates two timing margins. It has a high-beta spot coefficient of $-14.87$ ($p=0.001$), larger than the baseline live state's $-7.53$, but a smaller carry coefficient of $-10.43$ ($p=0.040$) than the baseline's $-12.85$. Under the full control set, the age-weighted high-beta coefficient remains $-13.82$ ($p=0.008$), whereas its carry coefficient attenuates to $-7.55$ ($p=0.084$). These in-sample comparisons suggest that exposure repricing is concentrated near fresh information, while the path-dependent release rule is more important for carry losses that continue into re-steepening.
+
+\input{generated/tables/inherited_measurement_perturbations.tex}
+
+\begin{table}[H]
+\centering
+\caption{State-definition multiverse: reported and untested dimensions}
+\label{tab:multiverse}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Dimension & Reported neighborhood & Remaining uncertainty \\
+\midrule
+Breadth & At least 1--4; exactly 1--2 & Frequency-matched and country-combination rules \\
+Release & One-, two-, and three-month confirmation & Other persistence and duration-matched placebo rules \\
+Tenor & 10Y--2Y baseline; 10Y--3M check & Other maturities and inversion cutoffs \\
+Freshness & Fresh crossing versus current inversion & Alternative age decay and entry delay \\
+Geography & Non-U.S. G10 baseline; U.S.-inclusion checks & Other developed-market sets and country combinations \\
+Portfolio & Three-by-three carry and beta sorts & Other leg sizes, volatility scaling, feasible forwards \\
+Timing & Month-end recursion and one extra lag & Vendor timestamps, asynchronous closes, vintage data \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Exposure breadth and composition}
+
+The carry and beta portfolios hold persistent characteristics rather than changing membership only when the state turns on. New Zealand occupies the high-rate leg in 85 percent of all months and 91 percent of state months; Australia in 71 and 73 percent. Japan and Switzerland remain the principal funding currencies. This makes the state result more naturally a repricing of standing exposure than a mechanical change in portfolio composition.
+
+The seven floating emerging-market currencies are not used to construct the G10 state. All seven bilateral state coefficients are negative; pooled spot and total effects are $-14.37$ and $-13.35$ percentage points per year, with episode-bootstrap $p$-values of 0.104 and 0.079. This is directional breadth, not an independent replication, because the same global dates define the state and the emerging-market sample is shorter.
+
+The common-sample comparison separates international spot repricing from compensation.
+
+\input{generated/tables/inherited_g10_em_compensation.tex}
+
+All reported exposure tests use expanding S\&P 500 betas. An oil-beta sort adds little independent variation because its return is largely spanned by the carry and equity-beta portfolios.
+
+\subsection{Conditional UIP and macro timing}
+
+Appendix~\ref{app:theory} gives the conditional Fama specification. The pooled slope is 0.50 outside the state and $-1.33$ inside, but the state interaction has episode-bootstrap $p=0.340$. The point estimate is consistent with high-rate currencies depreciating during the state, while the interaction remains imprecise at the episode level.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{assets/original/figure_06_main.png}
+    \caption{Outcomes following a synchronized-inversion state. The panels show local projections of cumulative changes in G10 industrial production, the OECD composite leading indicator, the average G10 money-market rate, and the carry spot leg. Bands are 90-percent Newey--West intervals; markers denote episode-bootstrap $p<0.10$. Overlapping horizons and persistent states make these supporting temporal associations rather than causal responses.}
+    \label{fig:inherited_local_projections}
+\end{figure}
+
+The leading indicator declines by about 0.6 percent over six months, with similar magnitudes around episode onsets and under lag controls. Industrial production declines about 1.8 percent at six months in the baseline projection but becomes imprecise with the fullest controls. The leading-indicator response is persistent across these specifications; the industrial-production response is not.
+
+\subsection{Benchmarks, controls, and term premia}
+
+The U.S. inversion, average G10 slope, and its change do not span the synchronized state. Lagged NFCI and VIX controls also leave the carry coefficient near its baseline magnitude. Contemporaneous dollar and FX-volatility controls show that the realized loss is not simply the average dollar move or the measured volatility innovation, but they are not predictive controls.
+
+The term-premium adjustment is asymmetric. After removing fitted exposure to the U.S. ACM 10Y-minus-2Y term-premium slope, 83 percent of national inversions remain. The high-beta coefficient is $-6.2$ percentage points with $p=0.004$. The carry coefficient is about $-5.4$ with $p=0.11$, roughly half the baseline magnitude. A common U.S. term-premium component therefore does not eliminate exposure ordering, but may explain part of the carry association. Comparable foreign-country term-premium decompositions are unavailable.
+
+\subsection{Interpretive boundary}
+
+The conditional return gap, distributional shift, and exposure ordering are statistically detectable in the reported specifications. The conditional-UIP interaction and industrial-production response are imprecise; emerging-market breadth and the downcurve split are exploratory. Feasible forward returns, complete data-vintage auditing, a comprehensive state multiverse, and a frozen future sample remain untested.

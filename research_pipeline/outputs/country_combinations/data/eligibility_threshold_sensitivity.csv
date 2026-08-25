@@ -1,0 +1,4 @@
+minimum_event_threshold,eligible_combination_count,adjusted_5pct_hit_count,smallest_adjusted_p,combination_with_smallest_adjusted_p,its_event_count,its_mean_shadow_carry_h0_h1_pp
+6,42,1,0.041758241758241756,CHF+GBP,6,-4.62510735165789
+8,25,0,0.1054945054945055,GBP+NZD+SEK,8,-3.5161537892673085
+10,15,0,0.22417582417582418,GBP+NZD,13,-2.2677394431112674

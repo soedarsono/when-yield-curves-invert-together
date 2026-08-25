@@ -1,0 +1,85 @@
+{
+  "cftc_legacy_futures": {
+    "description": "Legacy futures-only Commitments of Traders files used to construct non-commercial currency positioning.",
+    "source_page": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm",
+    "urls": [
+      "https://www.cftc.gov/files/dea/history/deacot1986_2016.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2017.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2018.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2019.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2020.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2021.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2022.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2023.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2024.zip",
+      "https://www.cftc.gov/files/dea/history/deacot2025.zip"
+    ]
+  },
+  "nyfed_acm": {
+    "description": "Adrian-Crump-Moench fitted yields, expected short rates, and term-premium estimates.",
+    "source_page": "https://www.newyorkfed.org/research/data_indicators/term-premia-tabs",
+    "urls": [
+      "https://www.newyorkfed.org/medialibrary/media/research/data_indicators/acmPlot_data.csv"
+    ]
+  },
+  "bis_policy_rates": {
+    "description": "Monthly central-bank policy rates for the G10 signal countries and the United States.",
+    "source_page": "https://data.bis.org/topics/CBPOL",
+    "api_template": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/{key}",
+    "accept": "application/vnd.sdmx.data+csv;version=1.0.0",
+    "keys": [
+      "M.AU",
+      "M.CA",
+      "M.CH",
+      "M.GB",
+      "M.JP",
+      "M.NO",
+      "M.NZ",
+      "M.SE",
+      "M.XM",
+      "M.US"
+    ]
+  },
+  "bis_exchange_rates": {
+    "description": "Monthly end-of-period bilateral exchange rates against the U.S. dollar.",
+    "source_page": "https://data.bis.org/topics/XRU",
+    "api_template": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_XRU/1.0/{key}",
+    "accept": "application/vnd.sdmx.data+csv;version=1.0.0",
+    "keys": [
+      "M.AU.AUD.E",
+      "M.CA.CAD.E",
+      "M.CH.CHF.E",
+      "M.GB.GBP.E",
+      "M.JP.JPY.E",
+      "M.NO.NOK.E",
+      "M.NZ.NZD.E",
+      "M.SE.SEK.E",
+      "M.XM.EUR.E"
+    ]
+  },
+  "oecd_cli": {
+    "description": "OECD harmonised, amplitude-adjusted composite leading indicators at monthly frequency.",
+    "source_page": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.SDD.STES&df%5Bid%5D=DSD_STES%40DF_CLI",
+    "filenames": ["oecd_cli_1988_present.csv"],
+    "urls": [
+      "https://sdmx.oecd.org/public/rest/data/OECD.SDD.STES,DSD_STES@DF_CLI,4.1/.M.LI...AA...H?startPeriod=1988-01&dimensionAtObservation=AllDimensions&format=csvfilewithlabels"
+    ]
+  },
+  "oecd_industrial_activity": {
+    "description": "OECD monthly production-volume data for developed-country mechanism checks; exact sector filters must be audited after download.",
+    "enabled": false,
+    "source_page": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.SDD.STES&df%5Bid%5D=DSD_STES%40DF_INDSERV",
+    "filenames": ["oecd_industrial_activity_1988_present.csv"],
+    "urls": [
+      "https://sdmx.oecd.org/public/rest/data/OECD.SDD.STES,DSD_STES@DF_INDSERV,/.M.PRVM......?startPeriod=1988-01&dimensionAtObservation=AllDimensions&format=csvfilewithlabels"
+    ]
+  },
+  "fred_controls": {
+    "description": "Current-vintage public control series. FRED graph CSV is used because it does not require an API key; ALFRED vintage work requires a key and a separate task.",
+    "source_page": "https://fred.stlouisfed.org/docs/api/fred/overview.html",
+    "series": {
+      "NFCI": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NFCI",
+      "VIXCLS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS"
+    }
+  }
+}

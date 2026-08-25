@@ -1,0 +1,34 @@
+{
+  "sample_start": "1988-01",
+  "sample_end": "2025-12",
+  "currencies": ["AUD", "CAD", "CHF", "EUR", "GBP", "JPY", "NOK", "NZD", "SEK"],
+  "country_to_currency": {
+    "AU": "AUD", "CA": "CAD", "CH": "CHF", "XM": "EUR", "GB": "GBP",
+    "JP": "JPY", "NO": "NOK", "NZ": "NZD", "SE": "SEK"
+  },
+  "synchronized_easing": {
+    "minimum_cut_pp": 0.10,
+    "baseline_country_count": 3,
+    "sensitivity_country_counts": [2, 4],
+    "minimum_country_coverage": 6,
+    "quiet_months_before_onset": 3
+  },
+  "carry_sort": {
+    "long_count": 3,
+    "short_count": 3,
+    "formation_lag_months": 1
+  },
+  "event_horizons": [0, 1, 3, 6, 12],
+  "bootstrap_draws": 4999,
+  "random_seed": 13010,
+  "hac_lags": 12,
+  "cftc_release_lag_calendar_days": 3,
+  "primary_tests": [
+    "fx_shadow_carry_h1",
+    "cftc_carry_crowding_h3",
+    "acm_expected_path_h3",
+    "acm_term_premium_h3",
+    "oecd_g7_cli_h6",
+    "fred_nfci_h3"
+  ]
+}

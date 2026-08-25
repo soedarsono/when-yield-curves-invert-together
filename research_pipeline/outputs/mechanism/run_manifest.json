@@ -1,0 +1,440 @@
+{
+  "status": "complete",
+  "evidentiary_boundary": "public proxies and synthetic illustration; not replication",
+  "generated_at_utc": "2026-08-25T16:56:23+00:00",
+  "git_commit": "unavailable",
+  "environment": {
+    "python": "3.12.10",
+    "python_implementation": "CPython",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "dependencies": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.4.6",
+      "pandas": "3.0.3"
+    }
+  },
+  "inputs": [
+    {
+      "path": "research_pipeline/config/mechanism_spec.json",
+      "bytes": 921,
+      "sha256": "49709f58eff378928aa1c28e5c77664818ffd11bd7fc988a6faa548e7bab5fee"
+    },
+    {
+      "path": "research_pipeline/config/cftc_contract_crosswalk.csv",
+      "bytes": 1187,
+      "sha256": "492c2b8fb7d2a650b60fe844082f9f8d5d144a78728f549410c416e9a81b6c10"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_AU.csv",
+      "bytes": 428655,
+      "sha256": "276688b359885982f6e7a0bb831e1b1c01527b8ddd6f328f4fae0173a11828b7"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_CA.csv",
+      "bytes": 508664,
+      "sha256": "d52c338f8d8ebb2397e768abf65fda570626943491e567da1e363619360b6bd0"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_CH.csv",
+      "bytes": 284267,
+      "sha256": "b31d7bf586a1408ae842714720705b610037013d05326cbd89d73c1829d60955"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_GB.csv",
+      "bytes": 384973,
+      "sha256": "9897adea76b2780bac43bb821f38dfbb95fca213de946aa343c3cdc3c5910823"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_JP.csv",
+      "bytes": 1992675,
+      "sha256": "7c0754a34fd4eb08e7920c4f9cf4cd2a626b5b812c040a6b0116fc757441ef48"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_NO.csv",
+      "bytes": 118437,
+      "sha256": "3c767990edb504592979dddf1736348dd35490e2d7ae164133973384f5e1c64c"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_NZ.csv",
+      "bytes": 183946,
+      "sha256": "c3a03261daea30fdc4e695a661edf68f4decb0beef6f329fdc04b0b413987a59"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_SE.csv",
+      "bytes": 284957,
+      "sha256": "44435790f1c32885b4e094130a75e1cc58b61be55cb44a282c05798851605130"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_US.csv",
+      "bytes": 241284,
+      "sha256": "e414ab8306ef32977899bc22de00e0f5fc76ee6444becd3e41905f88ae5c9f87"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_XM.csv",
+      "bytes": 198188,
+      "sha256": "4cbd1c0a234fc5b56460e4704e838ce05898620b8059aa0fe14fd034ba8f44d1"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_AU_AUD_E.csv",
+      "bytes": 116140,
+      "sha256": "62caa9a8b9f8ea25d0af03cdee8153f629bc0c992ec3c2b08df2bfe4ffbb1a2c"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_CA_CAD_E.csv",
+      "bytes": 130611,
+      "sha256": "0753912e14b536aed2a3efcc2a7347dce191166a31b08cd0af88e247363a5dca"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_CH_CHF_E.csv",
+      "bytes": 118004,
+      "sha256": "7b995f32acf90035de5530c679103d4d9471f44f697611467b43c0f178bdc693"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_GB_GBP_E.csv",
+      "bytes": 125304,
+      "sha256": "6b1a1ce2b983bb5cc19f15fb185531486daafcc4be167be0744912a30037d3b6"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_JP_JPY_E.csv",
+      "bytes": 101764,
+      "sha256": "062d356afed8cf872be8d0a170b6b6e33923d15b5d7a0c6665538c402227fcaa"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_NO_NOK_E.csv",
+      "bytes": 116813,
+      "sha256": "d41c4b51bf141fc7bd811bf0ebd4402c3459f86f3b7d028e033b4d5cb0b244fa"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_NZ_NZD_E.csv",
+      "bytes": 118609,
+      "sha256": "7879bd62c9cc61d07045832ad5e4ea372a9a221edeb14a78a14f257b8a063128"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_SE_SEK_E.csv",
+      "bytes": 115509,
+      "sha256": "0ae72b57d864011f45b5c6c481ec273998b142fcc285225988b87b035c26aa86"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_XM_EUR_E.csv",
+      "bytes": 78937,
+      "sha256": "3baa0aa3a32758046b329ad58758666a0a175d685dd8b43ec8ac2aa00d744eff"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot1986_2016__FUT86_16.txt",
+      "bytes": 168185690,
+      "sha256": "6e36d70fbf1d37027658dcd4cf4ff8d2563ebe052e964e0457eba54c0539abc8"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2017__annual.txt",
+      "bytes": 14109048,
+      "sha256": "8ba60cfb622ce72c1a692fc754d0a2ffb55f3566f45065ba5433d7bd071f92cb"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2018__annual.txt",
+      "bytes": 15365481,
+      "sha256": "dd0173fcf9fdc14d9eda608836eeaf3f3f83f4f1fc01999dc6a4c97839542666"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2019__annual.txt",
+      "bytes": 15419216,
+      "sha256": "004c1952f32c4bc911676f8f2603eaeae75cba9a8c9c6d9b1a3b6ae9f4939900"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2020__annual.txt",
+      "bytes": 15038669,
+      "sha256": "4bd39b1f0cdf679f620e20f3d4b5667218158e1c1cfdb8678d23c6dd73da21a7"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2021__annual.txt",
+      "bytes": 15251600,
+      "sha256": "ae16eb98bdfd59902a22234c0684253f514d2477c200be89779dc981e6f3bf87"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2022__annual.txt",
+      "bytes": 16277791,
+      "sha256": "586c0debe2f7d714b844d8c0d396c152d2f432d11962795490005afbd223e4ad"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2023__annual.txt",
+      "bytes": 17524873,
+      "sha256": "ec4e38013e9c389b6f086110aca623708b13ef3d122f544b3aa63d00d861eff3"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2024__annual.txt",
+      "bytes": 19149563,
+      "sha256": "49ec8e2246d15559d99c77eac794fe342d67e291f7988040561a0942d6459c00"
+    },
+    {
+      "path": "research_pipeline/data/raw/cftc_legacy_futures/extracted/deacot2025__annual.txt",
+      "bytes": 19792692,
+      "sha256": "1e3055c6aaed50341493052d09f82e72f0c718a58be925e6558e1e07f4d198e7"
+    },
+    {
+      "path": "research_pipeline/data/raw/nyfed_acm/acmPlot_data.csv",
+      "bytes": 49539,
+      "sha256": "e944ef75133fcc7d61045ce78713b6d59c34f0a23c7c41af15de7e30be231f57"
+    },
+    {
+      "path": "research_pipeline/data/raw/oecd_cli/oecd_cli_1988_present.csv",
+      "bytes": 2781560,
+      "sha256": "1d8e7e96c6153646dd0c7306af66e9cb8a3b438e7c2c7d29521711d2f1bd671c"
+    },
+    {
+      "path": "research_pipeline/data/raw/fred_controls/NFCI.csv",
+      "bytes": 51403,
+      "sha256": "95c472d2723beff4301ed0f401d6478ff2e7448f19a310209a05f4e6b8271ee4"
+    },
+    {
+      "path": "research_pipeline/data/raw/fred_controls/VIXCLS.csv",
+      "bytes": 160966,
+      "sha256": "df8f5ae180469fca53fc2746d2017f3d96325b80245172d6ef7ac10e07a6a0ec"
+    }
+  ],
+  "code": [
+    {
+      "path": "research_pipeline/src/run_mechanism_checks.py",
+      "bytes": 6534,
+      "sha256": "0be29f7c50139be0a5e6656aca28ccd1059b19b524b3a9b7fb8489d34310ea55"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/__init__.py",
+      "bytes": 232,
+      "sha256": "04514ff2cfcb50ec0a380b4bb0637a2e61cd956c1efd0571d7605b4579d6d97f"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/analysis.py",
+      "bytes": 8836,
+      "sha256": "4ca899c9d0fe983930a6f3032457b0273fbe1aa6822e869cb43e110b0947d30b"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/inference.py",
+      "bytes": 6699,
+      "sha256": "1207a59ca4d12a734330280aa1de12950932fb00912ea8b38cbdbfbe3d4cf860"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/panel.py",
+      "bytes": 11952,
+      "sha256": "4e7cebb2648c07960452be4602d34cccb819016ea0c2a3985b3b2db93a4a3daa"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/reporting.py",
+      "bytes": 20339,
+      "sha256": "a4f377d76e2108349f0b2a1dbabde27041719c0b5f9d773ab2bc23ccce846118"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/simulation.py",
+      "bytes": 4361,
+      "sha256": "f292fe1fdfc233d12ac50b411e1ff7909e4354a54e25eb2fc49121abcdde964a"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "research_pipeline/outputs/mechanism/data/currency_panel.csv",
+      "bytes": 1986099,
+      "sha256": "3843c98cf3e532bd11ae06e1217f40f4cd0de4dcaef3855664438f245ab125df"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/monthly_panel.csv",
+      "bytes": 90773,
+      "sha256": "61f216b256234acecceb78588cf1308e85a6d0c38b1d69b8b4787c12430d3fc3"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/cftc_currency.csv",
+      "bytes": 447712,
+      "sha256": "178af92943f2173c0df6044d151a126ffef52da1b7c277c42fbfce1c34bd04ea"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/results.csv",
+      "bytes": 4112,
+      "sha256": "96d2671f789eba5b6d9edbee1b0e9976155157a789eaa727d567dfb5abe252b8"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/rotation_audit.csv",
+      "bytes": 180786,
+      "sha256": "6a7a12cc9c42b2e7860f856477d0f5f0316f35f2a0651681f3d79cc872bc963a"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/hac.csv",
+      "bytes": 196,
+      "sha256": "2b3f3527f7e2f36e0f3ce5eae4d6f2af091939da993dace15d8b0cc2598a10e7"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/sensitivity.csv",
+      "bytes": 1488,
+      "sha256": "02bccd8cceb3a371df4462b65736b7f02107455374ed752c679bd22ba208e5dd"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/onsets.csv",
+      "bytes": 229,
+      "sha256": "53538a87c7ba4e8c7d869d0f957daadde83dcaec02e68eea8730a6d94a49f910"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/synthetic_example_path.csv",
+      "bytes": 24555,
+      "sha256": "ee52280459f0d0f4b44649d1ae1db7a85c092b1ef2f1fa289b1eac0fd737cb9f"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/data/synthetic_monte_carlo.csv",
+      "bytes": 282996,
+      "sha256": "32f59631f9f2684ba531e5b6d3e6593b01c23f7f08f622e59bff1d8b4fde5836"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/tables/public_mechanism_checks.tex",
+      "bytes": 2132,
+      "sha256": "01cf226fe4688c7a5f3f6ea4548b119e0dd97d5679b7082825bbc2c368022ba7"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/tables/synthetic_path_dependence.tex",
+      "bytes": 932,
+      "sha256": "f8549669a09a33364561462f79db0e08b11861ce5c482584cc9aaea27004b157"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/tables/public_proxy_sensitivity.tex",
+      "bytes": 1304,
+      "sha256": "73aa5feae46d2fbb689c0ec9414234e5cb85d144279015c0c5a3110352f9240f"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.pdf",
+      "bytes": 35851,
+      "sha256": "37ffd1cfd6b84c59dc857bfcd069431f45aec3716488d9793a6cf39e984a1ae6"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.svg",
+      "bytes": 145576,
+      "sha256": "12be34fd967cfcea0db181b67bf38f8751de74c95044a62d60f92f172cf7532f"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.png",
+      "bytes": 451789,
+      "sha256": "f0f7d627dbb4bb6bafe261b227c8a1023d1ff8025ec7042ca27b5e436505295f"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.pdf",
+      "bytes": 23928,
+      "sha256": "8a06eea67a4313341e5b8aec1adc74cb4762b6492abc66fff93c21af2dab66d4"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.svg",
+      "bytes": 74241,
+      "sha256": "403375019c0e05aca18c00906e398fc010b9c2ca12be7cc63fefec96c075638f"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.png",
+      "bytes": 214153,
+      "sha256": "026f3de8e1084cba12c490a57e1af2a95d33b8de8995c617c9fed54a9622c973"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/ledgers/mechanism_result_ledger.csv",
+      "bytes": 4112,
+      "sha256": "96d2671f789eba5b6d9edbee1b0e9976155157a789eaa727d567dfb5abe252b8"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/ledgers/synchronized_easing_onsets.csv",
+      "bytes": 229,
+      "sha256": "53538a87c7ba4e8c7d869d0f957daadde83dcaec02e68eea8730a6d94a49f910"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/ledgers/simulation_result_ledger.csv",
+      "bytes": 850,
+      "sha256": "18248df6e7560a9a7e5314a965273b4ca65280c88c2293df5fbf75d379356c43"
+    },
+    {
+      "path": "research_pipeline/outputs/mechanism/ledgers/mechanism_run_metadata.json",
+      "bytes": 921,
+      "sha256": "222f95be3e75fc92f76d7fd2a3daa99f4e7cc33e4763e24f83367cba78f54d83"
+    },
+    {
+      "path": "research_pipeline/reports/mechanism_checks.md",
+      "bytes": 5025,
+      "sha256": "e8a8383234d120de08374524cd0b4c302d1bf47b23122c80ff15acea7b3c29df"
+    },
+    {
+      "path": "rewrite/generated/public_mechanism_checks.tex",
+      "bytes": 2132,
+      "sha256": "01cf226fe4688c7a5f3f6ea4548b119e0dd97d5679b7082825bbc2c368022ba7"
+    },
+    {
+      "path": "rewrite/generated/synthetic_path_dependence.tex",
+      "bytes": 932,
+      "sha256": "f8549669a09a33364561462f79db0e08b11861ce5c482584cc9aaea27004b157"
+    },
+    {
+      "path": "rewrite/generated/public_proxy_sensitivity.tex",
+      "bytes": 1304,
+      "sha256": "73aa5feae46d2fbb689c0ec9414234e5cb85d144279015c0c5a3110352f9240f"
+    },
+    {
+      "path": "rewrite/generated/public_mechanism_event_study.pdf",
+      "bytes": 35851,
+      "sha256": "37ffd1cfd6b84c59dc857bfcd069431f45aec3716488d9793a6cf39e984a1ae6"
+    },
+    {
+      "path": "rewrite/generated/public_mechanism_event_study.svg",
+      "bytes": 145576,
+      "sha256": "12be34fd967cfcea0db181b67bf38f8751de74c95044a62d60f92f172cf7532f"
+    },
+    {
+      "path": "rewrite/generated/public_mechanism_event_study.png",
+      "bytes": 451789,
+      "sha256": "f0f7d627dbb4bb6bafe261b227c8a1023d1ff8025ec7042ca27b5e436505295f"
+    },
+    {
+      "path": "rewrite/generated/synthetic_path_dependence.pdf",
+      "bytes": 23928,
+      "sha256": "8a06eea67a4313341e5b8aec1adc74cb4762b6492abc66fff93c21af2dab66d4"
+    },
+    {
+      "path": "rewrite/generated/synthetic_path_dependence.svg",
+      "bytes": 74241,
+      "sha256": "403375019c0e05aca18c00906e398fc010b9c2ca12be7cc63fefec96c075638f"
+    },
+    {
+      "path": "rewrite/generated/synthetic_path_dependence.png",
+      "bytes": 214153,
+      "sha256": "026f3de8e1084cba12c490a57e1af2a95d33b8de8995c617c9fed54a9622c973"
+    }
+  ],
+  "derived_data": [
+    "research_pipeline/outputs/mechanism/data/currency_panel.csv",
+    "research_pipeline/outputs/mechanism/data/monthly_panel.csv",
+    "research_pipeline/outputs/mechanism/data/cftc_currency.csv",
+    "research_pipeline/outputs/mechanism/data/results.csv",
+    "research_pipeline/outputs/mechanism/data/rotation_audit.csv",
+    "research_pipeline/outputs/mechanism/data/hac.csv",
+    "research_pipeline/outputs/mechanism/data/sensitivity.csv",
+    "research_pipeline/outputs/mechanism/data/onsets.csv",
+    "research_pipeline/outputs/mechanism/data/synthetic_example_path.csv",
+    "research_pipeline/outputs/mechanism/data/synthetic_monte_carlo.csv"
+  ],
+  "tables": [
+    "research_pipeline/outputs/mechanism/tables/public_mechanism_checks.tex",
+    "research_pipeline/outputs/mechanism/tables/synthetic_path_dependence.tex",
+    "research_pipeline/outputs/mechanism/tables/public_proxy_sensitivity.tex"
+  ],
+  "figures": [
+    "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.pdf",
+    "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.svg",
+    "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.png",
+    "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.pdf",
+    "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.svg",
+    "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.png"
+  ],
+  "ledgers": [
+    "research_pipeline/outputs/mechanism/ledgers/mechanism_result_ledger.csv",
+    "research_pipeline/outputs/mechanism/ledgers/synchronized_easing_onsets.csv",
+    "research_pipeline/outputs/mechanism/ledgers/simulation_result_ledger.csv",
+    "research_pipeline/outputs/mechanism/ledgers/mechanism_run_metadata.json"
+  ],
+  "report": "research_pipeline/reports/mechanism_checks.md",
+  "publication_assets": [
+    "rewrite/generated/public_mechanism_checks.tex",
+    "rewrite/generated/synthetic_path_dependence.tex",
+    "rewrite/generated/public_proxy_sensitivity.tex",
+    "rewrite/generated/public_mechanism_event_study.pdf",
+    "rewrite/generated/public_mechanism_event_study.svg",
+    "rewrite/generated/public_mechanism_event_study.png",
+    "rewrite/generated/synthetic_path_dependence.pdf",
+    "rewrite/generated/synthetic_path_dependence.svg",
+    "rewrite/generated/synthetic_path_dependence.png"
+  ]
+}

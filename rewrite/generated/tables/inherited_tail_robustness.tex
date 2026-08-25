@@ -1,0 +1,21 @@
+% SOURCE: AI JMP.pdf pp. 39--41, Table 4 and surrounding text.
+\begin{table}[H]
+\centering
+\caption{State effects after removing bottom-decile months}\label{tab:inherited-excrash}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Portfolio component & Remaining signal months & Difference (\%/yr) & Episode wild $p$ \\
+\midrule
+Carry spot       & 77 & -7.24 & 0.006 \\
+Carry total      & 77 & -5.50 & 0.024 \\
+High-beta spot   & 77 & -3.72 & 0.084 \\
+High-beta total  & 78 & -3.68 & 0.060 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.35em}
+\begin{minipage}{0.94\textwidth}
+\footnotesize\emph{Notes:} Each regression drops that return series' full-sample bottom-decile months from both states. The exercise asks whether a few crash observations mechanically generate the conditional-mean result; it does not address selection among alternative signal definitions. Wild-bootstrap $p$-values cluster by IYC episode.
+\end{minipage}
+\end{table}

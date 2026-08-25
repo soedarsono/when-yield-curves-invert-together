@@ -1,0 +1,9 @@
+currency,contract_code,start,end,position_direction,source_note
+AUD,232741,1986-01-01,2100-01-01,1,"CFTC legacy futures-only Australian dollar contract; a long contract is long AUD against USD."
+CAD,090741,1986-01-01,2100-01-01,1,"CFTC legacy futures-only Canadian dollar contract; a long contract is long CAD against USD."
+CHF,092741,1986-01-01,2100-01-01,1,"CFTC legacy futures-only Swiss franc contract; a long contract is long CHF against USD."
+GBP,096742,1993-01-01,2100-01-01,1,"CFTC legacy futures-only pound sterling contract; earlier 096741 observations are excluded because the code splice is not verified."
+JPY,097741,1986-01-01,2100-01-01,1,"CFTC legacy futures-only Japanese yen contract; a long contract is long JPY against USD."
+EUR,094741,1993-01-01,1998-12-31,1,"Deutsche mark proxy before euro futures; deliberately begins in 1993, the verified coverage in the downloaded legacy files."
+EUR,099741,1999-01-01,2100-01-01,1,"CFTC legacy futures-only euro FX contract; a long contract is long EUR against USD."
+NZD,112741,1999-01-01,2100-01-01,1,"CFTC legacy futures-only New Zealand dollar contract; coverage is intermittent before the CME contract becomes established."

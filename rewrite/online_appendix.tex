@@ -1,0 +1,41 @@
+\ifdefined\pdfminorversion\pdfminorversion=7\fi
+\ifdefined\pdfsuppressptexinfo\pdfsuppressptexinfo=15\fi
+\documentclass[11pt]{article}
+\usepackage{style/iyc-paper}
+\geometry{margin=1.05in}
+\hypersetup{
+  pdfauthor={Alfredo Effendy},
+  pdftitle={Online Appendix to When Yield Curves Invert Together: Predicting Currency Carry Losses}
+}
+
+\title{\vspace{-1.1em}{\LARGE\bfseries Online Appendix to\\[0.25em]\paperTitle}\vspace{-0.3em}}
+\author{\paperAuthor}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This appendix gives the complete signal algorithm and timing conventions, derives the accounting and candidate compensation mechanism, reports supplementary estimates, and documents reproducible public-data checks, including an exploratory country-combination screen. It separates exact construction details from empirical robustness and from evidence that bears only indirectly on the mechanism.
+\end{abstract}
+\clearpage
+\tableofcontents
+\clearpage
+
+\appendix
+\inputsection{appendix/A_signal_algorithm.tex}
+\inputsection{appendix/B_accounting_theory.tex}
+\inputsection{appendix/C_inherited_robustness.tex}
+\inputsection{appendix/D_public_data_checks.tex}
+\clearpage
+\inputsection{appendix/E_country_combinations.tex}
+
+\begingroup
+\small
+\setstretch{1.05}
+\setlength{\bibsep}{2.5pt plus 0.5pt}
+\bibliographystyle{apalike}
+\bibliography{references}
+\endgroup
+\end{document}

@@ -1,0 +1,24 @@
+\section{Which countries matter in the public proxy?}
+\label{app:country-combinations}
+
+This appendix asks whether particular country pairs or triples dominate the public delivered-easing association. It does not observe the original nine-country yield-slope panel and therefore cannot identify which curves created the paper's fifteen inversion episodes. The analysis uses the same BIS policy-rate and exchange-rate data as Appendix~\ref{app:public-checks}.
+
+\subsection{Combination screen}
+
+All 36 currency pairs and 84 triples are enumerated. For a given combination, an onset occurs when every member cuts its policy rate by at least 10 basis points after three months without that same joint cut. The outcome is the public shadow-carry spot return accumulated over event months zero and one. The ranking of all nine currencies uses lagged policy-rate differentials; the tested country combination defines the event, not the portfolio.
+
+Inference is reported only for combinations with at least six valid events. Every eligible event sequence is shifted through every circular calendar rotation. Raw two-sided rotation $p$-values are supplemented with a common-rotation maximum absolute standardized statistic that controls family-wise error across every eligible pair and triple. Episode-resampling intervals, leave-one-event means, and alternative minimum-event rules diagnose small-sample fragility.
+
+\input{generated/public_country_combination_proxy.tex}
+
+Of 120 combinations, 42 have at least six events. CHF--GBP is the only 5-percent family-wide result: six joint-cut onsets have a two-month mean shadow-carry spot return of $-4.63$ percentage points, raw $p=0.009$, and adjusted $p=0.042$. The 90-percent episode-bootstrap interval is $[-9.52,0.26]$, however, and deleting October 2008 reduces the mean to $-2.62$. CAD--NOK--NZD is next, with seven events, a $-4.29$-point mean, and adjusted $p=0.055$.
+
+The family result depends on admitting sparse combinations. With a six-event minimum, 42 combinations are eligible and one clears 5 percent. With minimums of eight or ten events, 25 and 15 combinations remain, no adjusted result clears 5 percent, and the smallest adjusted $p$-values are 0.105 and 0.224. The evidence does not establish a stable country bloc.
+
+\subsection{Sensor countries versus loss-bearing currencies}
+
+The public lead does not match the baseline loss-bearing cross-section. CHF and GBP have near-zero or modest equity betas and small, imprecise state-conditioned currency losses. AUD and NZD bear the larger losses. The own-curve horse race also shows that a country's own curve generally does not forecast its currency after conditioning on the synchronized state.
+
+This contrast suggests a testable distinction: countries whose bond or policy states reveal a shared episode need not be the currencies that bear its losses. Joint Swiss--U.K. easing may function as a calendar sensor for broad stress, while high-rate, high-beta currencies absorb the carry loss. The distinction is economically consistent with synchronization and exposure ordering, but the present result is only hypothesis-generating because delivered easing is downstream of forward-looking yield-curve inversions.
+
+The direct test requires the nine-country live-state matrix. A fifteen-episode-by-nine-country contributor ledger could enumerate which curves activate each episode, then compare contributor combinations with the subsequent currency-loss cross-section under family-wide inference. The public combination screen specifies that future test but does not decompose the headline result.

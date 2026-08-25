@@ -1,0 +1,60 @@
+\section{Signal construction and timing}
+\label{app:signal}
+
+This appendix gives the complete deterministic state transition used in the paper. It fixes the information set and separates fresh entry from confirmed release. It does not establish that the tenor, breadth threshold, and release length were selected independently of the return history.
+
+\subsection{Universe and information time}
+
+The nine non-dollar G10 currencies are the Australian dollar, Canadian dollar, Swiss franc, euro (Deutsche mark before 1999), British pound, Japanese yen, Norwegian krone, New Zealand dollar, and Swedish krona. The U.S. curve is excluded from the baseline count. For country $i$, define
+\[
+q_{i,t}=y_{i,t}^{(10Y)}-y_{i,t}^{(2Y)},
+\qquad
+I_{i,t}=\1\{q_{i,t}<0\}.
+\]
+All yields are end-of-month observations. A state measured at the end of month $t$ may condition only returns realized during month $t+1$.
+
+\subsection{Curve-level transition rule}
+
+Each curve carries a live indicator $L_{i,t}$, a consecutive-steepening counter $k_{i,t}$, and an eligibility flag. A fresh inversion is a crossing from $q_{i,t-1}\geq0$ to $q_{i,t}<0$. The update order is entry, steepening-counter update for curves already live, release after the second consecutive increase, and finally cross-country aggregation.
+
+\begin{table}[H]
+\centering
+\caption{Curve-level state transition}
+\label{tab:signal-transition}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}X}
+\toprule
+Prior condition & Observation at $t$ & End-of-month action \\
+\midrule
+Eligible and not live & $q_{i,t-1}\geq0$, $q_{i,t}<0$ & Set $L_{i,t}=1$; initialize $k_{i,t}=0$ \\
+Live & $q_{i,t}>q_{i,t-1}$ & Increase $k_{i,t}$ by one \\
+Live & $q_{i,t}\leq q_{i,t-1}$ & Reset $k_{i,t}=0$ \\
+Live; counter reaches two & Any current slope sign & Set $L_{i,t}=0$ after the second increase \\
+Released but still inverted & $q_{i,t}<0$ & Remain inactive and ineligible \\
+Released and non-inverted & $q_{i,t}\geq0$ & Become eligible for a future fresh crossing \\
+Any state & Current or lagged slope missing & Create neither a crossing nor a confirmed-steepening update \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A curve can therefore be released while still inverted. It cannot re-enter until it first becomes nonnegative and then crosses below zero again. An interrupted steepening sequence resets the counter. These rules make the state depend on the path of slopes, not only on their current signs.
+
+\subsection{Cross-country aggregation and raw benchmark}
+
+After updating all curves, form
+\[
+N_t=\sum_{i=1}^{9}L_{i,t},
+\qquad
+S_t=\1\{N_t\geq2\}.
+\]
+The baseline state $S_t$ is active in 92 of 458 return months and forms fifteen contiguous episodes. The corresponding current-inversion benchmark is
+\[
+R_t=\1\left\{\sum_{i=1}^{9}I_{i,t}\geq2\right\}.
+\]
+The return in month $t+1$ is paired with $S_t$ or, in the benchmark, $R_t$. The raw state asks whether fresh entry and confirmed release add information beyond the current sign of the curves.
+
+\input{generated/tables/inherited_state_incidence.tex}
+
+\subsection{Initialization and audit outputs}
+
+At the sample start, every curve is initialized as inactive. A curve can enter only after both sides of a fresh crossing are observed. Missing values neither trigger entry nor count toward release. The recursion produces, for every country-month, the slope, raw inversion, fresh-entry flag, live status, steepening counter, release flag, and eligibility status. It then produces $N_t$, $S_t$, and episode start, end, and duration. These fields are the minimum audit trail needed to distinguish information month from return month and to reproduce the fifteen-episode count.

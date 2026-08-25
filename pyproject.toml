@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "when-yield-curves-invert-together"
+version = "0.2.0"
+description = "Reproducibility tools and public-data checks for synchronized yield-curve inversions and currency carry losses"
+requires-python = ">=3.12"
+dependencies = [
+  "matplotlib==3.10.9",
+  "numpy==2.4.6",
+  "openpyxl==3.1.5",
+  "pandas==3.0.3",
+  "pypdf==6.14.2",
+]
+
+[tool.setuptools]
+py-modules = []

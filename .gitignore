@@ -1,0 +1,38 @@
+# Local and downloaded data
+research_pipeline/data/raw/
+research_pipeline/data/interim/
+research_pipeline/data/processed/
+
+# Rebuildable local analysis outputs; keep ledgers/reports intentionally if desired
+research_pipeline/tmp/
+tmp/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# LaTeX intermediates and working PDFs
+rewrite/*.aux
+rewrite/*.bbl
+rewrite/*.blg
+rewrite/*.fdb_latexmk
+rewrite/*.fls
+rewrite/*.log
+rewrite/*.out
+rewrite/*.toc
+rewrite/main.pdf
+rewrite/online_appendix.pdf
+rewrite/notes/buildcheck/
+output/pdf/IYC_Carry_Payback_States_Main.pdf
+output/pdf/IYC_Carry_Payback_States_Online_Appendix.pdf
+
+# Interrupted downloads
+*.part
+
+# Internal planning and scoring artifacts (not part of the research release)
+JMP_90_Plus_Revision_Checklist.md
+ULTRACODE_MASTER_EXECUTION_PLAN.md
+ULTRACODE_TASK_MANIFEST.csv

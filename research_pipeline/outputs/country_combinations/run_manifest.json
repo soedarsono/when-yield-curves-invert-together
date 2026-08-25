@@ -1,0 +1,195 @@
+{
+  "status": "complete",
+  "evidentiary_boundary": "delivered-easing public proxy; not replication of the yield-curve state",
+  "generated_at_utc": "2026-08-25T19:22:55+00:00",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "specification": {
+    "joint_cut_threshold_percentage_points": 0.1,
+    "quiet_months": 3,
+    "outcome": "policy-ranked shadow carry spot return, cumulative months 0 and 1",
+    "minimum_events_for_inference": 6,
+    "raw_inference": "all circular timing rotations, two-sided inclusive rank",
+    "multiplicity": "common-rotation max absolute standardized statistic"
+  },
+  "inputs": [
+    {
+      "path": "research_pipeline/config/mechanism_spec.json",
+      "bytes": 921,
+      "sha256": "49709f58eff378928aa1c28e5c77664818ffd11bd7fc988a6faa548e7bab5fee"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_AU.csv",
+      "bytes": 428655,
+      "sha256": "276688b359885982f6e7a0bb831e1b1c01527b8ddd6f328f4fae0173a11828b7"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_CA.csv",
+      "bytes": 508664,
+      "sha256": "d52c338f8d8ebb2397e768abf65fda570626943491e567da1e363619360b6bd0"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_CH.csv",
+      "bytes": 284267,
+      "sha256": "b31d7bf586a1408ae842714720705b610037013d05326cbd89d73c1829d60955"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_GB.csv",
+      "bytes": 384973,
+      "sha256": "9897adea76b2780bac43bb821f38dfbb95fca213de946aa343c3cdc3c5910823"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_JP.csv",
+      "bytes": 1992675,
+      "sha256": "7c0754a34fd4eb08e7920c4f9cf4cd2a626b5b812c040a6b0116fc757441ef48"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_NO.csv",
+      "bytes": 118437,
+      "sha256": "3c767990edb504592979dddf1736348dd35490e2d7ae164133973384f5e1c64c"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_NZ.csv",
+      "bytes": 183946,
+      "sha256": "c3a03261daea30fdc4e695a661edf68f4decb0beef6f329fdc04b0b413987a59"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_SE.csv",
+      "bytes": 284957,
+      "sha256": "44435790f1c32885b4e094130a75e1cc58b61be55cb44a282c05798851605130"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_US.csv",
+      "bytes": 241284,
+      "sha256": "e414ab8306ef32977899bc22de00e0f5fc76ee6444becd3e41905f88ae5c9f87"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_policy_rates/M_XM.csv",
+      "bytes": 198188,
+      "sha256": "4cbd1c0a234fc5b56460e4704e838ce05898620b8059aa0fe14fd034ba8f44d1"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_AU_AUD_E.csv",
+      "bytes": 116140,
+      "sha256": "62caa9a8b9f8ea25d0af03cdee8153f629bc0c992ec3c2b08df2bfe4ffbb1a2c"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_CA_CAD_E.csv",
+      "bytes": 130611,
+      "sha256": "0753912e14b536aed2a3efcc2a7347dce191166a31b08cd0af88e247363a5dca"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_CH_CHF_E.csv",
+      "bytes": 118004,
+      "sha256": "7b995f32acf90035de5530c679103d4d9471f44f697611467b43c0f178bdc693"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_GB_GBP_E.csv",
+      "bytes": 125304,
+      "sha256": "6b1a1ce2b983bb5cc19f15fb185531486daafcc4be167be0744912a30037d3b6"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_JP_JPY_E.csv",
+      "bytes": 101764,
+      "sha256": "062d356afed8cf872be8d0a170b6b6e33923d15b5d7a0c6665538c402227fcaa"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_NO_NOK_E.csv",
+      "bytes": 116813,
+      "sha256": "d41c4b51bf141fc7bd811bf0ebd4402c3459f86f3b7d028e033b4d5cb0b244fa"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_NZ_NZD_E.csv",
+      "bytes": 118609,
+      "sha256": "7879bd62c9cc61d07045832ad5e4ea372a9a221edeb14a78a14f257b8a063128"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_SE_SEK_E.csv",
+      "bytes": 115509,
+      "sha256": "0ae72b57d864011f45b5c6c481ec273998b142fcc285225988b87b035c26aa86"
+    },
+    {
+      "path": "research_pipeline/data/raw/bis_exchange_rates/M_XM_EUR_E.csv",
+      "bytes": 78937,
+      "sha256": "3baa0aa3a32758046b329ad58758666a0a175d685dd8b43ec8ac2aa00d744eff"
+    }
+  ],
+  "contextual_sources_not_used_in_computation": [
+    {
+      "path": "AI JMP.pdf",
+      "bytes": 889568,
+      "sha256": "c1e770925de84b1cc50f35b2a2fb7f015b6d250072b2f18f9eac994489d1a043"
+    }
+  ],
+  "code": [
+    {
+      "path": "research_pipeline/src/country_combination_proxy.py",
+      "bytes": 26451,
+      "sha256": "f9d0649eb588f39dff78f181a3a374f1db8cdc9fad92a7b5763e6fbc3d86c394"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/panel.py",
+      "bytes": 11952,
+      "sha256": "4e7cebb2648c07960452be4602d34cccb819016ea0c2a3985b3b2db93a4a3daa"
+    },
+    {
+      "path": "research_pipeline/src/mechanism/inference.py",
+      "bytes": 6699,
+      "sha256": "1207a59ca4d12a734330280aa1de12950932fb00912ea8b38cbdbfbe3d4cf860"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/tested_combination_results.csv",
+      "bytes": 26280,
+      "sha256": "532c179a730b30961c4e7c73b958aa591b38fb623884b2cd20d395752fc32646"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/baseline_onset_composition.csv",
+      "bytes": 726,
+      "sha256": "aefb18904967f1d8148625998f126c7d625aeab90fade286e4b6d404ba1d714f"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/baseline_combination_summary.csv",
+      "bytes": 16296,
+      "sha256": "a15b94c5161493aa5cff194f658eadc4f85b8f9ea7c4100c1fd9a29ad3ad26a8"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/country_baseline_summary.csv",
+      "bytes": 760,
+      "sha256": "b7dbd3774d9dbaf376d3c55d352762f37b8223bb19ffd4a0fa5931ca76cce114"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/country_cut_panel.csv",
+      "bytes": 98276,
+      "sha256": "4e135fc70735846947e1fda5d4703e0e377fe8f7131a59ecf6b4d2ca1440ef0c"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/maxT_rotation_reference.csv",
+      "bytes": 52449,
+      "sha256": "764f33a63d168edcb97ac91d939c235fefe8fe70aed8b0eaa37f26b8bfd2207c"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/data/eligibility_threshold_sensitivity.csv",
+      "bytes": 358,
+      "sha256": "9a46d0593263a5bce1e32f2e685b2b8dba03ceeaee55a05897915c38d446d6fe"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/tables/public_country_combination_proxy.tex",
+      "bytes": 1475,
+      "sha256": "3bb26c8fc1ff55ced82d915ea48435ca9ca1f55a76b7876b18c18efc755567a9"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/country_combination_report.md",
+      "bytes": 5249,
+      "sha256": "940239ae2966dfc1a6672edd001ac2030b3b4bc7c4b60939efbf4a06ea09429e"
+    },
+    {
+      "path": "research_pipeline/outputs/country_combinations/original_paper_crosscheck.md",
+      "bytes": 3945,
+      "sha256": "35ede901a262a9b9e6579a76d335f7ac917fef79f28b1e6fe988226b529ba9b3"
+    }
+  ]
+}

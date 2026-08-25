@@ -1,0 +1,36 @@
+\section{Empirical Design}
+\label{sec:design}
+
+\subsection{Predictive regression and inference}
+
+All return tests use one timing convention: information at $t$ predicts the return at $t+1$. The general specification is
+\begin{equation}
+    Y_{t+1}=\alpha+bS_t+\Gamma'W_t+\varepsilon_{t+1},
+    \label{eq:state_regression}
+\end{equation}
+where $W_t$ contains the relevant lagged benchmarks or controls. The headline conditional-mean difference sets $W_t$ empty. With a binary state, $b$ is the active-minus-inactive mean difference; monthly return coefficients are multiplied by twelve for reporting. In tables indexed by return month, equation~\eqref{eq:state_regression} is equivalently written with $S_{t-1}$.
+
+The state's 92 active months form fifteen contiguous episodes, fourteen longer than one month. Treating all active months as independent would overstate the information in the sample. I report Newey--West statistics with 12 lags and, for binary-state tests, a wild episode bootstrap that assigns Rademacher weights to contiguous episodes and imposes the null. The episode bootstrap is the headline inference because continuation months do not create independent synchronized shocks. Fifteen episodes nevertheless provide limited common-state variation; no resampling method can manufacture a missing holdout.
+
+Distributional diagnostics report medians, lower quantiles, skewness, expected shortfall, and conditional variance. A separate diagnostic removes each outcome's full-sample bottom-decile observations from both states before re-estimating equation~\eqref{eq:state_regression}. Because that deletion conditions on realized returns, it is not a preferred estimator. It answers only whether a handful of extreme observations mechanically generate the mean gap.
+
+\subsection{Benchmarks and controls}
+
+The benchmark hierarchy moves from nearby measurement alternatives to broader risk states. The raw current-inversion state asks whether fresh entry and confirmed release add information. The U.S. inversion asks whether the conventional single-country proxy spans the international state. The average G10 slope and its change ask whether the threshold is merely a nonlinear transformation of a smooth global slope. Nine country-specific live states ask whether synchronized crossings add information beyond their individual components.
+
+Lagged NFCI and VIX controls address predictive spanning: do variables already known at $t$ absorb the state's forecast? Contemporaneous dollar and currency-volatility factors answer a different question: do those realized factors account for the loss after it occurs? Neither design identifies the shock represented by $S_t$. Joint specifications are reported without sequential orthogonalization because the ordering of closely related yield-curve transformations would otherwise determine which variable receives their shared variation.
+
+\subsection{Exposure ordering}
+
+The bilateral state coefficients come from
+\begin{equation}
+    \Delta s_{i,t+1}=a_i+b_iS_t+e_{i,t+1}.
+    \label{eq:bilateral_state}
+\end{equation}
+The nine estimates $\widehat b_i$ are compared with currencies' average predetermined equity betas. The slope, fitted intercept at zero beta, and uncertainty describe the exposure gradient. A beta-sorted portfolio and a panel interaction $S_t\times\widehat\beta_{i,t}$ provide complementary tests: the portfolio is economically transparent; the panel uses monthly variation but still has only fifteen common-state episodes.
+
+This design separates three claims. Prediction asks whether $S_t$ forecasts returns. Exposure accounting asks whether the realized losses are ordered by a predetermined market characteristic. Mechanism identification would require independent variation that distinguishes global growth, policy, term-premium, inflation, and intermediary channels. The first two are directly estimated; the third is not.
+
+\subsection{Failure patterns}
+
+Four findings would materially weaken the paper: the return gap disappearing after tail removal; one-country or smooth-slope benchmarks spanning the state; no relation between currency losses and predetermined exposure; or a real-time implementation requiring future observations. The reported estimates run counter to these patterns, but all variants were examined on the same history. A prospective frozen-rule evaluation remains the decisive external test.

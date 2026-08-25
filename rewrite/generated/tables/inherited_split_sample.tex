@@ -1,0 +1,27 @@
+% SOURCE: AI JMP.pdf p. 86, Table E.1. Transcribed from PDF; not regenerated.
+\begin{table}[H]
+\centering
+\caption{The headline estimates in two halves of the sample}\label{tab:inherited-halves}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{1988:01--2004:12} & \multicolumn{3}{c}{2005:01--2026:02} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Series & $b$ & $t_{episode}$ & wild $p$ & $b$ & $t_{episode}$ & wild $p$ \\
+\midrule
+Carry spot       & -11.41 & -2.54 & 0.037 & -15.85 & -1.99 & 0.010 \\
+Carry total      & -10.20 & -2.04 & 0.052 & -14.76 & -1.84 & 0.047 \\
+High-beta spot   &  -4.01 & -1.12 & 0.287 & -11.91 & -4.07 & 0.010 \\
+High-beta total  &  -3.03 & -0.80 & 0.448 & -11.54 & -3.85 & 0.011 \\
+\midrule
+Months           & \multicolumn{3}{c}{204} & \multicolumn{3}{c}{254} \\
+Signal months    & \multicolumn{3}{c}{54}  & \multicolumn{3}{c}{38} \\
+Episodes         & \multicolumn{3}{c}{7}   & \multicolumn{3}{c}{8} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.35em}
+\begin{minipage}{0.94\textwidth}
+\footnotesize\emph{Notes:} Each column reports the state regression $y_t=a+b\,\mathbf{1}\{\mathrm{IYC}\}_{t-1}+e_t$ estimated separately by calendar half. Coefficients are annualized percentage points; $t_{episode}$ clusters by IYC episode, and wild-bootstrap $p$-values use $B=9{,}999$. This is a stability check, not a frozen out-of-sample test.
+\end{minipage}
+\end{table}

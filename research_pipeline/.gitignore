@@ -1,0 +1,24 @@
+# Downloaded data are regenerated from the manifest and are not committed by default.
+data/raw/
+data/processed/
+data/interim/
+
+# Bulky rebuildable panels and rotation draws are not versioned. Compact result
+# tables, reports, figures, ledgers, and run manifests under outputs/ are retained.
+outputs/mechanism/data/cftc_currency.csv
+outputs/mechanism/data/currency_panel.csv
+outputs/mechanism/data/monthly_panel.csv
+outputs/mechanism/data/rotation_audit.csv
+outputs/mechanism/data/synthetic_example_path.csv
+outputs/mechanism/data/synthetic_monte_carlo.csv
+outputs/country_combinations/data/country_cut_panel.csv
+outputs/country_combinations/data/maxT_rotation_reference.csv
+.venv/
+__pycache__/
+*.pyc
+*.part
+
+# Keep provenance and compact audits version controlled.
+!data/download_manifest.jsonl
+!data/public_data_inventory.csv
+!reports/data_access_audit.md

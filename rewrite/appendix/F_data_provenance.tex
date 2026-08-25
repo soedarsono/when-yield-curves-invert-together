@@ -1,0 +1,35 @@
+\section{Data provenance and reproducibility boundary}\label{app:provenance}
+
+This reconstruction has two data layers. The inherited layer consists of estimates and exhibits in the August 25, 2026 source PDF. The public layer consists of official downloads acquired and hashed by the accompanying pipeline. The public layer is designed to challenge pieces of the mechanism; it is not a substitute for the absent author panel.
+
+\subsection{Unavailable author inputs}
+
+Exact reproduction requires the original end-of-month yield curves, exchange rates, money-market rates, equity returns, macro series, portfolio memberships, signal code, random seeds, and bootstrap implementation. None is present in this workspace. In particular, the PDF does not supply enough decimal precision to reconstruct returns or enough date-level information to recover all signal boundaries. Cropping a table or digitizing a line is not reproduction.
+
+\subsection{Official public inputs}
+
+The public pipeline currently records the following inputs, source URLs, retrieval times, byte counts, and SHA-256 hashes:
+
+\begin{itemize}
+  \item CFTC legacy futures-only Commitments of Traders archives, used to construct speculative currency-position measures where contract coverage permits;
+  \item BIS monthly end-of-period bilateral exchange rates against the U.S. dollar for the non-dollar G10 currencies;
+  \item BIS monthly end-of-period central-bank policy rates for those countries and the United States;
+  \item New York Fed Adrian--Crump--Moench term-premium data, used only as a U.S. common-component diagnostic;
+  \item OECD monthly composite leading indicators, recognized as current-vintage and revisable rather than a real-time forecast record;
+  \item FRED series for U.S. financial conditions, equity volatility, the broad dollar, high-yield spreads, and WTI oil prices.
+\end{itemize}
+
+Each dataset has a named hypothesis, merge key, timing rule, target exhibit, retention decision, and limitation in the machine-readable data-purpose ledger. The pipeline rejects orphan downloads: availability alone is not a research purpose.
+
+\subsection{Timing and measurement limits}
+
+BIS policy rates are official or representative rates whose definitions change across countries and history. They are not one-month deposit rates or forward-implied rates. BIS exchange rates support spot-return checks but not feasible carry returns. The CFTC categories are weekly, coarse, and available for only a subset of currency futures; the Deutsche-mark/euro transition requires an explicit splice, and New Zealand-dollar coverage is shorter. The ACM series describes U.S. Treasury term premia, not country-specific foreign term premia. OECD leading indicators are revised and may contain financial inputs related to the paper's predictor.
+
+These limits determine language in the paper. The public panel can establish whether broad position, policy, and currency patterns are consistent with the mechanism. It cannot establish that the original signal predicts them, reconcile exact source-PDF estimates, or support claims about implementable forward returns.
+
+\subsection{Build and audit contract}
+
+A clean run must download only approved URLs, verify hashes or record intentional vintage changes, build derived panels without editing source code, generate every public-data table and figure, and emit a result ledger. The ledger records specification, sample, unit, estimator, uncertainty, result type, paper claim, and interpretation limit. A failed acquisition or schema test must stop the dependent analysis rather than silently drop the source.
+
+The eventual public release should pin the software environment, include small legal fixtures for automated tests, document licensed-data boundaries, and archive a versioned release. The source-PDF exhibits should be replaced with code-generated originals when the author package becomes available. Until then they retain an explicit inherited-evidence status.
+

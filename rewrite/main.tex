@@ -1,0 +1,45 @@
+\ifdefined\pdfminorversion\pdfminorversion=7\fi
+\ifdefined\pdfsuppressptexinfo\pdfsuppressptexinfo=15\fi
+\documentclass[12pt]{article}
+\usepackage{style/iyc-paper}
+
+\title{\vspace{-1.1em}{\LARGE\bfseries \paperTitle}\vspace{-0.3em}}
+\author{\paperAuthor\\[-0.15em]{\normalsize \paperAffiliation}}
+\date{August 2026\\[0.35em]{\small Job Market Paper}}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\inputsection{sections/00_abstract.tex}
+\end{abstract}
+
+\vfill
+\noindent\textbf{JEL:} E43, F31, G12, G15.\\
+\textbf{Keywords:} currency carry trade, yield-curve inversion, exchange-rate predictability, global risk, G10 currencies.
+\clearpage
+
+\inputsection{sections/01_introduction.tex}
+\clearpage
+\inputsection{sections/02_setting_measurement.tex}
+\inputsection{sections/03_empirical_design.tex}
+\clearpage
+\inputsection{sections/04_main_inherited_evidence.tex}
+\inputsection{sections/05_mechanism_model_intuition.tex}
+\clearpage
+\inputsection{sections/07_robustness_limits.tex}
+\clearpage
+\inputsection{sections/07_conclusion.tex}
+
+\clearpage
+\begingroup
+\small
+\setstretch{1.05}
+\setlength{\bibsep}{2.5pt plus 0.5pt}
+\bibliographystyle{apalike}
+\nocite{*}
+\bibliography{references}
+\endgroup
+
+\end{document}

@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style/iyc-paper}[2026/08/25 IYC paper house style]
+
+% Submission-facing house style.
+\RequirePackage[margin=1.22in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,bm}
+\RequirePackage{booktabs,array,longtable,tabularx}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{xcolor}
+\RequirePackage{enumitem,microtype,xurl,setspace,natbib}
+\RequirePackage[font=small,labelfont=bf]{caption}
+\RequirePackage[hidelinks]{hyperref}
+
+\definecolor{iycblue}{RGB}{38,73,108}
+\definecolor{iycred}{RGB}{154,54,54}
+\definecolor{iycgray}{RGB}{92,92,92}
+
+\onehalfspacing
+\setlength{\parindent}{1.12em}
+\setlength{\parskip}{0.06em}
+\setlength{\abovedisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{4pt plus 2pt}
+\setlength{\belowdisplayshortskip}{5pt plus 2pt minus 2pt}
+\setlist{nosep,leftmargin=*}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{assumption}[proposition]{Assumption}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prb}{\mathbb{P}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\rx}{\mathrm{rx}}
+\newcommand{\IYC}{\mathrm{IYC}}
+\newcommand{\paperTitle}{When Yield Curves Invert Together: Predicting Currency Carry Losses}
+\newcommand{\paperAuthor}{Alfredo Effendy}
+\newcommand{\paperAffiliation}{University of Washington}
+
+\hypersetup{
+  bookmarksopen=true,
+  bookmarksnumbered=true,
+  linktoc=all,
+  pdfdisplaydoctitle=true,
+  pdfauthor={Alfredo Effendy},
+  pdftitle={When Yield Curves Invert Together: Predicting Currency Carry Losses},
+  pdfsubject={Synchronized international yield-curve inversions and currency carry returns},
+  pdfkeywords={currency carry trade, yield curve inversion, exchange rate predictability, global risk, G10 currencies}
+}
+
+\newcommand{\inputsection}[1]{%
+  \IfFileExists{#1}{\input{#1}}{%
+    \PackageWarning{iyc-paper}{Missing section file #1}%
+    \section*{Section pending integration}%
+    \noindent Missing source file: \texttt{#1}.%
+  }%
+}

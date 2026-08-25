@@ -1,0 +1,87 @@
+\section{Accounting and mechanism details}
+\label{app:theory}
+
+This appendix separates return accounting, an exposure-ordering device, and a candidate compensation friction. The first is definitional. The latter two organize the evidence but are not structurally identified by the predictive regressions.
+
+\subsection{Currency and portfolio returns}
+
+Let $s_{i,t}$ be the log dollar price of currency $i$ and let $d_{i,t}=(i_{i,t}-i_{US,t})/12$. The paper defines the one-month return proxy and carry portfolio as
+\begin{equation}
+\begin{aligned}
+rx_{i,t+1}&=d_{i,t}+\Delta s_{i,t+1},\\
+rx^{\mathrm{carry}}_{t+1}
+&=\frac{1}{3}\sum_{i\in\mathcal H_t}rx_{i,t+1}
+-\frac{1}{3}\sum_{i\in\mathcal F_t}rx_{i,t+1}
+\equiv C_t+X_{t+1}.
+\end{aligned}
+\label{eq:app-accounting}
+\end{equation}
+The high-rate set is $\mathcal H_t$ and the funding set is $\mathcal F_t$. The construction makes $C_t>0$ in every sample month, so the portfolio loses only when $X_{t+1}<-C_t$. Empirically, $C_t$ averages 3.9 percent per year and has a minimum of 0.7 percent. The active-state spot-return difference is $-12.85$ percentage points and the total-return difference $-11.31$, so known income absorbs only part of the currency loss.
+
+To organize the cross-section, write
+\begin{equation}
+\Delta s_{i,t+1}=-\lambda_i g_{t+1}+\eta_{i,t+1},
+\label{eq:app-exposure}
+\end{equation}
+where $g_{t+1}>0$ is an adverse component shared across currencies, $\lambda_i$ is a latent loading, and $\eta_{i,t+1}$ is idiosyncratic. A diversified long--short portfolio partly reduces idiosyncratic components; it retains the shared component when average $\lambda_i$ differs between its two legs. The expanding-window equity beta $\widehat\beta_{i,t}$ is a predetermined proxy for $\lambda_i$, not the same primitive parameter.
+
+\subsection{Yield slopes and synchronized information}
+
+A long-minus-short yield spread combines differences in expected short-rate averages with differences in maturity-specific term premia \citep{campbellShiller1991,hamiltonKim2002}. Consequently, one inversion is consistent with expected easing but does not reveal whether the news is domestic, global, expectations-driven, or a term-premium movement. Synchronization raises the plausibility of shared information because several markets cross a salient boundary, but it does not identify the shared shock.
+
+The exact-one versus exact-two estimates give this idea empirical content. Exactly one live inversion is associated with carry spot and total coefficients of 8.33 and 8.78 percentage points per year. At exactly two, the coefficients are $-15.72$ and $-15.13$. The sign reversal indicates nonlinearity in cross-country breadth within the sample. It does not establish two as an optimal population threshold.
+
+\subsection{Delayed compensation as a candidate friction}
+
+Let $A_{t+1}$ indicate an adverse event that reduces carry payoff by $J>0$. Write
+\begin{equation}
+rx^{\mathrm{carry}}_{t+1}=C_t-JA_{t+1}+\xi_{t+1},
+\qquad
+\Prb_t(A_{t+1}=1)=p_t,
+\qquad
+\E_t[\xi_{t+1}]=0.
+\label{eq:app-payoff}
+\end{equation}
+Then $\E_t[rx^{\mathrm{carry}}_{t+1}]=C_t-p_tJ$. For a tradable excess return in a frictionless benchmark, the Euler condition $\E_t[m_{t+1}rx^{\mathrm{carry}}_{t+1}]=0$ requires compensation when losses occur in high-marginal-utility states. Publicly visible risk therefore does not automatically imply a negative conditional mean.
+
+The candidate friction places an information lag in compensation. Suppose
+\begin{equation}
+C_t=\bar C_t+\mu J\E_{t-1}[p_t],
+\qquad \mu\geq1,
+\label{eq:app-compensation}
+\end{equation}
+where $\bar C_t$ is ordinary carry income and the second component prices the current-period hazard using the earlier information set. Combining equations~\eqref{eq:app-payoff} and \eqref{eq:app-compensation} gives
+\begin{equation}
+\E_t[rx^{\mathrm{carry}}_{t+1}]
+=\bar C_t+J\left\{\mu\E_{t-1}[p_t]-p_t\right\}.
+\label{eq:app-expected-return}
+\end{equation}
+Hence
+\begin{equation}
+\E_t[rx^{\mathrm{carry}}_{t+1}]<0
+\quad\Longleftrightarrow\quad
+p_t>\mu\E_{t-1}[p_t]+\frac{\bar C_t}{J}.
+\label{eq:app-negative-mean}
+\end{equation}
+The inequality is the model's economic content. A rise in perceived risk is insufficient: the current expected loss must exceed both previously embedded event compensation and ordinary carry income. Fresh synchronized inversions may mark such a belief innovation, but the paper does not observe $p_t$ or identify the adjustment friction.
+
+\subsection{Conditional uncovered interest parity}
+
+The supporting Fama regression estimates the appreciation slope separately by state:
+\begin{equation}
+\Delta s_{i,t+1}=a_i^{(s)}+\phi_s d_{i,t}+u_{i,t+1},
+\qquad S_t=s,\quad s\in\{0,1\}.
+\label{eq:app-fama}
+\end{equation}
+Under the paper's quote convention, uncovered interest parity implies $\phi_s=-1$. The pooled estimate is 0.50 outside the state and $-1.33$ inside it. The point estimates say that high-rate currencies depreciate in the state in which carry loses. The state interaction has a Newey--West $t$-statistic of $-2.39$ but an episode-bootstrap $p$-value of 0.340. The pooled panel contains many currency-months, whereas the common state changes across only fifteen episodes; the episode result is therefore the appropriate warning against treating $-1.33$ as a precise structural slope.
+
+\subsection{Exploratory curve-shape compensation}
+
+Define the cross-country average yield at maturity $m$ as $\bar y_t^{(m)}=9^{-1}\sum_{i=1}^{9}y_{i,t}^{(m)}$. An active-state month is classified as downcurve when
+\begin{equation}
+\bar y_t^{(3M)}>\bar y_t^{(2Y)}>\bar y_t^{(10Y)}.
+\label{eq:app-downcurve}
+\end{equation}
+There are 52 downcurve months and 35 overlap the synchronized state. In those 35 months, carry income averages 6.48 percent per year and the spot leg $-0.96$; in the other 57 active-state months, income averages 4.31 and the spot leg $-15.55$. Total carry returns average 5.51 percent in downcurve-state months and $-11.24$ percent in the remaining state months.
+
+This split is economically suggestive: high, fully downward-sloping curves can mark inflation normalization with unusually large carry income, whereas other synchronized inversions can look more like uncompensated stress. The classification was developed after examining apparent false alarms and is concentrated in 1988--91 and 2023--24, plus one month in 2007. Rate level, inflation, and curve shape move together in those periods, so the heterogeneity is exploratory and does not establish a feasible trading rule.

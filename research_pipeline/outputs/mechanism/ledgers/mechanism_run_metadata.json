@@ -1,0 +1,27 @@
+{
+  "design_status": "Prespecified public proxy; not an IYC signal replication",
+  "sample_start": "1988-01",
+  "sample_end": "2025-12",
+  "monthly_rows": 456,
+  "onset_count": 15,
+  "policy_event_definition": {
+    "minimum_cut_pp": 0.1,
+    "baseline_country_count": 3,
+    "sensitivity_country_counts": [
+      2,
+      4
+    ],
+    "minimum_country_coverage": 6,
+    "quiet_months_before_onset": 3
+  },
+  "multiple_testing_family": [
+    "fx_shadow_carry_h1",
+    "cftc_carry_crowding_h3",
+    "acm_expected_path_h3",
+    "acm_term_premium_h3",
+    "oecd_g7_cli_h6",
+    "fred_nfci_h3"
+  ],
+  "inference": "Episode bootstrap; all circular rotations conditional on the observed valid-event count with doubled smaller-tail inclusive ranks; disclosed Newey-West association check",
+  "simulation_status": "Synthetic illustration; parameters neither fitted nor calibrated to paper estimates"
+}

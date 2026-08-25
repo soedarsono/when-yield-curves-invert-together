@@ -1,0 +1,36 @@
+\section{Main Evidence}
+\label{sec:main_evidence}
+
+\subsection{A large spot-return shift}
+
+Annualized carry-trade spot returns are 12.85 percentage points lower when the lagged synchronized-inversion state is active, with inference based on fifteen episodes. Spot returns average 2.85 percent in the 366 inactive months and $-10.00$ percent in the 92 active months. Total carry returns fall from 6.45 to $-4.86$ percent, a difference of $-11.31$ percentage points. Episode-bootstrap $p$-values are 0.001 and 0.003.
+
+\IfFileExists{generated/tables/inherited_headline.tex}{%
+  \input{generated/tables/inherited_headline.tex}%
+}{}
+
+The accounting matters. Carry income averages 3.9 percent per year and remains positive in every month, yet it cushions only part of the active-state depreciation. The result is therefore not low carry income; it is a spot movement large enough to overwhelm known income. The strategy's annualized Sharpe ratio falls from 0.89 outside the state to $-0.51$ inside it.
+
+The distribution shifts beyond the mean. The monthly spot median falls from 0.35 percent outside the state to $-0.76$ percent inside; the 25th percentile moves from $-0.93$ to $-1.98$ percent, and the 10th percentile from $-2.35$ to $-3.94$ percent. Spot-return expected shortfall worsens from $-4.80$ to $-8.14$ percent. By contrast, the conditional variance ratio is 1.74 with permutation $p=0.14$. Location and tail frequency shift, while the increase in variance is not statistically detectable.
+
+Removing each return series' 46 bottom-decile months leaves a carry-spot coefficient of $-7.24$ percentage points per year ($p=0.006$) and a total-return coefficient of $-5.50$ ($p=0.024$). This outcome-selected diagnostic does not estimate a counterfactual without crashes. It shows that the mean difference is not arithmetically carried by only the most extreme observations.
+
+\subsection{Why synchronization matters}
+
+The count displays a striking sign change. In 88 months with exactly one live inversion, carry spot and total returns are 8.33 and 8.78 percentage points per year higher than in the remainder of the sample, with episode-bootstrap $p$-values of 0.005 and 0.003. At exactly two live inversions, the coefficients reverse to $-15.72$ and $-15.13$ percentage points, each with $p\leq0.003$. This contrast supports the economic distinction between one-country and synchronized information within the sample. It does not identify two as a universal cutoff.
+
+Nearby bond-market states do not reproduce the result. The U.S. 10-year/2-year inversion is active in 57 lagged months and has carry-spot and total-return coefficients of $-1.90$ ($p=0.484$) and $-1.34$ ($p=0.637$). Adding the average G10 slope, its one-month change, and the U.S. inversion leaves the synchronized-state coefficient at $-13.45$ for spot returns ($p=0.003$) and $-12.44$ for total returns ($p=0.012$). The continuous slope variables are imprecise.
+
+Adding all nine country-level live states makes the synchronized coefficient more negative. That increase is not evidence of a cleaner causal effect: the regressors are related transformations of a small set of curves, and individual states absorb many benign one-country episodes. The defensible conclusion is that neither a smooth global slope nor the individual curve states span the cross-country configuration.
+
+\subsection{Risk controls, timing, and stability}
+
+Lagged observed risk conditions do not absorb the state. With the NFCI level and change, the carry-spot coefficient is $-12.84$ percentage points ($p<0.001$). Adding VIX level and change in the post-1990 sample gives $-13.18$ ($p=0.004$). Contemporaneous dollar and global-FX-volatility factors reduce the coefficient only to $-11.5$ ($p=0.002$). The lagged controls address forecast spanning; the contemporaneous controls show that the portfolio loss is not merely the average dollar movement or the particular volatility innovation in those regressions.
+
+A U.S. term-premium adjustment gives a more mixed result than the simple controls. After stripping each national slope's fitted exposure to the U.S. ACM slope premium, 83 percent of inversions remain. The high-beta state effect remains negative and precise ($-6.2$ percentage points, $p=0.004$), whereas the carry effect roughly halves to $-5.4$ and is imprecise ($p=0.11$). Thus a common U.S. term-premium component does not explain the exposure result, but it may account for part of the carry estimate; it is not a decomposition of foreign-country term premia.
+
+The chronology is genuinely predictive under the stated month-end convention. All five worst monthly carry returns occur under the lagged state. March 1995, October 2008, and March 2020 arrive after the raw current-inversion count has receded but while the previously observed live state still conditions the return. Applying the rule recursively produces no later revisions to prior classifications. One additional month of lag roughly halves the carry coefficient, consistent with short-lived information rather than a permanent regime.
+
+Calendar and episode checks are supportive but not external validation. The carry-spot coefficient is $-11.41$ percentage points before 2005 and $-15.85$ afterward. Leave-one-episode-out carry estimates remain within roughly one-third of the full-sample estimate. The beta-sorted portfolio is less stable across halves, with its adverse association concentrated after 2005. Online Appendix C reports these results and the rule grids in full.
+
+The main evidence therefore supports an economically large within-sample predictive association: synchronized fresh inversions forecast lower subsequent carry spot returns, and the result is not reproduced by the most obvious single-curve, smooth-slope, or lagged-risk alternatives. The next section asks why the losses fall disproportionately on the high-rate currencies that carry holds.
