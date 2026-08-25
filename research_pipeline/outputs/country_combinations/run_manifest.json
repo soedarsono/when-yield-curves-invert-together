@@ -1,7 +1,7 @@
 {
   "status": "complete",
   "evidentiary_boundary": "delivered-easing public proxy; not replication of the yield-curve state",
-  "generated_at_utc": "2026-08-25T23:23:49+00:00",
+  "generated_at_utc": "2026-08-25T23:33:49+00:00",
   "environment": {
     "python": "3.12.10",
     "platform": "Windows-10-10.0.19045-SP0"
@@ -126,8 +126,8 @@
   "code": [
     {
       "path": "research_pipeline/src/country_combination_proxy.py",
-      "bytes": 27254,
-      "sha256": "525df518ab2ac8f70596b69b6a23c6e58e1f6718db0b837d1f547ff2a567c4c7"
+      "bytes": 27317,
+      "sha256": "2c60a58a597bc04adf484ee774efd86b7f80ef65e1c02f463077df40e234f186"
     },
     {
       "path": "research_pipeline/src/mechanism/panel.py",
@@ -143,48 +143,48 @@
   "outputs": [
     {
       "path": "research_pipeline/outputs/country_combinations/data/tested_combination_results.csv",
-      "bytes": 26236,
-      "sha256": "ddcf229c4ab68d15f1a4ab952e10884538aa71ab0bd971a06ffb5248aaf8884c"
+      "bytes": 26115,
+      "sha256": "1d13c1c7cb6331a259255b78548b554d621eebb6243e3cb77ab300cdff1ff6ec"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/data/baseline_onset_composition.csv",
-      "bytes": 731,
-      "sha256": "1f5a2787a91f143dbd4b870fe6f04c5642a2f7e3de2d8eb7e313397ab54d3eea"
+      "bytes": 715,
+      "sha256": "b94919cc669dd77bbc2f19a1e9ee8aa0c2092c0107c4e79ea527673c33d22eed"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/data/baseline_combination_summary.csv",
-      "bytes": 16226,
-      "sha256": "9f539fce5be5ea36ef4e266e35c461a0db9923cf8d0a90cd5666a6e6a6ae2aeb"
+      "bytes": 16105,
+      "sha256": "93f1b8f6f0ea8b3b0c27f32a1b6e987561fe89873b93e551b7fb3590bcd19396"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/data/country_baseline_summary.csv",
-      "bytes": 760,
-      "sha256": "eeaef860a45a6eb1f79f4b8a95743afcde75cdef1d27385f52221e9c709376b1"
+      "bytes": 750,
+      "sha256": "8fd6136301987197cb4ef8456ff70c2ec939d56a185e54db7a393013c99d6293"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/data/country_cut_panel.csv",
-      "bytes": 98276,
-      "sha256": "4e135fc70735846947e1fda5d4703e0e377fe8f7131a59ecf6b4d2ca1440ef0c"
+      "bytes": 94171,
+      "sha256": "f83ffece7db7b6f0061b8b53d8642dfc0b9f2b70e088859e5370fc4000452ea0"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/data/maxT_rotation_reference.csv",
-      "bytes": 52449,
-      "sha256": "a5a6b87743e1bc149b5f36d0305b00ace4cc304ff3dd7bb8ad0315b60e589193"
+      "bytes": 51083,
+      "sha256": "f0422110a4cf094507f8c5f19fa5181ad778bf9fd87a7c9577ec89570c847609"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/data/eligibility_threshold_sensitivity.csv",
-      "bytes": 360,
-      "sha256": "6d12d16f7126925b559e32a8ae79a7615c4a827bd3de910ff6bdfa5edb2d6f54"
+      "bytes": 356,
+      "sha256": "57d3b8a3f84fd9eaed88c49b870b87f6223da2dde8c89a2621e37ed6aca5a435"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/tables/public_country_combination_proxy.tex",
-      "bytes": 1705,
-      "sha256": "bc25b91b38bfd7a54e426f368e362ff19bb9938cc2950419cc4cdab606e25de1"
+      "bytes": 1680,
+      "sha256": "64f74b3114ea6ce1499bada9912eeb4e0109991160f496fec1214e06a679a856"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/country_combination_report.md",
-      "bytes": 5646,
-      "sha256": "8975429bfe4d93723a85fa4a5ff09317bf57dc02e023d375348cd756aff9f28b"
+      "bytes": 5580,
+      "sha256": "151627c7f9fab9a1ad13a5d70e9290a5677c26a7b81cc51e223fda2dba5e6afe"
     },
     {
       "path": "research_pipeline/outputs/country_combinations/original_paper_crosscheck.md",

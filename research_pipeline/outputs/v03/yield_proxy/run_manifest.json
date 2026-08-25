@@ -1,9 +1,9 @@
 {
   "code_and_config_inputs": [
     {
-      "bytes": 34121,
+      "bytes": 34142,
       "path": "research_pipeline/src/public_yield_proxy_v03.py",
-      "sha256": "4f7612a753dbe43c1c845e30cefb498b1531c01cee902f306d773b5a3c613b18"
+      "sha256": "75f038530959f4e89deccdb63576211168268270d36eaec766f824a6368d8b52"
     },
     {
       "bytes": 10223,
@@ -26,7 +26,7 @@
       "sha256": "82d0e8099ad5f4b1d75af2e21a559f7d3187658db200124daa18bb2d75aacf20"
     }
   ],
-  "created_at_utc": "2026-08-25T23:24:40+00:00",
+  "created_at_utc": "2026-08-25T23:34:40+00:00",
   "environment": {
     "matplotlib": "3.10.9",
     "numpy": "2.4.6",
@@ -35,44 +35,44 @@
   },
   "evidentiary_boundary": "independent current-vintage 10Y-3M public proxy; not author-state replication",
   "git": {
-    "head_at_run": "a2f87836e6719cba874622792273ad65c004da09",
-    "worktree_dirty_at_run": false
+    "head_at_run": "13a886e18eab18239fd2365612195bcc3351372e",
+    "worktree_dirty_at_run": true
   },
   "outputs": [
     {
-      "bytes": 8071,
+      "bytes": 8006,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/specification_family.csv",
-      "sha256": "989b225badab76a8465d2eaa0a4d4f2545f198c80629fd1e08608a149324b4cc"
+      "sha256": "f432e7eded312d2bf44d1b8db1231047542c2433cfc1531441079806a1a006f2"
     },
     {
-      "bytes": 637,
+      "bytes": 627,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/leave_one_country_out.csv",
-      "sha256": "8b78e6a16a5e013640ddc46a155e6b827368bba19ed19d2e75633615545ecb86"
+      "sha256": "2874fa86289890a771d9fd8dc9b15a94457b2f14ad5242201640975e31eb4879"
     },
     {
-      "bytes": 444,
+      "bytes": 441,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/geographically_disjoint.csv",
-      "sha256": "1bcbd30d29e693b489f594e0842e470195e7bb8768e68c15e3dfbcf63b6f1eaa"
+      "sha256": "b542df41c2b4cfeb6e7160a895a09e3b2071ab4b3d40f15fa4f86184f27a3c4d"
     },
     {
-      "bytes": 26965,
+      "bytes": 26508,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/baseline_monthly_state.csv",
-      "sha256": "49c7df217b1e718f3224a4bd8555b6e27dea328dc78a1a99501a4a98ef33463d"
+      "sha256": "c469f95298ff3388e72e77cd85d74866c3a25cc723011d5a631de33c056730e8"
     },
     {
-      "bytes": 331649,
+      "bytes": 327556,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/baseline_curve_recursion_audit.csv",
-      "sha256": "ec960b11796d726a4ac1cde037ffe91a8ab96cac568541b8a9c094e9c31dfc2e"
+      "sha256": "517b8add9dbe4aee9c78cfbc78a77d79127abd789a0a11224d36df75054428bd"
     },
     {
-      "bytes": 1220,
+      "bytes": 1201,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/baseline_episode_ledger.csv",
-      "sha256": "4ec0e3ac671478cc74283b147cc3101e5a8d736d3eaed0288b48a46245aa36f2"
+      "sha256": "8d0b2bc7ba4d863bc363f3186edd26195b41e37fef57ff88af7325c967fb9408"
     },
     {
-      "bytes": 510,
+      "bytes": 504,
       "path": "research_pipeline/outputs/v03/yield_proxy/data/baseline_sensitivities.csv",
-      "sha256": "ad814c2479ec7c12465c8bf61a3cdde08c706cb14c738824273696d14953bf88"
+      "sha256": "2650249ad4662e5cae6096d6ca06fe1bc3f0cc263fb8818fc712ba7af11f07fc"
     },
     {
       "bytes": 105826,

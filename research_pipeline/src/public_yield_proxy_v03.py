@@ -596,7 +596,7 @@ def main() -> int:
         (audit[["month", "currency", "long_series_id", "short_series_id", "fresh_entry", "live", "steepening_counter", "released", "eligible", "inverted", "observed"]], "curve_audit"),
         (episodes, "episodes"), (sensitivities, "sensitivities"),
     ]:
-        frame.to_csv(artifacts[key], index=False)
+        frame.to_csv(artifacts[key], index=False, lineterminator="\n")
     plot_specification_curve(specs, artifacts["figure"])
     artifacts["report"].write_text(write_report(specs, loo, disjoint, episodes, sensitivities), encoding="utf-8", newline="\n")
 

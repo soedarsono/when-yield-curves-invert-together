@@ -361,7 +361,7 @@ def write_latex_table(results: pd.DataFrame, path: Path) -> None:
             r"\end{table}",
         ]
     )
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
 def write_report(outputs: dict[str, pd.DataFrame], path: Path) -> None:
@@ -457,7 +457,7 @@ def write_report(outputs: dict[str, pd.DataFrame], path: Path) -> None:
             "Run `python research_pipeline/src/country_combination_proxy.py` from the project root. All outputs are isolated under `research_pipeline/outputs/country_combinations/`.",
         ]
     )
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
 def main() -> int:
@@ -472,7 +472,7 @@ def main() -> int:
     written: list[Path] = []
     for name, frame in outputs.items():
         path = data_dir / f"{name}.csv"
-        frame.to_csv(path, index=False)
+        frame.to_csv(path, index=False, lineterminator="\n")
         written.append(path)
     table_path = table_dir / "public_country_combination_proxy.tex"
     write_latex_table(outputs["tested_combination_results"], table_path)
@@ -514,7 +514,7 @@ def main() -> int:
         "outputs": [_artifact(path) for path in written],
     }
     manifest_path = OUTPUT_ROOT / "run_manifest.json"
-    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(
         json.dumps(
             {

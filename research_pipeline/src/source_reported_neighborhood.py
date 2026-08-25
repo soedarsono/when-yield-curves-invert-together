@@ -109,8 +109,8 @@ def main() -> None:
     core_path = OUTPUT / "reported_rule_neighborhood_unique.csv"
     summary_path = OUTPUT / "reported_rule_neighborhood_summary.csv"
     figure_path = OUTPUT / "reported_rule_neighborhood.png"
-    core.to_csv(core_path, index=False)
-    summary.to_csv(summary_path, index=False)
+    core.to_csv(core_path, index=False, lineterminator="\n")
+    summary.to_csv(summary_path, index=False, lineterminator="\n")
     plot(core, figure_path)
     manifest = {
         "analysis": "descriptive audit of source Tables C.1--C.3",
@@ -123,7 +123,9 @@ def main() -> None:
             for p in (core_path, summary_path, figure_path, figure_path.with_suffix(".pdf"))
         ],
     }
-    (OUTPUT / "run_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    (OUTPUT / "run_manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n"
+    )
 
 
 if __name__ == "__main__":

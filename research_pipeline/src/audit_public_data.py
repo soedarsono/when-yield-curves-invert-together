@@ -203,7 +203,7 @@ def main() -> int:
     INVENTORY.parent.mkdir(parents=True, exist_ok=True)
     with INVENTORY.open("w", encoding="utf-8", newline="") as handle:
         fieldnames = list(records[0]) if records else ["source_group", "file"]
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(records)
 
@@ -274,7 +274,7 @@ def main() -> int:
         ]
     )
     REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(f"Wrote {INVENTORY.relative_to(PROJECT_ROOT)}")
     print(f"Wrote {REPORT.relative_to(PROJECT_ROOT)}")
     return 0 if healthy else 1

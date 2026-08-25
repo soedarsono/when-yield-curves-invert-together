@@ -28,6 +28,8 @@ def _save_figure(fig: plt.Figure, path: Path, *, dpi: int | None = None) -> None
     elif path.suffix == ".svg":
         metadata = {"Date": None}
     fig.savefig(path, dpi=dpi, bbox_inches="tight", metadata=metadata)
+    if path.suffix == ".svg":
+        path.write_text(path.read_text(encoding="utf-8"), encoding="utf-8", newline="\n")
 
 
 def _latex_escape(value: object) -> str:
@@ -60,7 +62,7 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
         r"\end{table}", "",
     ])
     main = table_dir / "public_mechanism_checks.tex"
-    main.write_text("\n".join(lines), encoding="utf-8")
+    main.write_text("\n".join(lines), encoding="utf-8", newline="\n")
 
     sim_summary = simulation.groupby("state").agg(
         crash_capture_rate=("crash_capture_rate", "mean"), state_month_share=("state_month_share", "mean"),
@@ -81,7 +83,7 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
         r"\end{table}", "",
     ])
     sim_path = table_dir / "synthetic_path_dependence.tex"
-    sim_path.write_text("\n".join(sim_lines), encoding="utf-8")
+    sim_path.write_text("\n".join(sim_lines), encoding="utf-8", newline="\n")
 
     sens_lines = [
         r"\begin{table}[H]", r"\centering", r"\caption{Public-proxy sensitivity: shadow carry spot return}",
@@ -106,7 +108,7 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
         r"\end{table}", "",
     ])
     sens_path = table_dir / "public_proxy_sensitivity.tex"
-    sens_path.write_text("\n".join(sens_lines), encoding="utf-8")
+    sens_path.write_text("\n".join(sens_lines), encoding="utf-8", newline="\n")
     return [main, sim_path, sens_path]
 
 
@@ -212,9 +214,9 @@ def write_ledgers(results: pd.DataFrame, onsets: pd.DataFrame, spec: dict, sampl
     ledger_dir = OUTPUT_ROOT / "ledgers"
     ledger_dir.mkdir(parents=True, exist_ok=True)
     result_ledger = ledger_dir / "mechanism_result_ledger.csv"
-    results.to_csv(result_ledger, index=False)
+    results.to_csv(result_ledger, index=False, lineterminator="\n")
     onsets_path = ledger_dir / "synchronized_easing_onsets.csv"
-    onsets.to_csv(onsets_path, index=False)
+    onsets.to_csv(onsets_path, index=False, lineterminator="\n")
     sim_summary = simulation.groupby("state").agg(
         simulations=("simulation", "nunique"), crash_capture_rate=("crash_capture_rate", "mean"),
         state_month_share=("state_month_share", "mean"), false_positive_months=("false_positive_months", "mean"),
@@ -224,7 +226,7 @@ def write_ledgers(results: pd.DataFrame, onsets: pd.DataFrame, spec: dict, sampl
     sim_summary["interpretation"] = "Illustrates how confirmed exit can retain crash-state coverage after contemporaneous inversions re-steepen."
     sim_summary["limitation"] = "Synthetic parameters are neither fitted nor calibrated; higher crash capture also uses more state months and is not an empirical performance estimate."
     sim_path = ledger_dir / "simulation_result_ledger.csv"
-    sim_summary.to_csv(sim_path, index=False)
+    sim_summary.to_csv(sim_path, index=False, lineterminator="\n")
     metadata = {
         "design_status": "Declared public proxy family; no immutable preregistration; not an IYC signal replication",
         "sample_start": spec["sample_start"], "sample_end": spec["sample_end"],
@@ -235,7 +237,7 @@ def write_ledgers(results: pd.DataFrame, onsets: pd.DataFrame, spec: dict, sampl
         "simulation_status": "Synthetic illustration; parameters neither fitted nor calibrated to paper estimates",
     }
     metadata_path = ledger_dir / "mechanism_run_metadata.json"
-    metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8", newline="\n")
     return [result_ledger, onsets_path, sim_path, metadata_path]
 
 
@@ -275,7 +277,7 @@ def write_report(results: pd.DataFrame, sensitivity: pd.DataFrame, hac: pd.DataF
         "- OECD CLI and FRED graph histories are current-vintage. The CLI may include financial information and therefore is secondary mechanism evidence.",
         "- Holm adjustment covers the declared primary family, but specification search in the original paper remains outside this public-proxy exercise.", "",
     ])
-    path.write_text("\n".join(lines), encoding="utf-8")
+    path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
     return path
 
 

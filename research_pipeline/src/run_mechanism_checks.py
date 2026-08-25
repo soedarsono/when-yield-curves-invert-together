@@ -136,12 +136,12 @@ def main() -> int:
         for column in frame.columns:
             if isinstance(frame[column].dtype, pd.PeriodDtype):
                 frame[column] = frame[column].astype(str)
-        frame.to_csv(path, index=False)
+        frame.to_csv(path, index=False, lineterminator="\n")
         derived.append(path)
     example_path = data_dir / "synthetic_example_path.csv"
     simulation_path = data_dir / "synthetic_monte_carlo.csv"
-    example.to_csv(example_path, index=False)
-    simulation.to_csv(simulation_path, index=False)
+    example.to_csv(example_path, index=False, lineterminator="\n")
+    simulation.to_csv(simulation_path, index=False, lineterminator="\n")
     derived.extend([example_path, simulation_path])
 
     tables = write_tables(outputs["results"], outputs["sensitivity"], simulation)
@@ -161,7 +161,7 @@ def main() -> int:
         publication=publication,
     )
     manifest_path = OUTPUT_ROOT / "run_manifest.json"
-    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"manifest": str(manifest_path), "onsets": len(outputs["onsets"]), "results": len(outputs["results"])}, indent=2))
     return 0
 
