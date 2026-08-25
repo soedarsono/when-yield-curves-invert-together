@@ -26,7 +26,7 @@
       "sha256": "82d0e8099ad5f4b1d75af2e21a559f7d3187658db200124daa18bb2d75aacf20"
     }
   ],
-  "created_at_utc": "2026-08-25T23:07:02+00:00",
+  "created_at_utc": "2026-08-25T23:24:40+00:00",
   "environment": {
     "matplotlib": "3.10.9",
     "numpy": "2.4.6",
@@ -35,7 +35,7 @@
   },
   "evidentiary_boundary": "independent current-vintage 10Y-3M public proxy; not author-state replication",
   "git": {
-    "head_at_run": "a41ba89795564c358457addf3be73b5aafcaebf2",
+    "head_at_run": "a2f87836e6719cba874622792273ad65c004da09",
     "worktree_dirty_at_run": false
   },
   "outputs": [
