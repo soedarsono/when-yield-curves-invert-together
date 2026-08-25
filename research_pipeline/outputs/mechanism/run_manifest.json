@@ -1,8 +1,8 @@
 {
   "status": "complete",
   "evidentiary_boundary": "public proxies and synthetic illustration; not replication",
-  "generated_at_utc": "2026-08-25T23:33:30+00:00",
-  "git_commit": "13a886e18eab18239fd2365612195bcc3351372e",
+  "generated_at_utc": "2026-08-25T23:36:31+00:00",
+  "git_commit": "89128bb5e11221f48081e03171e8558c6e4a741e",
   "environment": {
     "python": "3.12.10",
     "python_implementation": "CPython",
