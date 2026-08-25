@@ -1,8 +1,8 @@
 {
   "status": "complete",
   "evidentiary_boundary": "public proxies and synthetic illustration; not replication",
-  "generated_at_utc": "2026-08-25T22:58:05+00:00",
-  "git_commit": "d2a5a8dcc27c42c366d0d9ca61c5f33acc1afc0c",
+  "generated_at_utc": "2026-08-25T23:18:33+00:00",
+  "git_commit": "a41ba89795564c358457addf3be73b5aafcaebf2",
   "environment": {
     "python": "3.12.10",
     "python_implementation": "CPython",
@@ -218,8 +218,8 @@
     },
     {
       "path": "research_pipeline/src/mechanism/reporting.py",
-      "bytes": 20516,
-      "sha256": "27220c323e2534e1fd55c991691e84f80fa791f03fec3650186cd5f4b0cc753a"
+      "bytes": 20997,
+      "sha256": "3079ab37052249e412844142cb8d13165eea108e0507942a183cea99931de98a"
     },
     {
       "path": "research_pipeline/src/mechanism/simulation.py",
@@ -295,13 +295,13 @@
     },
     {
       "path": "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.pdf",
-      "bytes": 35860,
-      "sha256": "e16ae7f8f966816f0020952a47ec43a0d7597ed7bc4a63965c014957174bbae0"
+      "bytes": 35820,
+      "sha256": "780f458a4c605dca3714ceca240429b73243c9305d5d458c19cb4a166d79d9d9"
     },
     {
       "path": "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.svg",
-      "bytes": 145556,
-      "sha256": "e9bcfa528bf59ee29262d5b97e4376546e17a58717ba8b96448bab03cb723ecc"
+      "bytes": 145505,
+      "sha256": "26eced02f36fb353593c1db2846131f56aa1475bf197c9d5cc5743f08129a878"
     },
     {
       "path": "research_pipeline/outputs/mechanism/figures/public_mechanism_event_study.png",
@@ -310,13 +310,13 @@
     },
     {
       "path": "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.pdf",
-      "bytes": 23928,
-      "sha256": "671edca6b22096278cfe231dcf3e98daf61fbb3830564d1dbc8799470558e2c8"
+      "bytes": 23888,
+      "sha256": "74c4e436ae7d653eae86f47487800ae7ac9a5f5c0bf7cc5e0e705e8e4b6b26df"
     },
     {
       "path": "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.svg",
-      "bytes": 74241,
-      "sha256": "bef909c01989b1c4fe2983ad5d5711b45502883015bae0ac0083d2ebff92fef5"
+      "bytes": 74190,
+      "sha256": "734a5cee21b732ddac7a23ef630f6bb87c20622acde1878c40b2be474b400ff9"
     },
     {
       "path": "research_pipeline/outputs/mechanism/figures/synthetic_path_dependence.png",
@@ -365,13 +365,13 @@
     },
     {
       "path": "rewrite/generated/public_mechanism_event_study.pdf",
-      "bytes": 35860,
-      "sha256": "e16ae7f8f966816f0020952a47ec43a0d7597ed7bc4a63965c014957174bbae0"
+      "bytes": 35820,
+      "sha256": "780f458a4c605dca3714ceca240429b73243c9305d5d458c19cb4a166d79d9d9"
     },
     {
       "path": "rewrite/generated/public_mechanism_event_study.svg",
-      "bytes": 145556,
-      "sha256": "e9bcfa528bf59ee29262d5b97e4376546e17a58717ba8b96448bab03cb723ecc"
+      "bytes": 145505,
+      "sha256": "26eced02f36fb353593c1db2846131f56aa1475bf197c9d5cc5743f08129a878"
     },
     {
       "path": "rewrite/generated/public_mechanism_event_study.png",
@@ -380,13 +380,13 @@
     },
     {
       "path": "rewrite/generated/synthetic_path_dependence.pdf",
-      "bytes": 23928,
-      "sha256": "671edca6b22096278cfe231dcf3e98daf61fbb3830564d1dbc8799470558e2c8"
+      "bytes": 23888,
+      "sha256": "74c4e436ae7d653eae86f47487800ae7ac9a5f5c0bf7cc5e0e705e8e4b6b26df"
     },
     {
       "path": "rewrite/generated/synthetic_path_dependence.svg",
-      "bytes": 74241,
-      "sha256": "bef909c01989b1c4fe2983ad5d5711b45502883015bae0ac0083d2ebff92fef5"
+      "bytes": 74190,
+      "sha256": "734a5cee21b732ddac7a23ef630f6bb87c20622acde1878c40b2be474b400ff9"
     },
     {
       "path": "rewrite/generated/synthetic_path_dependence.png",

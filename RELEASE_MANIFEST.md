@@ -7,8 +7,8 @@ Release date: 2026-08-26
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
 | `Alt_JMP_v0.3.pdf` | 65 | `F6FBB17B919DEBB964E13B9C3DA4FA7BDFA45A2085EEC256C84BEF81E51F601C` |
-| `output/pdf/When_Yield_Curves_Invert_Together_Main.pdf` | 38 | `C0649352C586028751BFAEA59C180393B6B84CF713BC6D18905007C76A81068E` |
-| `output/pdf/When_Yield_Curves_Invert_Together_Online_Appendix.pdf` | 27 | `8340A9E7AF3EEBAF3A564E583DA9E1D548A217473D92CE71C323F1C4B8BE633E` |
+| `output/pdf/When_Yield_Curves_Invert_Together_Main.pdf` | 38 | `F950C1FEFB5EAA7A9CC7D1DAD70F1693FF919F04B997C59A301110541F4BC98C` |
+| `output/pdf/When_Yield_Curves_Invert_Together_Online_Appendix.pdf` | 27 | `F9B00ECF752DFA0BF84B3138F0ABCF07B7649F4D1930E143019E6662C2BFAB73` |
 | `output/pdf/When_Yield_Curves_Invert_Together_With_Online_Appendix.pdf` | 65 | `F6FBB17B919DEBB964E13B9C3DA4FA7BDFA45A2085EEC256C84BEF81E51F601C` |
 
 The root release PDF is byte-for-byte identical to the combined PDF in `output/pdf/`.
@@ -24,6 +24,7 @@ The root release PDF is byte-for-byte identical to the combined PDF in `output/p
 - References: the original 84-entry bibliography is retained; no new academic references were added.
 - Production-language scan: no self-assessment, scoring language, source-PDF labels, or drafting markers occur in either reader-facing PDF.
 - Transformation, copied-material, equation-provenance, claim, and data-purpose ledgers are included outside the reader-facing PDFs.
+- Repeating the figure generators and PDF build produces byte-identical publication artifacts under the pinned release environment.
 
 ## Executable public checks
 

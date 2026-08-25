@@ -95,7 +95,7 @@ def plot(core: pd.DataFrame, path: Path) -> None:
     )
     fig.tight_layout(rect=[0, 0.075, 1, 0.94])
     fig.savefig(path, dpi=220)
-    fig.savefig(path.with_suffix(".pdf"))
+    fig.savefig(path.with_suffix(".pdf"), metadata={"CreationDate": None, "ModDate": None})
     plt.close(fig)
 
 

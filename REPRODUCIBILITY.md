@@ -95,6 +95,8 @@ Expected PDFs:
 
 The main bibliography contains the complete 84-entry source reference universe. The appendix bibliography is restricted to works cited in that document.
 
+The release build fixes the TeX source-date epoch and suppresses volatile Matplotlib PDF/SVG metadata. Repeating the figure generators and PDF build under the pinned environment therefore produces byte-identical publication artifacts; run manifests still update their execution timestamps by design.
+
 ## Snapshot and current-vintage runs
 
 To reuse raw files already present under `research_pipeline/data/raw/`:

@@ -1,6 +1,6 @@
 # Public-data access audit
 
-Generated: 2026-08-25T22:57:01+00:00
+Generated: 2026-08-25T23:04:46+00:00
 
 This report verifies acquisition and basic parseability. Analytical use still requires the purpose-ledger gates.
 

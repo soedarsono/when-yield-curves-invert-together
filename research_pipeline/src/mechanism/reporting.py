@@ -17,6 +17,17 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 PIPELINE_ROOT = PROJECT_ROOT / "research_pipeline"
 OUTPUT_ROOT = PIPELINE_ROOT / "outputs" / "mechanism"
 PUBLICATION_ROOT = PROJECT_ROOT / "rewrite" / "generated"
+plt.rcParams["svg.hashsalt"] = "when-yield-curves-invert-together-v0.3"
+
+
+def _save_figure(fig: plt.Figure, path: Path, *, dpi: int | None = None) -> None:
+    """Write stable figure bytes by removing clock metadata and fixing SVG IDs."""
+    metadata: dict[str, object] | None = None
+    if path.suffix == ".pdf":
+        metadata = {"CreationDate": None, "ModDate": None}
+    elif path.suffix == ".svg":
+        metadata = {"Date": None}
+    fig.savefig(path, dpi=dpi, bbox_inches="tight", metadata=metadata)
 
 
 def _latex_escape(value: object) -> str:
@@ -148,7 +159,7 @@ def write_empirical_figure(panel: pd.DataFrame) -> list[Path]:
     paths = []
     for suffix in ["pdf", "svg", "png"]:
         path = figure_dir / f"public_mechanism_event_study.{suffix}"
-        fig.savefig(path, dpi=300 if suffix == "png" else None, bbox_inches="tight")
+        _save_figure(fig, path, dpi=300 if suffix == "png" else None)
         paths.append(path)
     plt.close(fig)
     return paths
@@ -191,7 +202,7 @@ def write_simulation_figure(example: pd.DataFrame, simulation: pd.DataFrame) -> 
     paths = []
     for suffix in ["pdf", "svg", "png"]:
         path = figure_dir / f"synthetic_path_dependence.{suffix}"
-        fig.savefig(path, dpi=300 if suffix == "png" else None, bbox_inches="tight")
+        _save_figure(fig, path, dpi=300 if suffix == "png" else None)
         paths.append(path)
     plt.close(fig)
     return paths

@@ -28,3 +28,5 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
 The script resolves MiKTeX, BibTeX, Poppler, and Python from `PATH`, environment variables, or explicit path arguments. It writes the 38-page main paper, 27-page appendix, and 65-page combined edition under `../output/pdf/`. The repository-root `run_reproduction.ps1` is the supported complete workflow and also copies the combined edition to `../Alt_JMP_v0.3.pdf`.
+
+The build fixes the release source-date epoch, while the figure generators suppress volatile PDF/SVG metadata. Repeated builds under the pinned environment are byte-stable; run-manifest execution timestamps remain intentionally variable.

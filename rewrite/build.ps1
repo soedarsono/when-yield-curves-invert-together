@@ -54,6 +54,14 @@ if (-not $PdfLatex -or -not $Bibtex) {
 New-Item -ItemType Directory -Force -Path $OutputRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $RenderRoot | Out-Null
 
+$OriginalSourceDateEpoch = [Environment]::GetEnvironmentVariable('SOURCE_DATE_EPOCH', 'Process')
+$OriginalForceSourceDate = [Environment]::GetEnvironmentVariable('FORCE_SOURCE_DATE', 'Process')
+if (-not $OriginalSourceDateEpoch) {
+    # Fixed release epoch makes the submission PDFs byte-reproducible across clean builds.
+    $env:SOURCE_DATE_EPOCH = '1787702400'
+}
+$env:FORCE_SOURCE_DATE = '1'
+
 Push-Location $RewriteRoot
 try {
     foreach ($Document in @('main', 'online_appendix')) {
@@ -121,6 +129,16 @@ try {
 }
 finally {
     Pop-Location
+    if ($null -eq $OriginalSourceDateEpoch) {
+        Remove-Item Env:SOURCE_DATE_EPOCH -ErrorAction SilentlyContinue
+    } else {
+        $env:SOURCE_DATE_EPOCH = $OriginalSourceDateEpoch
+    }
+    if ($null -eq $OriginalForceSourceDate) {
+        Remove-Item Env:FORCE_SOURCE_DATE -ErrorAction SilentlyContinue
+    } else {
+        $env:FORCE_SOURCE_DATE = $OriginalForceSourceDate
+    }
 }
 
 Write-Host "Built paper PDFs in $OutputRoot"
