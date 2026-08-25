@@ -1,5 +1,12 @@
+# Keep tracked text byte-stable across Windows, macOS, and Linux checkouts.
+* text=auto eol=lf
+
+# Publication and archive assets must never receive line-ending conversion.
 *.pdf binary
 *.png binary
 *.jpg binary
 *.jpeg binary
-*.svg -whitespace
+*.gif binary
+*.zip binary
+*.xlsx binary
+*.docx binary

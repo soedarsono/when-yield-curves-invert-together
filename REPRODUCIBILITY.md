@@ -95,7 +95,7 @@ Expected PDFs:
 
 The main bibliography contains the complete 84-entry source reference universe. The appendix bibliography is restricted to works cited in that document.
 
-The release build fixes the TeX source-date epoch and suppresses volatile Matplotlib PDF/SVG metadata. Repeating the figure generators and PDF build under the pinned environment therefore produces byte-identical publication artifacts; run manifests still update their execution timestamps by design.
+The release build fixes the TeX source-date epoch and suppresses volatile Matplotlib PDF/SVG metadata. The repository also fixes tracked text files to LF line endings, so source hashes survive cross-platform Git checkouts. Repeating the figure generators and PDF build under the pinned environment therefore produces byte-identical publication artifacts; run manifests still update their execution timestamps by design.
 
 ## Snapshot and current-vintage runs
 
