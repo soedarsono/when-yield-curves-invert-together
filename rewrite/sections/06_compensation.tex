@@ -1,0 +1,28 @@
+\section{Why Can a Public State Forecast Poor Carry Returns?}
+\label{sec:compensation}
+
+\subsection{Spot prediction, known income, and total returns}
+
+The empirical results separate three objects. First, the state predicts a spot depreciation of the high-rate currencies relative to the funding currencies. That fact is not itself a violation of uncovered interest parity: high-rate currencies can depreciate. Second, the portfolio earns a positive interest differential known at formation. Third, the money-market-differential total-return proxy is negative on average inside the state because the spot movement exceeds that income.
+
+The income leg moves in the compensating direction: it averages 3.60 percent per year outside the state and 5.14 percent inside it, a $+1.54$-point difference with episode-bootstrap $p=0.260$. That rise is too small to offset the $-12.85$-point spot gap, leaving the $-11.31$-point total-return gap. The differential is observed income, not identified risk compensation.
+
+This accounting creates the pricing question. If a public state reveals bad-state covariance, a frictionless asset-pricing benchmark normally assigns compensation before the payoff. A negative conditional mean can still appear in a small sample of rare episodes, or when the measured total return differs from a feasible forward payoff. If it survives those explanations prospectively, prices or positions must adjust slowly enough for current expected losses to exceed compensation already embedded in the differential.
+
+\subsection{A benchmark restriction}
+
+Let an adverse event of size $J>0$ occur at $t+1$ with conditional probability $p_t$. Write the known income as $C_t=\bar C_t+\mu J\E_{t-1}[p_t]$, where $\bar C_t$ is ordinary carry and the second term represents compensation based on the earlier information set, with $\mu\geq1$. Then
+\begin{equation}
+    \E_t[rx_{t+1}]
+      =\bar C_t+J\left\{\mu\E_{t-1}[p_t]-p_t\right\},
+    \qquad
+    \E_t[rx_{t+1}]<0
+      \Longleftrightarrow
+      p_t>\mu\E_{t-1}[p_t]+\frac{\bar C_t}{J}.
+    \label{eq:predetermined_compensation}
+\end{equation}
+The inequality is the benchmark's only claim. Current perceived loss risk must rise enough to exceed both ordinary income and compensation based on prior beliefs. Fresh synchronized inversions can mark such an information change. The regression does not observe $p_t$, estimate $J$, or identify the lag in compensation.
+
+Three interpretations remain. The conditional mean may be compensation for adverse covariance estimated imprecisely from fifteen episodes. Portfolio adjustment or intermediary constraints may delay the currency response \citep{bacchettaWincoop2010,gabaixMaggiori2015}. Historical rule selection may also make the in-sample conditional mean more negative than its prospective value. These explanations imply different future evidence: executable forward payoffs, position or flow adjustments, and performance under a frozen state.
+
+The paper does not choose among them. Its ambitious, testable implication is upstream: a cross-country bond-market configuration known before the payoff historically predicts losses on the persistent high-rate and high-beta currency exposures. A prospective episode under the dated algorithm can distinguish persistent pricing information from historical classification.

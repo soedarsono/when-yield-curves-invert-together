@@ -16,7 +16,7 @@ rx^{\mathrm{carry}}_{t+1}
 \end{aligned}
 \label{eq:app-accounting}
 \end{equation}
-The high-rate set is $\mathcal H_t$ and the funding set is $\mathcal F_t$. The construction makes $C_t>0$ in every sample month, so the portfolio loses only when $X_{t+1}<-C_t$. Empirically, $C_t$ averages 3.9 percent per year and has a minimum of 0.7 percent. The active-state spot-return difference is $-12.85$ percentage points and the total-return difference $-11.31$, so known income absorbs only part of the currency loss.
+The high-rate set is $\mathcal H_t$ and the funding set is $\mathcal F_t$. The construction makes $C_t>0$ in every sample month, so the portfolio loses only when $X_{t+1}<-C_t$. The return proxy combines a simple annualized differential divided by twelve with a log spot change and is therefore a first-order monthly approximation, not an exact executable forward payoff. Empirically, $C_t$ averages 3.9 percent per year and has a minimum of 0.7 percent. The active-state spot-return difference is $-12.85$ percentage points and the total-return difference $-11.31$, so known income absorbs only part of the currency loss.
 
 To organize the cross-section, write
 \begin{equation}
@@ -74,14 +74,3 @@ The supporting Fama regression estimates the appreciation slope separately by st
 \label{eq:app-fama}
 \end{equation}
 Under the paper's quote convention, uncovered interest parity implies $\phi_s=-1$. The pooled estimate is 0.50 outside the state and $-1.33$ inside it. The point estimates say that high-rate currencies depreciate in the state in which carry loses. The state interaction has a Newey--West $t$-statistic of $-2.39$ but an episode-bootstrap $p$-value of 0.340. The pooled panel contains many currency-months, whereas the common state changes across only fifteen episodes; the episode result is therefore the appropriate warning against treating $-1.33$ as a precise structural slope.
-
-\subsection{Exploratory curve-shape compensation}
-
-Define the cross-country average yield at maturity $m$ as $\bar y_t^{(m)}=9^{-1}\sum_{i=1}^{9}y_{i,t}^{(m)}$. An active-state month is classified as downcurve when
-\begin{equation}
-\bar y_t^{(3M)}>\bar y_t^{(2Y)}>\bar y_t^{(10Y)}.
-\label{eq:app-downcurve}
-\end{equation}
-There are 52 downcurve months and 35 overlap the synchronized state. In those 35 months, carry income averages 6.48 percent per year and the spot leg $-0.96$; in the other 57 active-state months, income averages 4.31 and the spot leg $-15.55$. Total carry returns average 5.51 percent in downcurve-state months and $-11.24$ percent in the remaining state months.
-
-This split is economically suggestive: high, fully downward-sloping curves can mark inflation normalization with unusually large carry income, whereas other synchronized inversions can look more like uncompensated stress. The classification was developed after examining apparent false alarms and is concentrated in 1988--91 and 2023--24, plus one month in 2007. Rate level, inflation, and curve shape move together in those periods, so the heterogeneity is exploratory and does not establish a feasible trading rule.

@@ -1,0 +1,28 @@
+{
+  "analysis": "descriptive audit of source Tables C.1--C.3",
+  "input_status": "transcribed from AI JMP.pdf; estimates not regenerated",
+  "search_adjusted_inference": false,
+  "reason_search_adjustment_unavailable": "complete tried-rule set and joint resamples are absent",
+  "input": {
+    "path": "research_pipeline/config/source_reported_rule_neighborhood.csv",
+    "sha256": "a1ba8f7a95fcbf488d726b5734933913e93e9696c87b7ce9a05af04c71d888d7"
+  },
+  "outputs": [
+    {
+      "path": "research_pipeline/outputs/v03/source_reported_neighborhood/reported_rule_neighborhood_unique.csv",
+      "sha256": "7cc4fbe77e0aa9304e1dfaf4eea695ff4391f1aa69c22505617057b5ec56638d"
+    },
+    {
+      "path": "research_pipeline/outputs/v03/source_reported_neighborhood/reported_rule_neighborhood_summary.csv",
+      "sha256": "06e62f397c1c333b3a9833d80cb2fe25da83650dd29baf16b9bd873aafde4d34"
+    },
+    {
+      "path": "research_pipeline/outputs/v03/source_reported_neighborhood/reported_rule_neighborhood.png",
+      "sha256": "742a355aaf0eb28acde124adb49351dd2db058396f8b0aeda6a1651b68d0b6be"
+    },
+    {
+      "path": "research_pipeline/outputs/v03/source_reported_neighborhood/reported_rule_neighborhood.pdf",
+      "sha256": "22b4fb1e277c0b452954c8718a4d24de087e21fcbc4b86aade8e8dc732218073"
+    }
+  ]
+}

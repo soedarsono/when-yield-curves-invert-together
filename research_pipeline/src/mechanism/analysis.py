@@ -1,4 +1,4 @@
-"""Run prespecified public-proxy event checks and build machine-readable results."""
+"""Run declared public-proxy event checks and build machine-readable results."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .inference import circular_shift_pvalue, circular_shift_reference, episode_bootstrap_ci, event_values, hac_intercept_slope, holm_adjust, leave_one_range
+from .inference import circular_shift_reference, circular_shift_reference_value, episode_bootstrap_ci, event_values, hac_intercept_slope, holm_adjust, leave_one_range
 from .panel import build_public_panel, load_cftc_monthly, load_external_monthly, synchronized_easing
 
 
@@ -22,17 +22,17 @@ def _result(
 ) -> dict:
     values = series.to_numpy(float)
     indicator = events.fillna(False).to_numpy(bool)
-    estimate, p, n_events, reference_count = circular_shift_pvalue(values, indicator, horizon, mode)
+    estimate, reference_value, n_events, reference_count = circular_shift_reference_value(values, indicator, horizon, mode)
     per_event = event_values(values, indicator, horizon, mode)
     ci_low, ci_high = episode_bootstrap_ci(per_event, int(spec["bootstrap_draws"]), int(spec["random_seed"]) + 100 + horizon)
     loo_low, loo_high = leave_one_range(per_event)
     return {
         "result_id": result_id, "label": label, "evidence_type": evidence_type,
         "estimate": estimate, "unit": unit, "horizon_months": horizon,
-        "event_count": n_events, "p_randomization_raw": p,
+        "event_count": n_events, "rotation_reference_value": reference_value,
         "rotation_reference_count_including_observed": reference_count,
-        "randomization_method": "all circular rotations; same valid-event count; doubled smaller-tail inclusive rank",
-        "p_holm_primary_family": np.nan, "ci90_episode_bootstrap_low": ci_low,
+        "rotation_reference_method": "all circular rotations; same valid-event count; doubled smaller-tail inclusive rank",
+        "holm_adjusted_rotation_reference": np.nan, "ci90_episode_bootstrap_low": ci_low,
         "ci90_episode_bootstrap_high": ci_high, "leave_one_episode_low": loo_low,
         "leave_one_episode_high": loo_high, "interpretation": interpretation,
         "limitation": limitation,
@@ -71,9 +71,9 @@ def run_empirical(spec: dict) -> dict[str, pd.DataFrame]:
         rotation_frames.append(audit)
     rotation_audit = pd.concat(rotation_frames, ignore_index=True)
     primary = set(spec["primary_tests"])
-    adjusted = holm_adjust({r.result_id: r.p_randomization_raw for r in results.itertuples() if r.result_id in primary})
+    adjusted = holm_adjust({r.result_id: r.rotation_reference_value for r in results.itertuples() if r.result_id in primary})
     for key, value in adjusted.items():
-        results.loc[results["result_id"] == key, "p_holm_primary_family"] = value
+        results.loc[results["result_id"] == key, "holm_adjusted_rotation_reference"] = value
 
     hac = hac_intercept_slope(
         analysis["shadow_carry_spot_pct"].to_numpy(float), analysis["synchronized_easing"].fillna(False).astype(float).to_numpy(), int(spec["hac_lags"])
@@ -84,17 +84,17 @@ def run_empirical(spec: dict) -> dict[str, pd.DataFrame]:
     for threshold in [int(spec["synchronized_easing"]["baseline_country_count"]), *map(int, spec["synchronized_easing"]["sensitivity_country_counts"])]:
         event_frame = synchronized_easing(currency, spec, threshold=threshold).set_index("month")
         indicator = analysis["month"].map(event_frame["easing_onset"]).fillna(False)
-        estimate, p, n, reference_count = circular_shift_pvalue(
+        estimate, reference_value, n, reference_count = circular_shift_reference_value(
             analysis["shadow_carry_spot_pct"].to_numpy(float), indicator.to_numpy(bool), 1, "sum"
         )
-        sensitivity_rows.append({"sensitivity": f"cut_count_threshold_{threshold}", "estimate": estimate, "p_randomization": p, "event_count": n, "rotation_reference_count_including_observed": reference_count, "unit": "percentage points cumulative, months 0--1"})
+        sensitivity_rows.append({"sensitivity": f"cut_count_threshold_{threshold}", "estimate": estimate, "rotation_reference_value": reference_value, "event_count": n, "rotation_reference_count_including_observed": reference_count, "unit": "percentage points cumulative, months 0--1"})
     for currency_code in spec["currencies"]:
         event_frame = synchronized_easing(currency, spec, drop_currency=currency_code).set_index("month")
         indicator = analysis["month"].map(event_frame["easing_onset"]).fillna(False)
-        estimate, p, n, reference_count = circular_shift_pvalue(
+        estimate, reference_value, n, reference_count = circular_shift_reference_value(
             analysis["shadow_carry_spot_pct"].to_numpy(float), indicator.to_numpy(bool), 1, "sum"
         )
-        sensitivity_rows.append({"sensitivity": f"leave_event_currency_{currency_code}", "estimate": estimate, "p_randomization": p, "event_count": n, "rotation_reference_count_including_observed": reference_count, "unit": "percentage points cumulative, months 0--1"})
+        sensitivity_rows.append({"sensitivity": f"leave_event_currency_{currency_code}", "estimate": estimate, "rotation_reference_value": reference_value, "event_count": n, "rotation_reference_count_including_observed": reference_count, "unit": "percentage points cumulative, months 0--1"})
     sensitivity = pd.DataFrame(sensitivity_rows)
     onsets = analysis.loc[analysis["easing_onset"].fillna(False), ["month", "cut_count", "country_coverage"]].copy()
     onsets["month"] = onsets["month"].astype(str)

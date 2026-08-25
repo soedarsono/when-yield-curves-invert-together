@@ -1,0 +1,5 @@
+outcome,reported_rule_count,negative_count,negative_share,baseline_coefficient_pp,baseline_negative_rank,most_negative_pp,least_negative_or_positive_pp
+carry_spot_pp,9,8,0.8888888888888888,-12.85,2,-15.72,8.33
+carry_total_pp,9,7,0.7777777777777778,-11.31,2,-15.13,8.78
+high_beta_spot_pp,9,7,0.7777777777777778,-7.53,3,-10.43,0.69
+high_beta_total_pp,9,7,0.7777777777777778,-6.82,3,-10.31,1.87

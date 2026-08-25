@@ -1,0 +1,6 @@
+sensitivity,annualized_active_minus_inactive_pp,p_circular_raw,active_months,inactive_months,episodes
+full_sample,-3.2016208872633465,0.33480176211453744,99,355,18
+exclude_episodes_containing_1998_09_2008_10_2020_03,-0.46098537555815267,0.8261851015801355,88,355,15
+first_calendar_half_1988_2004,-5.727121819499385,0.38235294117647056,49,155,9
+second_calendar_half_2005_2025,-1.0246504694491811,0.776,50,200,10
+delete_five_worst_active_months_outcome_conditioned_diagnostic,0.9356077610280196,,94,355,20

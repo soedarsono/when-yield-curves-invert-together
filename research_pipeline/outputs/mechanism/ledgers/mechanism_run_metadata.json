@@ -1,5 +1,5 @@
 {
-  "design_status": "Prespecified public proxy; not an IYC signal replication",
+  "design_status": "Declared public proxy family; no immutable preregistration; not an IYC signal replication",
   "sample_start": "1988-01",
   "sample_end": "2025-12",
   "monthly_rows": 456,

@@ -34,6 +34,14 @@ class CountryCombinationProxyTests(unittest.TestCase):
         np.testing.assert_allclose(reference, [2.0, 3.0, 2.0, 3.0])
         self.assertEqual(doubled_tail_rank(reference, reference[0]), 1.0)
 
+    def test_publication_table_mirror_is_byte_identical(self):
+        project = SRC.parents[1]
+        source = project / "research_pipeline" / "outputs" / "country_combinations" / "tables" / "public_country_combination_proxy.tex"
+        mirror = project / "rewrite" / "generated" / "public_country_combination_proxy.tex"
+        self.assertTrue(source.is_file())
+        self.assertTrue(mirror.is_file())
+        self.assertEqual(source.read_bytes(), mirror.read_bytes())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -100,7 +100,7 @@ def _standardized_reference(reference: np.ndarray) -> np.ndarray:
 
 
 def _max_t_adjust(results: pd.DataFrame, references: dict[str, np.ndarray], mask: pd.Series, column: str) -> pd.DataFrame:
-    """Add a common-rotation max-|z| family-wise p-value to eligible rows."""
+    """Add a common-rotation max-|z| reference value to eligible rows."""
     keys = results.loc[mask, "combination"].tolist()
     if not keys:
         results[column] = np.nan
@@ -335,13 +335,14 @@ def write_latex_table(results: pd.DataFrame, path: Path) -> None:
     eligible = results.loc[results["eligible_for_inference"]].copy()
     selected = eligible.groupby("combination_size", group_keys=False).head(5)
     lines = [
-        r"\begin{table}[!htbp]",
+        r"\begin{table}[H]",
         r"\centering",
         r"\caption{Country combinations in the public delivered-easing proxy}",
         r"\label{tab:public-country-combinations}",
+        r"\small",
         r"\begin{tabular}{lrrrr}",
         r"\toprule",
-        r"Combination & Events & Mean $[0,1]$ & Raw $p$ & All-combination $p$ \\",
+        r"Combination & Events & Mean $[0,1]$ & Raw ref. & Max-$|z|$ ref. \\",
         r"\midrule",
     ]
     for row in selected.itertuples(index=False):
@@ -355,7 +356,7 @@ def write_latex_table(results: pd.DataFrame, path: Path) -> None:
             r"\bottomrule",
             r"\end{tabular}",
             r"\begin{minipage}{0.94\textwidth}\footnotesize",
-            r"\textit{Notes:} The table reports the five most negative eligible pairs and triples. An event requires every listed country to cut its BIS policy rate by at least 10 basis points after three months without the same joint cut. The outcome is the cumulative policy-ranked shadow carry spot return in event months 0 and 1, in percentage points. Combinations require at least six valid events. Raw two-sided p-values use every circular timing rotation. The final column controls family-wise error across every eligible pair and triple with the common-rotation maximum absolute standardized statistic. This is a delivered-easing proxy, not a replication of the yield-curve state.",
+            r"\textit{Notes:} The table reports the five most negative eligible pairs and triples. An event requires every listed country to cut its BIS policy rate by at least 10 basis points after three months without the same joint cut. The outcome is the cumulative policy-ranked log spot-return proxy in event months 0 and 1, in percentage points. Portfolio legs target three currencies per side and expand to include all cutoff ties with equal weight. Combinations require at least six valid events. Raw reference values use every circular timing rotation. The final column is the common-rotation maximum absolute standardized reference across every eligible pair and triple. Under simultaneous cyclic-shift exchangeability it controls the declared family; otherwise it is a finite family diagnostic. The family was not preregistered. This is a delivered-easing proxy, not a replication of the yield-curve state.",
             r"\end{minipage}",
             r"\end{table}",
         ]
@@ -374,9 +375,9 @@ def write_report(outputs: dict[str, pd.DataFrame], path: Path) -> None:
     threshold_sensitivity = outputs["eligibility_threshold_sensitivity"]
 
     finding = (
-        f"{len(adjusted_hits)} combination(s) pass a 5% family-wise threshold across all eligible pairs and triples."
+        f"{len(adjusted_hits)} combination(s) meet the 5% common-rotation max-|z| reference criterion across all eligible pairs and triples."
         if len(adjusted_hits)
-        else "No pair or triple passes a 5% family-wise threshold across all eligible combinations."
+        else "No pair or triple meets the 5% common-rotation max-|z| reference criterion across all eligible combinations."
     )
     lines = [
         "# Public-data country-combination diagnostic",
@@ -387,18 +388,18 @@ def write_report(outputs: dict[str, pd.DataFrame], path: Path) -> None:
         "",
         "## Design",
         "",
-        "For each of the 36 country pairs and 84 country triples, a joint-cut onset occurs when every member cuts its BIS policy rate by at least 10 basis points and the same joint cut did not occur in the previous three months. The outcome is the cumulative shadow carry spot return in months 0 and 1. It ranks all nine currencies using lagged policy-rate differentials, so it is a public mechanism proxy rather than a feasible excess return. Inference requires at least six valid events.",
+        "For each of the 36 country pairs and 84 country triples, a joint-cut onset occurs when every member cuts its BIS policy rate by at least 10 basis points and the same joint cut did not occur in the previous three months. The outcome is the cumulative policy-ranked log spot-return proxy in months 0 and 1. It targets three currencies per side using lagged policy-rate differentials and includes all cutoff ties with equal weight, so realized legs can be larger. It is a public mechanism proxy rather than a feasible excess return. Reference values require at least six valid events.",
         "",
-        "Every eligible combination is shifted through every possible circular calendar rotation. The raw p-value is the doubled smaller inclusive tail rank. A common-rotation maximum absolute standardized statistic adjusts jointly across all eligible pairs and triples; size-specific adjusted p-values are also reported. Event-resampling intervals and leave-one-event ranges expose small-sample sensitivity.",
+        "Every eligible combination is shifted through every possible circular calendar rotation. The raw reference value is the doubled smaller inclusive tail rank. A common-rotation maximum absolute standardized reference is computed jointly across all eligible pairs and triples; size-specific values are also reported. Under simultaneous cyclic-shift exchangeability, this construction controls the declared family; otherwise it is a finite family diagnostic. The family was declared in code and exhaustively reported but was not preregistered. Event-resampling intervals and leave-one-event ranges expose small-sample sensitivity.",
         "",
         "## Result",
         "",
         finding,
-        "A low unadjusted p-value should therefore not be read as evidence that a specific country set uniquely drives the mechanism. The estimates are contemporaneous event-window associations and cannot distinguish policy response from the stress that prompted it.",
+        "A low raw reference value should therefore not be read as evidence that a specific country set uniquely drives the mechanism. The estimates are contemporaneous event-window associations and cannot distinguish policy response from the stress that prompted it.",
         "",
         "Most negative eligible combination estimates:",
         "",
-        "| Combination | Size | Events | Mean pp | Raw p | Within-size maxT p | All-combination maxT p | Leave-one range |",
+        "| Combination | Size | Events | Mean pp | Raw ref. | Within-size max-|z| ref. | All-combination max-|z| ref. | Leave-one range |",
         "|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in strongest.itertuples(index=False):
@@ -415,7 +416,7 @@ def write_report(outputs: dict[str, pd.DataFrame], path: Path) -> None:
             "",
             "The family result is sensitive to the minimum event-count rule:",
             "",
-            "| Minimum events | Eligible combinations | Adjusted 5% hits | Smallest adjusted p | Leading combination |",
+            "| Minimum events | Eligible combinations | 5% max-|z| hits | Smallest max-|z| ref. | Leading combination |",
             "|---:|---:|---:|---:|---|",
         ]
     )
@@ -447,7 +448,7 @@ def write_report(outputs: dict[str, pd.DataFrame], path: Path) -> None:
             "",
             "## What this check can and cannot reveal",
             "",
-            "A robustly negative combination would identify a useful target for a future author-data decomposition: one could ask whether the same countries also contribute disproportionately to the forward-looking inversion state. A null adjusted result instead favors the more cautious interpretation that the public easing proxy is broad and episode-driven rather than uniquely tied to a stable country bloc.",
+            "A persistently negative combination would identify a useful target for a future author-data decomposition: one could ask whether the same countries also contribute disproportionately to the forward-looking inversion state. Failure to meet the family reference criterion instead favors the more cautious interpretation that the public easing proxy is broad and episode-driven rather than uniquely tied to a stable country bloc.",
             "",
             "The exercise cannot determine whether any country pair or triple drives the original result. Policy cuts occur after decisions are delivered, while yield-curve inversions are forward-looking. The shadow carry outcome omits interest income, observes the event contemporaneously, and can be influenced by the same global shock that induced policy easing. Country combinations overlap heavily, the event counts remain small, and BIS policy-rate definitions differ across countries and over time.",
             "",
@@ -496,10 +497,10 @@ def main() -> int:
         "specification": {
             "joint_cut_threshold_percentage_points": spec["synchronized_easing"]["minimum_cut_pp"],
             "quiet_months": spec["synchronized_easing"]["quiet_months_before_onset"],
-            "outcome": "policy-ranked shadow carry spot return, cumulative months 0 and 1",
+            "outcome": "policy-ranked log spot-return proxy, cumulative months 0 and 1; target three per side with equal inclusion of cutoff ties",
             "minimum_events_for_inference": MINIMUM_TEST_EVENTS,
-            "raw_inference": "all circular timing rotations, two-sided inclusive rank",
-            "multiplicity": "common-rotation max absolute standardized statistic",
+            "raw_inference": "all circular timing rotations, two-sided inclusive reference rank",
+            "multiplicity": "common-rotation max absolute standardized reference; family interpretation conditional on simultaneous cyclic-shift exchangeability",
         },
         "inputs": [_artifact(path) for path in input_paths if path.is_file()],
         "contextual_sources_not_used_in_computation": [

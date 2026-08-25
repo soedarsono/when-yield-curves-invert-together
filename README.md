@@ -4,9 +4,9 @@ This repository contains an alternative job-market-paper edition of **“When Yi
 
 ## Paper
 
-- [Alt JMP v0.2 — main paper with online appendix](Alt_JMP_v0.2.pdf) — 44 pages
-- [Main paper](output/pdf/When_Yield_Curves_Invert_Together_Main.pdf) — 26 pages, including 84 references
-- [Online appendix](output/pdf/When_Yield_Curves_Invert_Together_Online_Appendix.pdf) — 18 pages, Appendices A--E
+- [Alt JMP v0.3 — main paper with online appendix](Alt_JMP_v0.3.pdf) — 65 pages
+- [Main paper](output/pdf/When_Yield_Curves_Invert_Together_Main.pdf) — 38 pages, including 84 references
+- [Online appendix](output/pdf/When_Yield_Curves_Invert_Together_Online_Appendix.pdf) — 27 pages, Appendices A--E
 
 The paper reports a synchronized-inversion state formed from fresh 10-year/2-year inversions across the nine non-dollar G10 economies. In the source estimates, annualized carry-trade spot returns are 12.9 percentage points lower when the lagged state is active, with inference based on fifteen episodes. The cross-section is ordered by interest rates and predetermined equity-market betas.
 
@@ -21,22 +21,23 @@ The revision concentrates the economic argument around four distinctions:
 
 The original yield-curve panel, currency panel, state dates, and estimation code are not present. The repository therefore does **not** independently regenerate the paper's core 1988--2026 estimates. Visible source estimates and copied exhibits are mapped in external ledgers.
 
-The public-data layer is independently executable. It downloads or audits declared BIS, CFTC, New York Fed ACM, OECD, and FRED inputs; constructs a synchronized delivered-easing proxy; and regenerates event-study, inference, sensitivity, and country-combination outputs. This proxy is downstream of the yield-curve state and does not validate the paper's predictive classifier.
+The public-data layer is independently executable. It downloads or audits declared BIS, CFTC, New York Fed ACM, OECD, and FRED inputs; constructs a synchronized delivered-easing proxy; runs a current-vintage 10-year-minus-3-month yield-curve challenge; and regenerates event-study, inference, sensitivity, and country-combination outputs. Neither public exercise reconstructs the unavailable baseline 10-year-minus-2-year state.
 
 Current public-data results include:
 
 - 15 synchronized delivered-easing onsets from 1988 through 2025;
-- no outcome in the six-test primary mechanism family survives Holm adjustment;
+- no outcome in the six-test primary mechanism family meets the 5-percent Holm-adjusted rotation-reference criterion;
 - an exploratory screen of all 36 country pairs and 84 triples;
-- one CHF--GBP result at the 5-percent family-wide level under a six-event minimum, which weakens after omitting October 2008 and disappears under stricter event-count rules.
+- one CHF--GBP result meets the 5-percent common-rotation maximum-$|z|$ criterion under a six-event minimum, weakens after omitting October 2008, and disappears under stricter event-count rules; family-wise interpretation is conditional on cyclic-shift exchangeability;
+- an adverse 10-year-minus-3-month sensitivity result: the baseline-like public rule produces a -3.20-percentage-point annualized active-minus-inactive log spot-return-proxy difference (raw circular-shift reference value 0.335; 64-rule common-calendar maximum-$|z|$ reference value 1.000), with 41 of 64 coefficients negative, no rule meeting the 5-percent family reference criterion, and 18 public-proxy episodes.
 
-The last result motivates a sensor-versus-risk-bearer hypothesis: countries whose policy rates help date a global episode need not be the currencies that absorb the losses.
+The country-screen result motivates a sensor-versus-risk-bearer hypothesis: countries whose policy rates help date a global episode need not be the currencies that absorb the losses.
 
 ## Audit trail
 
 - [Original-to-revision transformation ledger](rewrite/notes/original_to_rewrite_transformation_ledger.md) — section-by-section moves, condensations, additions, and deletions
 - [Copied-material ledger](rewrite/notes/copied_material_ledger.md) — source page, exhibit, asset hash, caption treatment, and final destination
-- [Equation ledger](rewrite/notes/equation_provenance_ledger.md) — mapping from the original mathematical sequence to eight main-paper equations
+- [Equation ledger](rewrite/notes/equation_provenance_ledger.md) — mapping from the original mathematical sequence to 10 main-paper and 11 online-appendix equations
 - [Final page audit](rewrite/notes/page_by_page_audit.md) — visual and writing-style result for every page
 - [Data-purpose ledger](research_pipeline/DATA_PURPOSE_LEDGER.md) — why every public dataset was acquired, what it interacts with, and its limitations
 - [Reproducibility guide](REPRODUCIBILITY.md) — environment, commands, expected outputs, and exact boundary of reproducible claims
@@ -68,7 +69,9 @@ For an already downloaded and hash-audited raw-data snapshot:
 .\run_reproduction.ps1 -UseExistingData
 ```
 
-The workflow audits public inputs, rebuilds the mechanism and country-combination outputs, runs 21 deterministic tests, compiles the main and appendix PDFs, creates the combined edition, renders all pages, and runs automated PDF preflight.
+The workflow audits public inputs; rebuilds the delivered-easing, country-combination, source-reported-neighborhood, and public 10-year-minus-3-month outputs; renders the public v0.3 tables and figure into `rewrite/generated/`; runs 39 deterministic tests; compiles the main and appendix PDFs; creates the combined and root release copies; renders all pages; and runs automated PDF preflight.
+
+`research_pipeline/src/render_v03_public_tables.py` converts the machine-readable public-proxy outputs into the `v03_*.tex` tables that the LaTeX sources include with `\input`, and mirrors the specification-curve figure. The corresponding run manifest records SHA-256 hashes for raw inputs, code and configuration, machine outputs, and these paper-facing generated files. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the exact stage order and manifest paths.
 
 ## Repository map
 

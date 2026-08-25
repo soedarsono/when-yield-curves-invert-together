@@ -1,0 +1,49 @@
+% SOURCE: AI JMP.pdf p. 49, Table 8. Exact native transcription; not regenerated.
+% IMPORTANT: The cluster includes the focal country's curve. This is not a leave-one-country-out design.
+\begin{table}[H]
+\centering
+\caption{Bilateral cluster and own-curve specifications}
+\label{tab:v03-bilateral-own-curve}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrr}
+\toprule
+Currency & Own-state months & Own state alone & Cluster alone \\
+& & $b\;(t_{NW})\;[p]$ & $b\;(t_{NW})\;[p]$ \\
+\midrule
+AU & 47 & $-8.76\;(-1.65)\;[0.044]$ & $-13.21\;(-1.83)\;[0.015]$ \\
+CA & 40 & $+0.71\;(+0.19)\;[0.858]$ & $-4.61\;(-1.33)\;[0.203]$ \\
+CH & 12 & $-20.12\;(-1.91)\;[0.303]$ & $-0.89\;(-0.16)\;[0.867]$ \\
+EU & 25 & $+5.26\;(+0.62)\;[0.589]$ & $-1.19\;(-0.20)\;[0.831]$ \\
+GB & 59 & $-3.84\;(-0.59)\;[0.585]$ & $-3.00\;(-0.63)\;[0.542]$ \\
+JP & 22 & $+4.58\;(+1.03)\;[0.298]$ & $+2.35\;(+0.58)\;[0.565]$ \\
+NO & 82 & $+4.53\;(+0.84)\;[0.415]$ & $-3.96\;(-0.71)\;[0.520]$ \\
+NZ & 48 & $-11.42\;(-1.33)\;[0.282]$ & $-13.28\;(-1.99)\;[0.011]$ \\
+SE & 13 & $-13.05\;(-1.02)\;[0.497]$ & $-4.94\;(-0.76)\;[0.416]$ \\
+Pooled (currency FE) & --- & --- & $-4.74\;(-2.34)\;[---]$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.7em}
+\begin{tabular}{lrrrl}
+\toprule
+Currency & Cluster, with own state & Own state, with cluster & Full-spec. cluster & Own-curve joint Wald $p$ \\
+& $b\;(t_{NW})\;[p]$ & $b\;(t_{NW})\;[p]$ & $b\;(t_{NW})\;[p]$ & \\
+\midrule
+AU & $-14.18\;(-1.38)\;[0.133]$ & $+2.19\;(+0.23)\;[0.859]$ & $-12.92\;(-1.31)\;[0.262]$ & 0.408 \\
+CA & $-6.01\;(-1.45)\;[0.207]$ & $+4.50\;(+1.04)\;[0.356]$ & $-5.55\;(-1.46)\;[0.282]$ & 0.801 \\
+CH & $+1.28\;(+0.21)\;[0.848]$ & $-20.95\;(-1.81)\;[0.272]$ & $+1.15\;(+0.18)\;[0.875]$ & 0.115 \\
+EU & $-3.40\;(-0.51)\;[0.584]$ & $+8.13\;(+0.80)\;[0.552]$ & $-4.00\;(-0.61)\;[0.560]$ & 0.488 \\
+GB & $-2.00\;(-0.45)\;[0.622]$ & $-2.82\;(-0.44)\;[0.668]$ & $-0.44\;(-0.10)\;[0.928]$ & 0.486 \\
+JP & $+1.68\;(+0.38)\;[0.733]$ & $+3.41\;(+0.71)\;[0.413]$ & $+6.37\;(+1.32)\;[0.251]$ & 0.006 \\
+NO & $-6.85\;(-1.15)\;[0.289]$ & $+7.43\;(+1.42)\;[0.221]$ & $-8.17\;(-1.23)\;[0.281]$ & 0.233 \\
+NZ & $-12.00\;(-2.06)\;[0.011]$ & $-3.22\;(-0.41)\;[0.748]$ & $-8.56\;(-1.26)\;[0.220]$ & 0.373 \\
+SE & $-3.73\;(-0.61)\;[0.526]$ & $-10.58\;(-0.92)\;[0.540]$ & $-2.99\;(-0.48)\;[0.662]$ & 0.150 \\
+Pooled (currency FE) & $-4.74\;(-2.34)\;[---]$ & $-0.01\;(-0.01)\;[---]$ & --- & --- \\
+\bottomrule
+\end{tabular}
+
+\begin{minipage}{0.97\textwidth}
+\footnotesize\emph{Notes:} Spot returns against the U.S. dollar, 1988:01--2026:02. Each compact cell reports the annualized coefficient, Newey--West (12) $t$-statistic in parentheses, and wild episode-bootstrap $p$-value in brackets. The full specification adds the currency's own 10Y--2Y slope, its one-month change, its slope relative to the U.S. curve, and the average G10 slope and change. The final column is the Newey--West Wald $p$-value for the joint null on that currency's own state, relative slope, and relative level conditional on the cluster. The pooled row reports currency fixed effects and no bootstrap inference. The cluster used in every row includes the focal country's curve. This table conditions on own-curve information; it is not a leave-one-country-out signal.
+\end{minipage}
+\end{table}

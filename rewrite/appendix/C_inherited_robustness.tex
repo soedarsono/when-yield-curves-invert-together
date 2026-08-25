@@ -11,6 +11,8 @@ Removing each portfolio's full-sample bottom-decile months leaves negative carry
 
 The median and every reported lower quantile also move left. For carry spot returns, the monthly median changes from 0.35 percent outside the state to $-0.76$ percent inside, the 25th percentile from $-0.93$ to $-1.98$, and the 10th percentile from $-2.35$ to $-3.94$. This evidence is more informative about a broad distributional shift than the fact that all five worst months occur under the lagged state.
 
+The beta-sorted portfolio exhibits a different distributional pattern. Its bottom-decile frequency is 16.3 percent in active months and 8.5 percent outside them ($p=0.046$); at a fixed $-4$-percent monthly cutoff, the corresponding rates are 9.8 and 4.6 percent ($p=0.033$). Annualized volatility is nearly unchanged, 7.94 versus 7.75 percent, with a variance ratio of 1.05 ($p=0.80$), and reported loss severity conditional on crossing the tail cutoff is similar across states. These outcome-defined diagnostics describe a higher realized tail frequency, not an identified change in disaster probability.
+
 Leave-one-episode-out carry estimates remain within roughly one-third of the full-sample coefficient. The high-beta effect remains statistically detectable under every one-episode deletion, with a largest reported bootstrap $p$-value of 0.006. These checks reduce dependence on a single episode but do not overcome the limited number of episodes.
 
 \subsection{Calendar stability}
@@ -21,9 +23,11 @@ The carry-spot coefficient is negative in both calendar halves. The high-beta re
 
 \subsection{State-definition sensitivity}
 
-The original grids vary breadth, release confirmation, and the short maturity. Exactly one live inversion has positive carry coefficients, while exactly two produces the largest negative coefficients. At-least-three and at-least-four rules have fewer active months and later coverage. Releasing after one steepening month is noisier; requiring three retains the state longer. Rebuilding the state with a 10Y--3M rather than 10Y--2Y slope preserves the broad adverse ordering but changes episode timing.
+The reported grids vary breadth, release confirmation, and the short maturity. Separate exactly-one and exactly-two indicator regressions have coefficients with opposite signs; they are not a direct contrast because each indicator is compared with a different complement. At-least-three and at-least-four rules have fewer active months and later coverage. Releasing after one steepening month is noisier; requiring three retains the state longer. Rebuilding the state with a 10Y--3M rather than 10Y--2Y slope preserves the broad adverse ordering but changes episode timing.
 
-The raw current-inversion state is active in 165 months, compared with 92 for the live state. It captures fewer of the worst carry months and has smaller return coefficients. The live state can retain losses that arrive after curves begin to re-steepen, but its additional tail coverage is partly mechanical because the historical crash chronology helped motivate persistence.
+The raw current-inversion state is active in 165 months, compared with 92 for the live state. Relative to the raw count, the live state improves tail concentration rather than absolute capture at every cutoff. The raw count contains 9 of the 23 worst-5-percent months and 19 of the 46 worst-10-percent months, versus 8 and 15 for the live state. Because the raw count is active in 36 percent of the sample rather than 20 percent, its concentration ratios are lower---1.09 versus 1.73 at the 5-percent cutoff and 1.15 versus 1.62 at the 10-percent cutoff. Only in the extreme five-month tail does the live state dominate absolute capture, 5 of 5 versus 2 of 5. The latch can retain losses that arrive after curves begin to re-steepen, but its extreme-tail concentration is partly mechanical because the historical crash chronology helped motivate persistence.
+
+Breadth above two mainly measures episode maturity rather than a monotone risk dose. Months with at least three live curves have median episode age six months, compared with three months for exactly-two months, and eleven of fifteen episodes begin at exactly two. Conditional on the baseline state, a three-or-more indicator adds no reported information with or without episode-age controls ($p\geq0.27$). The exact-two contrast is therefore an entry/configuration result, not evidence that each additional inversion raises loss risk.
 
 A reciprocal-age version of the current-inversion count separates two timing margins. It has a high-beta spot coefficient of $-14.87$ ($p=0.001$), larger than the baseline live state's $-7.53$, but a smaller carry coefficient of $-10.43$ ($p=0.040$) than the baseline's $-12.85$. Under the full control set, the age-weighted high-beta coefficient remains $-13.82$ ($p=0.008$), whereas its carry coefficient attenuates to $-7.55$ ($p=0.084$). These in-sample comparisons suggest that exposure repricing is concentrated near fresh information, while the path-dependent release rule is more important for carry losses that continue into re-steepening.
 
@@ -49,17 +53,27 @@ Timing & Month-end recursion and one extra lag & Vendor timestamps, asynchronous
 \end{tabularx}
 \end{table}
 
+\subsection{Bilateral cluster and own-curve specifications}
+
+The full country-level horse race is reported below. The cluster includes the focal country's curve in every row. These regressions ask whether the configuration remains informative after controlling for the currency's own state and slope variables; they do not show that other countries' curves alone predict the focal currency.
+
+\input{generated/tables/v03_bilateral_own_curve.tex}
+
 \subsection{Exposure breadth and composition}
 
-The carry and beta portfolios hold persistent characteristics rather than changing membership only when the state turns on. New Zealand occupies the high-rate leg in 85 percent of all months and 91 percent of state months; Australia in 71 and 73 percent. Japan and Switzerland remain the principal funding currencies. This makes the state result more naturally a repricing of standing exposure than a mechanical change in portfolio composition.
+The carry and beta portfolios have persistent cores rather than changing membership only when the state turns on. New Zealand occupies the high-rate leg in 85 percent of all months and 91 percent of state months; Australia in 71 and 73 percent. Japan and Switzerland remain the principal funding currencies. There is also rotation around the core: Norway's carry-long share falls from 62 to 34 percent in state months, while the pound's rises from 43 to 70 percent. The return result is therefore not created solely by state-month resorting, but portfolio composition is not fixed.
 
-The seven floating emerging-market currencies are not used to construct the G10 state. All seven bilateral state coefficients are negative; pooled spot and total effects are $-14.37$ and $-13.35$ percentage points per year, with episode-bootstrap $p$-values of 0.104 and 0.079. This is directional breadth, not an independent replication, because the same global dates define the state and the emerging-market sample is shorter.
+\input{generated/tables/v03_portfolio_composition_full.tex}
+
+The seven floating emerging-market currencies are not used to construct the G10 state. All seven bilateral state coefficients are negative; only the rand is individually detected at conventional levels ($-14.68$, $p=0.015$), while the rupee is marginal ($-7.98$, $p=0.061$) and the other five estimates are imprecise. Pooled spot and total effects are $-14.37$ and $-13.35$ percentage points per year, with episode-bootstrap $p$-values of 0.104 and 0.079. In the same EM panel, source-reported pooled spot coefficients are $-4.54$ for the raw current count and $-3.92$ for its six-month age filter. This ordering favors the live construction in sample, but all three designs use the same global dates and the live estimate itself is imprecise at the episode level.
 
 The common-sample comparison separates international spot repricing from compensation.
 
 \input{generated/tables/inherited_g10_em_compensation.tex}
 
-All reported exposure tests use expanding S\&P 500 betas. An oil-beta sort adds little independent variation because its return is largely spanned by the carry and equity-beta portfolios.
+The combined sort is economically concentrated. Emerging-market currencies occupy 99 percent of carry-long slots and 93 percent of high-beta-long slots; the Brazilian real alone enters the carry-long leg in 93 percent of months. The comparison is therefore close to a persistent emerging-market exposure against the yen--franc--euro funding bloc, not a broadly rotating sixteen-currency portfolio.
+
+Baseline exposure tests use expanding S\&P 500 betas. An oil-beta sort adds little independent variation because its return is largely spanned by the carry and equity-beta portfolios.
 
 \subsection{Conditional UIP and macro timing}
 
@@ -72,13 +86,17 @@ Appendix~\ref{app:theory} gives the conditional Fama specification. The pooled s
     \label{fig:inherited_local_projections}
 \end{figure}
 
-The leading indicator declines by about 0.6 percent over six months, with similar magnitudes around episode onsets and under lag controls. Industrial production declines about 1.8 percent at six months in the baseline projection but becomes imprecise with the fullest controls. The leading-indicator response is persistent across these specifications; the industrial-production response is not.
+The carry-spot response is front-loaded. In the baseline projection it falls about 1.1 percent in the first month ($p<0.01$) and 2.4 percent cumulatively by month four ($p=0.06$). Onset-only and lag-controlled designs reach roughly $-3.7$ to $-4.2$ percent around months four through six, followed by a partial rebound. Because horizons overlap and the state is persistent, these are descriptive timing associations rather than causal impulse responses.
+
+The leading indicator declines by about 0.6 percent over six months, with similar magnitudes around episode onsets and under lag controls. Industrial production declines about 1.8 percent at six months in the baseline projection but becomes imprecise with the fullest controls. The average G10 money-market rate is approximately flat for the following year across the baseline, onset, and controlled projections. The leading-indicator response is persistent across these specifications; the industrial-production response and a uniform coordinated-easing path are not.
 
 \subsection{Benchmarks, controls, and term premia}
 
 The U.S. inversion, average G10 slope, and its change do not span the synchronized state. Lagged NFCI and VIX controls also leave the carry coefficient near its baseline magnitude. Contemporaneous dollar and FX-volatility controls show that the realized loss is not simply the average dollar move or the measured volatility innovation, but they are not predictive controls.
 
-The term-premium adjustment is asymmetric. After removing fitted exposure to the U.S. ACM 10Y-minus-2Y term-premium slope, 83 percent of national inversions remain. The high-beta coefficient is $-6.2$ percentage points with $p=0.004$. The carry coefficient is about $-5.4$ with $p=0.11$, roughly half the baseline magnitude. A common U.S. term-premium component therefore does not eliminate exposure ordering, but may explain part of the carry association. Comparable foreign-country term-premium decompositions are unavailable.
+Substituting G10 implied-volatility innovations preserves carry coefficients but weakens high-beta inference: high-beta point estimates remain near $-7.5$ percentage points and have $p$-values around 0.17--0.18. The raw current-inversion count is absorbed by the full NFCI/VIX set, with carry $p\geq0.58$ and high-beta $p\geq0.12$. These adverse cells prevent the control evidence from being read as uniform across volatility measures or state constructions.
+
+The term-premium adjustment is asymmetric. After removing fitted exposure to the U.S. ACM 10Y-minus-2Y term-premium slope, 83 percent of national inversions remain. The rebuilt state still contains all five worst carry months, but it expands from 92 to 125 active months. The high-beta coefficient is $-6.2$ percentage points with $p=0.004$, while the carry coefficient is about $-5.4$ with $p=0.11$. The smaller carry estimate reflects a changed classifier---and possible dilution from the additional months---as well as removal of fitted exposure to the U.S. premium. The exercise does not identify what share of the baseline association is attributable to a common term-premium component. Comparable foreign-country decompositions are unavailable.
 
 \subsection{Interpretive boundary}
 

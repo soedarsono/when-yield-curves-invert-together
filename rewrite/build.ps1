@@ -13,7 +13,11 @@ $OutputRoot = Join-Path $WorkspaceRoot 'output\pdf'
 $RenderRoot = Join-Path $WorkspaceRoot 'tmp\pdfs'
 
 function Resolve-ToolPath {
-    param([string]$ExplicitPath, [string]$CommandName)
+    param(
+        [string]$ExplicitPath,
+        [string]$CommandName,
+        [string[]]$CandidatePaths = @()
+    )
     if ($ExplicitPath) {
         if (-not (Test-Path -LiteralPath $ExplicitPath -PathType Leaf)) {
             throw "Configured path for $CommandName does not exist: $ExplicitPath"
@@ -22,12 +26,25 @@ function Resolve-ToolPath {
     }
     $Command = Get-Command $CommandName -ErrorAction SilentlyContinue
     if ($Command) { return $Command.Source }
+    foreach ($CandidatePath in $CandidatePaths) {
+        if ($CandidatePath -and (Test-Path -LiteralPath $CandidatePath -PathType Leaf)) {
+            return (Resolve-Path -LiteralPath $CandidatePath).Path
+        }
+    }
     return $null
 }
 
-$PdfLatex = Resolve-ToolPath $PdfLatexPath 'pdflatex.exe'
-$Bibtex = Resolve-ToolPath $BibtexPath 'bibtex.exe'
-$PdfToPpm = Resolve-ToolPath $PdfToPpmPath 'pdftoppm.exe'
+$MiKTeXRoots = @(
+    (Join-Path $env:LOCALAPPDATA 'Programs\MiKTeX\miktex\bin\x64'),
+    (Join-Path $env:ProgramFiles 'MiKTeX\miktex\bin\x64')
+)
+$PopplerRoots = @(
+    (Join-Path $env:ProgramFiles 'poppler\Library\bin'),
+    (Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin')
+)
+$PdfLatex = Resolve-ToolPath $PdfLatexPath 'pdflatex.exe' ($MiKTeXRoots | ForEach-Object { Join-Path $_ 'pdflatex.exe' })
+$Bibtex = Resolve-ToolPath $BibtexPath 'bibtex.exe' ($MiKTeXRoots | ForEach-Object { Join-Path $_ 'bibtex.exe' })
+$PdfToPpm = Resolve-ToolPath $PdfToPpmPath 'pdftoppm.exe' ($PopplerRoots | ForEach-Object { Join-Path $_ 'pdftoppm.exe' })
 $Python = Resolve-ToolPath $PythonPath 'python.exe'
 
 if (-not $PdfLatex -or -not $Bibtex) {

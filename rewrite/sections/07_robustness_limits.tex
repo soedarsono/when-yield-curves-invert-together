@@ -1,14 +1,52 @@
-\section{Robustness and Limits}
+\section{Alternative Explanations and Independent Stress Tests}
 \label{sec:robustness_limits}
 
-The robustness evidence answers three questions. The median, lower quantiles, and bottom-decile deletion show that the return gap extends beyond a few crisis observations. Raw inversion breadth, the U.S. curve, the continuous G10 slope, NFCI, and VIX do not reproduce the result in the reported specifications. Carry coefficients remain negative in both calendar halves and within roughly one-third of the full-sample estimate when any one episode is removed.
+\subsection{The United States, financial conditions, and volatility}
 
-An exploratory public-data screen of all two- and three-country delivered-easing combinations produces one family-adjusted CHF--GBP lead, but it weakens under stricter event-count rules and after omitting October 2008. Online Appendix~E therefore treats it as a sensor-versus-risk-bearer hypothesis, not a country-driver result.
+The U.S. curve does not substitute for the cross-country configuration. Its inversion alone has a $-1.90$-point carry-spot coefficient with $p=0.484$. Adding it to the configuration count is a different experiment. The resulting ten-curve state contains all 92 baseline months plus nine additional months, and the carry-spot coefficient remains $-11.72$ ($p=0.001$). Including the dollar in the portfolio also leaves the estimate near $-13$ points. The exclusion of the United States is therefore not load-bearing for the reported association, even though the U.S. curve contributes little on its own.
 
-The exact-one versus exact-two contrast isolates synchronization within the sample. The high-beta portfolio and country gradient support exposure ordering, although the panel interaction is imprecise. Replacing 10Y--2Y slopes with 10Y--3M slopes or removing a U.S. term-premium component attenuates the carry estimate but preserves a statistically detectable high-beta loss. Exposure ordering is less sensitive to these perturbations than the baseline carry magnitude. Conditional UIP and industrial production are imprecise; emerging-market breadth and the downcurve split are exploratory.
+\IfFileExists{generated/tables/v03_us_inclusion.tex}{%
+  \input{generated/tables/v03_us_inclusion.tex}%
+}{}
 
-Specification selection remains the main uncertainty. The tenor, two-curve threshold, and release rule were assessed on the same return history. A deterministic real-time algorithm can overfit without fitted coefficients. Neighboring-rule grids show whether the baseline is isolated, but cannot exhaust discretion over tenors, cutoffs, countries, freshness, persistence, portfolio size, and timing.
+Lagged financial conditions do not absorb the baseline state. With the NFCI level and change, the carry-spot coefficient is $-12.84$ points ($p<0.001$). Adding lagged VIX level and change gives $-13.18$ ($p=0.004$). Contemporaneous dollar and realized FX-volatility controls leave carry spot at $-11.5$ ($p=0.002$) and the S\&P-beta portfolio at $-7.4$ ($p=0.009$). These designs answer different questions. Lagged variables test predictive spanning; contemporaneous variables account for measured features of the realized loss.
 
-Fifteen episodes limit independent common-state variation. Money-market accounting is not an executable forward strategy after basis, spreads, and timing costs. Predetermined equity beta discriminates among patterns but does not instrument for global growth. U.S. ACM components cannot decompose foreign term premia. Month-end dating prevents mechanical look-ahead but does not audit asynchronous closes, stale quotes, or historical vintages.
+The favorable realized-volatility result is not universal. Substituting G10 implied-volatility innovations leaves the carry estimate statistically detected but produces high-beta coefficients near $-7.5$ with $p$-values around 0.17--0.18. The raw current-inversion count is also absorbed by the full NFCI/VIX control set. These failures reinforce the comparative result: the live configuration adds information beyond the displayed lagged conditions, but neither every volatility proxy nor every curve-state construction preserves the same cross-sectional precision.
 
-The result is a large in-sample predictive association ordered by rates and predetermined equity exposure. It does not establish causality or deployable performance. A frozen sample and feasible forward returns provide the next tests.
+\subsection{Expected rates and a common term-premium proxy}
+
+An inversion combines expected short-rate news and term-premium variation. In a predictive-spanning exercise, adding the lagged U.S. ACM slope-premium level, or its level and one-month change, leaves the carry-spot coefficient near $-12.9$ percent ($p=0.001$) and the S\&P-beta spot coefficient near $-7.6$ percent ($p=0.011$). A separate decomposition removes each country's fitted exposure to the U.S. ACM 10Y-minus-2Y slope term premium, then rebuilds the state. Eighty-three percent of national inversion observations remain. The stripped state is broader—125 months in eighteen runs—and overlaps the baseline in 83 months.
+
+The carry result attenuates: the spot coefficient falls from $-12.85$ to $-5.42$ and has $p=0.107$. The S\&P-beta coefficient remains $-6.17$ with $p=0.004$. The rebuilt state still contains all five worst carry months but expands from 92 to 125 active months. Its smaller carry coefficient therefore reflects a changed classifier---and possible dilution from the additional months---as well as removal of fitted exposure to the U.S. premium. The exercise does not identify what share of the baseline association is attributable to a common term-premium component, and one U.S. proxy cannot separate expected rates and term premia country by country.
+
+\IfFileExists{generated/tables/v03_term_premium.tex}{%
+  \input{generated/tables/v03_term_premium.tex}%
+}{}
+
+The evidence therefore leaves two live readings. Synchronized curves can summarize coordinated revisions to expected policy and growth, or they can reveal common risk-bearing information embedded in term premia. The currency cross-section travels under the available adjustment; the carry magnitude does not. A consistent international expected-rate/term-premium panel is the data extension most likely to separate these interpretations.
+
+\subsection{Calendar, episode influence, and international breadth}
+
+Carry spot coefficients are negative in both calendar halves: $-11.41$ points before 2005 and $-15.85$ afterward. The S\&P-beta portfolio is less stable, with $-4.01$ ($p=0.287$) in the first half and $-11.91$ ($p=0.010$) in the second. These are recursive historical stability facts, not a holdout, because the state was evaluated over the full history.
+
+Leaving out one episode at a time keeps carry coefficients within roughly one-third of the full-sample value, and the largest reported beta-portfolio bootstrap $p$-value is 0.006. The exercise does not report every deletion coefficient or a joint leave-two-episode audit. The results are not reducible to one episode, but fifteen episodes remain the effective number of common-state realizations.
+
+Seven floating emerging-market currencies add international breadth without constructing the G10 state. All seven bilateral signs are negative. The pooled spot coefficient is $-14.37$ with $p=0.104$, and the pooled total coefficient is $-13.35$ with $p=0.079$. On the common 1996--2026 sample, active-state G10 and G10-plus-emerging-market spot means are similar, $-12.79$ and $-12.51$ percent. Total means differ, $-8.67$ and $+2.51$, because implied interest income is approximately 4.12 versus 15.02 percent. Shared spot repricing need not imply a universally negative total return when predetermined income differs; interpreting that difference as risk compensation requires additional structure.
+
+\subsection{An independently executable public 10Y--3M audit}
+
+The public audit rebuilds a nearby signal from current-vintage OECD monthly 10-year government yields and 3-month interbank rates distributed through FRED. It pairs that state with a BIS log spot-return proxy ranked on policy-rate differentials available by portfolio formation. The declared 64-rule family crosses raw versus live states, breadth one through four, release lengths one through three, one- and two-month return lags, and target leg sizes of two or three. All currencies tied at a cutoff enter with equal weight, so realized leg size can exceed its target. The code exhaustively reports every rule, but the family was not preregistered before the data were examined.
+
+The baseline-like rule produces a $-3.20$-point annualized log spot-return difference across 99 active months and eighteen episodes. Its inclusive circular-shift reference value is 0.335. Forty-one of 64 rules are negative, the baseline ranks 22nd from most negative to most positive, and its common-calendar maximum-standardized-coefficient reference value is 1.000. Negative signs are frequent, but the baseline estimate is imprecise and no rule meets the 5-percent family reference criterion.
+
+\input{generated/tables/v03_public_proxy_summary.tex}
+
+The public same-universe checks sharpen and limit that conclusion. Jointly deleting each currency from signal construction and the spot basket produces nine negative influence estimates, ranging from $-5.08$ when Australia is removed to $-0.60$ when the pound is removed. These estimates share most dates and are not nine independent tests. A geographically disjoint European-curve signal precedes a $-15.84$-point non-European basket difference across ten observed episodes (raw rotation-reference value $0.062$); the reverse direction is $-0.34$ across nine episodes (reference value $0.887$). These auxiliary references rotate each complete-case sequence; internal missing months are compressed rather than treated as literal calendar observations. The two designs also use different target leg sizes and coverage thresholds. Their asymmetry does not validate a universal common factor.
+
+Concentration matters as well. Removing public-proxy episodes containing September 1998, October 2008, or March 2020 attenuates the baseline to $-0.46$ (complete-case rotation-reference value $0.826$). Deleting the five worst active months changes the coefficient to $+0.94$. The public audit is a novel robustness result because its data, rule grid, finite-rotation references, episode ledger, and state recursion are independently executable from the saved current-vintage snapshot. It disciplines the central claim sharply: a nearby public configuration often produces the same coefficient sign, but zero rules meet the 5-percent common-calendar family reference criterion and the baseline-like estimate disappears outside the largest losses.
+
+\subsection{What the design establishes}
+
+The estimates establish a large historical conditional spot-return shift and a nonlinear cross-country configuration. The S\&P-based tests document an exposure ordering with the stated benchmark and inferential limits. The U.S., average-slope, own-curve, risk-control, and U.S.-term-premium comparisons narrow nearby explanations. The independent public family shows frequent negative coefficients but no rule meets its 5-percent common-calendar rotation-reference criterion.
+
+Three boundaries remain decisive. The public audit does not regenerate the 10Y--2Y state, its fifteen-episode ledger, or the full specification search behind that state. Money-market differentials are not executable one-month forward returns after basis, spreads, formation timing, and financing costs. Finally, prediction and exposure ordering do not identify the shock or compensation friction. These boundaries define the next empirical agenda; they do not dilute the central economic result.

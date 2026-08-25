@@ -1,0 +1,24 @@
+% SOURCE: AI JMP.pdf p. 94, Table K.1. Exact native transcription; not regenerated.
+\begin{table}[H]
+\centering
+\caption{State rebuilt after removing fitted exposure to the U.S. ACM slope term premium}
+\label{tab:v03-term-premium}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xrrrr}
+\toprule
+State & Carry spot & Carry total & High-beta spot & High-beta total \\
+& $b\;[p]$ & $b\;[p]$ & $b\;[p]$ & $b\;[p]$ \\
+\midrule
+Baseline state & $-12.85\;[0.001]$ & $-11.31\;[0.003]$ & $-7.53\;[0.010]$ & $-6.82\;[0.013]$ \\
+Stripped state & $-5.42\;[0.107]$ & $-4.07\;[0.251]$ & $-6.17\;[0.004]$ & $-5.66\;[0.008]$ \\
+\quad Non-downcurve months & $-7.68\;[0.094]$ & $-7.03\;[0.142]$ & $-10.27\;[0.000]$ & $-10.28\;[0.000]$ \\
+\quad Downcurve months & $+1.56\;[0.621]$ & $+3.81\;[0.059]$ & $+5.00\;[0.026]$ & $+6.36\;[0.012]$ \\
+Downcurve wedge within stripped state & $+7.64\;[0.149]$ & $+9.18\;[0.094]$ & $+12.89\;[0.007]$ & $+14.16\;[0.004]$ \\
+\bottomrule
+\end{tabularx}
+
+\begin{minipage}{0.96\textwidth}
+\footnotesize\emph{Notes:} Sample: 1988:01--2026:02. Each national 10Y--2Y slope is regressed on the U.S. ACM 10Y-minus-2Y term-premium slope; fitted exposure is removed before rebuilding the state with the baseline entry, release, and breadth rules. Cells report annualized coefficients and wild run-bootstrap $p$-values in brackets ($B=9{,}999$). The stripped state has 125 months in 18 runs, versus 92 months in 15 runs for the baseline, and the two share 83 months. Of 1,134 inversion curve-months in the 1980:01--2026:02 slope panel, 942 (83 percent) remain inverted after stripping. This is a fitted adjustment for a common U.S. proxy, not a decomposition of foreign country-specific term premia. The high-beta effect remains statistically detectable; the carry coefficient attenuates and becomes imprecise.
+\end{minipage}
+\end{table}

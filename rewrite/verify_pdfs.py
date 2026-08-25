@@ -170,7 +170,7 @@ def main() -> int:
 
     errors: list[str] = []
     title = "When Yield Curves Invert Together: Predicting Currency Carry Losses"
-    errors.extend(inspect_pdf(root / "main.pdf", minimum=1, maximum=None, expected_title=title, expected_author="Alfredo Effendy"))
+    errors.extend(inspect_pdf(root / "main.pdf", minimum=37, maximum=40, expected_title=title, expected_author="Alfredo Effendy"))
     errors.extend(inspect_pdf(root / "online_appendix.pdf", minimum=1, maximum=None, expected_title=f"Online Appendix to {title}", expected_author="Alfredo Effendy"))
     combined = root.parent / "output" / "pdf" / "When_Yield_Curves_Invert_Together_With_Online_Appendix.pdf"
     errors.extend(

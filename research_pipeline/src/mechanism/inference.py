@@ -13,7 +13,7 @@ def hac_intercept_slope(y: np.ndarray, x: np.ndarray, lags: int = 12) -> dict[st
 
     Returns the slope, its HAC standard error, t statistic, and a normal-reference
     two-sided p-value. The normal reference is disclosed because the effective
-    event count can be small; the event tests use randomization inference instead.
+    event count can be small; the event tests use finite-rotation references instead.
     """
     mask = np.isfinite(y) & np.isfinite(x)
     y = np.asarray(y, float)[mask]
@@ -70,7 +70,7 @@ def event_values(
     return np.asarray(out, float)
 
 
-def circular_shift_pvalue(
+def circular_shift_reference_value(
     values: np.ndarray,
     event_indicator: np.ndarray,
     horizon: int,
@@ -78,20 +78,20 @@ def circular_shift_pvalue(
     draws: int | None = None,
     seed: int | None = None,
 ) -> tuple[float, float, int, int]:
-    """Exact, same-N circular-rotation reference with a doubled-tail p-value.
+    """Same-N circular-rotation reference with a doubled inclusive tail rank.
 
     Every nonzero rotation is enumerated; ``draws`` and ``seed`` remain optional
     compatibility arguments and are ignored. Rotations are retained only when
     they produce the same number of valid event-level outcomes as the observed
     assignment. This matters when an outcome has missing history (especially
     CFTC) or a horizon removes edge events. The observed assignment is included
-    in the finite reference distribution. The two-sided p-value is twice the
+    in the finite reference distribution. The two-sided reference value is twice the
     smaller inclusive tail rank, capped at one. It therefore does not assume that
     zero, the placebo mean, or the placebo median is the null center.
 
     The conditional same-N set need not itself form a transformation group when
     missingness is irregular. We therefore describe the output as a conditional
-    finite-rotation reference p-value, not a finite-sample exact causal test.
+    finite-rotation reference value, not a finite-sample exact causal test.
     """
     audit = circular_shift_reference(values, event_indicator, horizon, mode)
     observed_rows = audit.loc[audit["shift"] == 0]
@@ -102,8 +102,8 @@ def circular_shift_pvalue(
     reference_array = audit.loc[audit["retained_same_event_count"], "estimate"].to_numpy(float)
     lower = float(np.mean(reference_array <= observed))
     upper = float(np.mean(reference_array >= observed))
-    p = min(1.0, 2.0 * min(lower, upper))
-    return observed, p, observed_n, len(reference_array)
+    reference_value = min(1.0, 2.0 * min(lower, upper))
+    return observed, reference_value, observed_n, len(reference_array)
 
 
 def circular_shift_reference(

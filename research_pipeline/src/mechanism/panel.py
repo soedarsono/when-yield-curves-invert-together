@@ -69,16 +69,35 @@ def assign_carry_weights(panel: pd.DataFrame, spec: dict) -> pd.DataFrame:
         out = pd.Series(0.0, index=group.index)
         if len(valid) < long_count + short_count:
             return out.where(group["formation_policy_diff"].notna(), np.nan)
-        low = valid.index[:short_count]
-        high = valid.index[-long_count:]
-        out.loc[low] = -1.0 / short_count
-        out.loc[high] = 1.0 / long_count
+        low_cutoff = float(valid.iloc[short_count - 1])
+        high_cutoff = float(valid.iloc[-long_count])
+        if low_cutoff >= high_cutoff:
+            return pd.Series(np.nan, index=group.index)
+        low = group.index[group["formation_policy_diff"] <= low_cutoff]
+        high = group.index[group["formation_policy_diff"] >= high_cutoff]
+        out.loc[low] = -1.0 / len(low)
+        out.loc[high] = 1.0 / len(high)
         return out.where(group["formation_policy_diff"].notna(), np.nan)
 
     out = panel.copy()
-    out["carry_weight"] = out.groupby("month", group_keys=False).apply(weights, include_groups=False)
+    monthly_weights = [weights(group) for _, group in out.groupby("month", sort=False)]
+    out["carry_weight"] = pd.concat(monthly_weights).reindex(out.index) if monthly_weights else np.nan
     out["carry_leg"] = np.select([out["carry_weight"] > 0, out["carry_weight"] < 0], ["long_high", "short_low"], default="middle")
     return out
+
+
+def aggregate_shadow_spot(group: pd.DataFrame, minimum_target_count: int) -> float:
+    """Aggregate selected currency returns, rejecting incomplete realized legs."""
+    selected = group["carry_weight"].notna() & group["carry_weight"].ne(0)
+    if selected.sum() < minimum_target_count:
+        return np.nan
+    if group.loc[selected, "fx_usd_return_pct"].isna().any():
+        return np.nan
+    long_weight = group.loc[selected & group["carry_weight"].gt(0), "carry_weight"].sum()
+    short_weight = group.loc[selected & group["carry_weight"].lt(0), "carry_weight"].sum()
+    if not np.isclose(long_weight, 1.0) or not np.isclose(short_weight, -1.0):
+        return np.nan
+    return float(np.sum(group.loc[selected, "carry_weight"] * group.loc[selected, "fx_usd_return_pct"]))
 
 
 def at_least_rate_cut(changes: pd.Series, minimum_cut_pp: float) -> pd.Series:
@@ -121,12 +140,11 @@ def build_public_panel(spec: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
     start, end = pd.Period(spec["sample_start"], "M"), pd.Period(spec["sample_end"], "M")
     currency = currency.loc[currency["month"].between(start, end)].copy()
     monthly = synchronized_easing(currency, spec).set_index("month")
+    minimum_target_count = int(spec["carry_sort"]["long_count"]) + int(spec["carry_sort"]["short_count"])
     shadow = currency.groupby("month").apply(
         lambda g: pd.Series(
             {
-                "shadow_carry_spot_pct": np.nansum(g["carry_weight"] * g["fx_usd_return_pct"])
-                if (g["carry_weight"].notna() & g["fx_usd_return_pct"].notna()).sum() >= 6
-                else np.nan,
+                "shadow_carry_spot_pct": aggregate_shadow_spot(g, minimum_target_count),
                 "mean_policy_rate": g["policy_rate"].mean(),
                 "mean_policy_change_pp": g["policy_change_pp"].mean(),
                 "currency_coverage": g["fx_usd_return_pct"].notna().sum(),

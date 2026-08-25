@@ -13,9 +13,11 @@ I_{i,t}=\1\{q_{i,t}<0\}.
 \]
 All yields are end-of-month observations. A state measured at the end of month $t$ may condition only returns realized during month $t+1$.
 
+The return sample ends in 2026:02. Most money-market-rate series end in 2026:01 and therefore position the 2026:02 portfolio return under the $t\rightarrow t+1$ convention. The Australian, Canadian, and Swedish rate series extend further and are truncated to the common formation endpoint. The final return month does not use same-month rate information.
+
 \subsection{Curve-level transition rule}
 
-Each curve carries a live indicator $L_{i,t}$, a consecutive-steepening counter $k_{i,t}$, and an eligibility flag. A fresh inversion is a crossing from $q_{i,t-1}\geq0$ to $q_{i,t}<0$. The update order is entry, steepening-counter update for curves already live, release after the second consecutive increase, and finally cross-country aggregation.
+Each curve carries a live indicator $L_{i,t}$, a consecutive-steepening counter $k_{i,t}$, and an eligibility flag. A fresh inversion observed at $t-1$ is a crossing from $q_{i,t-2}\geq0$ to $q_{i,t-1}<0$; it makes the curve live at $t$. The update order is delayed entry, steepening-counter update for curves already live, release after the second consecutive increase, and finally cross-country aggregation.
 
 \begin{table}[H]
 \centering
@@ -24,20 +26,21 @@ Each curve carries a live indicator $L_{i,t}$, a consecutive-steepening counter 
 \small
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}X}
 \toprule
-Prior condition & Observation at $t$ & End-of-month action \\
+Prior condition & Information used at $t$ & End-of-month action \\
 \midrule
-Eligible and not live & $q_{i,t-1}\geq0$, $q_{i,t}<0$ & Set $L_{i,t}=1$; initialize $k_{i,t}=0$ \\
+Eligible and not live at $t-1$ & $q_{i,t-2}\geq0$, $q_{i,t-1}<0$ & Set $L_{i,t}=1$; initialize $k_{i,t}=0$ \\
 Live & $q_{i,t}>q_{i,t-1}$ & Increase $k_{i,t}$ by one \\
 Live & $q_{i,t}\leq q_{i,t-1}$ & Reset $k_{i,t}=0$ \\
 Live; counter reaches two & Any current slope sign & Set $L_{i,t}=0$ after the second increase \\
 Released but still inverted & $q_{i,t}<0$ & Remain inactive and ineligible \\
 Released and non-inverted & $q_{i,t}\geq0$ & Become eligible for a future fresh crossing \\
-Any state & Current or lagged slope missing & Create neither a crossing nor a confirmed-steepening update \\
+Live & Current or lagged slope missing & Reset $k_{i,t}=0$; do not release \\
+Not live & Either side of the lagged crossing missing & Do not enter \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-A curve can therefore be released while still inverted. It cannot re-enter until it first becomes nonnegative and then crosses below zero again. An interrupted steepening sequence resets the counter. These rules make the state depend on the path of slopes, not only on their current signs.
+A curve can therefore be released while still inverted. It cannot re-enter until it first becomes nonnegative and then crosses below zero again. An interrupted or unobserved steepening sequence resets the counter. These rules make the state depend on the path of slopes, not only on their current signs. They also impose two timing steps: a crossing at $t-1$ makes the curve live at $t$, and the resulting state positions the return in $t+1$.
 
 \subsection{Cross-country aggregation and raw benchmark}
 
@@ -57,4 +60,6 @@ The return in month $t+1$ is paired with $S_t$ or, in the benchmark, $R_t$. The 
 
 \subsection{Initialization and audit outputs}
 
-At the sample start, every curve is initialized as inactive. A curve can enter only after both sides of a fresh crossing are observed. Missing values neither trigger entry nor count toward release. The recursion produces, for every country-month, the slope, raw inversion, fresh-entry flag, live status, steepening counter, release flag, and eligibility status. It then produces $N_t$, $S_t$, and episode start, end, and duration. These fields are the minimum audit trail needed to distinguish information month from return month and to reproduce the fifteen-episode count.
+At the sample start, every curve is initialized as inactive. A curve can enter only after both sides of a fresh crossing are observed. Missing values neither trigger entry nor count toward release; a missing comparison breaks consecutiveness and resets the confirmation counter. The recursion produces, for every country-month, the slope, raw inversion, fresh-entry flag, live status, steepening counter, release flag, and eligibility status. It then produces $N_t$, $S_t$, and episode start, end, and duration. These fields are the minimum audit trail needed to distinguish crossing month, live-state month, and return month and to reproduce the fifteen-episode count.
+
+The reported real-time audit recomputes classifications at 435 truncated month-ends and finds no changes in prior signal, count, or own-state classifications. Recomputing the conditioning series and sorts at 492 formation dates produces no portfolio-membership mismatches. One additional return lag attenuates the carry-spot coefficient from $-12.9$ to $-6.3$ points and the S\&P-beta coefficient from $-7.5$ to $-4.7$; forward-shift placebos remove the adverse association. These checks support the implemented information clock, although they are not a substitute for a fully versioned vintage archive.

@@ -2,8 +2,10 @@ cff-version: 1.2.0
 message: "If you use this research package, cite the paper and the archived release."
 title: "When Yield Curves Invert Together: Predicting Currency Carry Losses"
 type: software
-version: 0.2.0
+version: 0.3.0
 date-released: 2026-08-26
+repository-code: "https://github.com/soedarsono/when-yield-curves-invert-together"
+url: "https://github.com/soedarsono/when-yield-curves-invert-together/releases/tag/v0.3.0"
 authors:
   - family-names: Effendy
     given-names: Alfredo

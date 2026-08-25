@@ -1,0 +1,46 @@
+% SOURCE: AI JMP.pdf p. 79, Tables C.1--C.3, and p. 84, Table D.2. Exact native transcription; not regenerated.
+% MULTIPLICITY: Source reports per-rule wild-bootstrap p-values only. No search or family-wise adjustment is available.
+\begin{table}[H]
+\centering
+\caption{Reported state-definition neighborhood}
+\label{tab:v03-reported-rule-neighborhood}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Rule & Active months & Carry spot & Carry total & High-beta spot & High-beta total \\
+& & $b\;[p]$ & $b\;[p]$ & $b\;[p]$ & $b\;[p]$ \\
+\midrule
+\multicolumn{6}{l}{\emph{Panel A: number of live inversions}} \\
+$\geq1$ (any live inversion) & 180 & $-3.23\;[0.230]$ & $-1.90\;[0.513]$ & $-4.62\;[0.008]$ & $-4.16\;[0.014]$ \\
+$=1$ (exactly one) & 88 & $+8.33\;[0.005]$ & $+8.78\;[0.003]$ & $+0.69\;[0.818]$ & $+0.66\;[0.831]$ \\
+$\geq2$ (baseline) & 92 & $-12.85\;[0.001]$ & $-11.31\;[0.003]$ & $-7.53\;[0.010]$ & $-6.82\;[0.013]$ \\
+$=2$ (exactly two) & 48 & $-15.72\;[0.001]$ & $-15.13\;[0.002]$ & $-10.43\;[0.012]$ & $-10.31\;[0.011]$ \\
+$\geq3$ & 44 & $-6.77\;[0.405]$ & $-4.57\;[0.694]$ & $-2.64\;[0.478]$ & $-1.47\;[0.711]$ \\
+$\geq4$ & 22 & $-0.75\;[0.879]$ & $+2.10\;[0.672]$ & $+0.26\;[0.967]$ & $+1.87\;[0.736]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Panel B: release confirmation}} \\
+One steepening month & 39 & $-12.14\;[0.059]$ & $-10.49\;[0.112]$ & $-10.35\;[0.035]$ & $-9.39\;[0.051]$ \\
+Two consecutive months (baseline) & 92 & $-12.85\;[0.001]$ & $-11.31\;[0.003]$ & $-7.53\;[0.010]$ & $-6.82\;[0.013]$ \\
+Three consecutive months & 191 & $-3.59\;[0.161]$ & $-2.11\;[0.491]$ & $-4.23\;[0.001]$ & $-3.58\;[0.017]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Panel C: tenor and downcurve filter}} \\
+10Y--2Y baseline & 92 & $-12.85\;[0.001]$ & $-11.31\;[0.003]$ & $-7.53\;[0.010]$ & $-6.82\;[0.013]$ \\
+10Y--3M & 107 & $-4.68\;[0.146]$ & $-4.02\;[0.260]$ & $-5.25\;[0.011]$ & $-5.00\;[0.034]$ \\
+10Y--2Y, excluding downcurve & 57 & $-18.07\;[0.001]$ & $-17.61\;[0.002]$ & $-12.89\;[<0.001]$ & $-12.59\;[0.001]$ \\
+10Y--3M, excluding downcurve & 74 & $-5.73\;[0.177]$ & $-6.10\;[0.201]$ & $-7.56\;[0.003]$ & $-7.94\;[0.004]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Panel D: current-count repairs}} \\
+Current count $\geq2$ & --- & $-3.18\;[0.047]$ & $-1.06\;[0.670]$ & $-4.73\;[0.005]$ & $-4.06\;[0.012]$ \\
+Current count, excluding downcurve & --- & $-3.31\;[0.238]$ & $-1.73\;[0.581]$ & $-6.43\;[0.003]$ & $-6.13\;[0.006]$ \\
+Current count, reciprocal-age weighted & --- & $-10.43\;[0.040]$ & $-9.75\;[0.057]$ & $-14.87\;[0.001]$ & $-14.46\;[0.002]$ \\
+Live state (baseline) & --- & $-12.85\;[0.001]$ & $-11.31\;[0.003]$ & $-7.53\;[0.010]$ & $-6.82\;[0.013]$ \\
+Live state, excluding downcurve & --- & $-18.07\;[0.001]$ & $-17.61\;[0.002]$ & $-12.89\;[<0.001]$ & $-12.59\;[0.001]$ \\
+\bottomrule
+\end{tabular}%
+}
+
+\begin{minipage}{0.98\textwidth}
+\footnotesize\emph{Notes:} Annualized active-minus-inactive coefficients with the wild-bootstrap $p$-value on each rule's episodes in brackets; 1988:01--2026:02. These are the displayed breadth, release, tenor, and current-count variants, not a complete record of researcher discretion; search-adjusted or family-wise $p$-values are unavailable. The two tenor states overlap in 58 months. The 10Y--3M downcurve stay-set has carry total $+1.59$ with $p=0.371$. Under NFCI/VIX controls, the current count has carry spot $-1.91$ [0.576] and total $-0.63$ [0.847]; the reciprocal-age rule has carry spot $-7.55$ [0.084] and high-beta spot $-13.82$ [0.008]; and the downcurve-filtered current count has carry spot $-3.99$ [0.269] and high-beta spot $-7.04$ [0.035]. Active-month counts are not displayed for Panel D and are left blank.
+\end{minipage}
+\end{table}

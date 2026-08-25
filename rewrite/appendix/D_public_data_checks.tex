@@ -1,9 +1,52 @@
-\section{Public-data mechanism checks}
+\section{Independent public-data checks}
 \label{app:public-checks}
 
-This appendix uses public data to examine outcomes around synchronized delivered policy easing. The event is intentionally later than the yield-curve state: inversions can encode expected easing, whereas policy-rate cuts record policymakers' actions. The exercise tests selected mechanism implications but, because it observes policy delivery rather than the predictive state, it does not validate the inversion classifier.
+This appendix reports two executable exercises. The first constructs an independently sourced 10Y--3M yield-curve state and reveals its complete 64-rule family. The second examines outcomes around synchronized delivered policy easing. The yield proxy is a nearby measurement audit; the easing event occurs downstream of the predictive state. Neither is substituted for the baseline 10Y--2Y analysis.
 
-\subsection{Event construction}
+\subsection{A public 10Y--3M yield-curve proxy}
+
+\subsubsection{Inputs, state, and outcome}
+
+The public curve panel uses current-vintage OECD monthly observations distributed through FRED. For each of the nine currencies, the slope is a 10-year government yield minus a 3-month interbank rate. The euro series uses Germany through December 1998 and the euro-area aggregate from January 1999. At least six observed curves are required to classify a month. Swiss and Japanese short-rate coverage begins later than the main sample, so the early state uses the available cross-section. Current vintages, the short-rate concept, the observation convention, and the euro splice all differ from the baseline end-of-month 10Y--2Y panel.
+
+The live recursion uses the same timing sequence as Appendix~\ref{app:signal}: a crossing observed at $t-1$ becomes live at $t$, a curve-specific counter records consecutive observed increases, release follows the required number of increases, and the country states are aggregated. A missing slope comparison resets the counter. The baseline-like public rule requires two live curves and two increases for release. The public outcome is a BIS policy-ranked log spot-return proxy, signed as foreign-currency appreciation against the dollar. For a one-month-lag rule, policy-rate differentials available by month $t$ form the basket whose spot change is measured in $t+1$. For a two-month-lag rule, the basket is re-sorted using rates available by $t+1$ and its spot change is measured in $t+2$; it is not a month-$t$ portfolio held for two months. The target is three currencies on each side. All currencies tied at a cutoff receive equal weight, so a realized leg can contain more than three currencies; an outcome is missing unless every selected nonzero-weight currency return is observed. The proxy is not a money-market or forward excess return.
+
+Every country-month is retained in a curve-recursion ledger with the provider series identifiers, fresh-entry flag, live status, counter, release, eligibility, inversion, and observation status. A monthly ledger records observed curves, current and live counts, state, next-month outcome, onset, and episode. These files make the public state reproducible without discretionary event dating.
+
+\subsubsection{Declared specification family and inference}
+
+The declared family contains 64 rules. Live states cross four breadth thresholds, three release lengths, two return lags, and two portfolio leg sizes, giving 48 rules. Raw current-inversion states cross four thresholds, two lags, and two leg sizes, giving 16 more. The code reports every declared rule, but the declaration was not preregistered before the data were examined.
+
+All family rules use the literal common complete-case calendar needed by both return horizons. For each rule, the reference distribution applies every common calendar displacement to the complete state sequence, includes the observed assignment, and doubles the smaller inclusive tail rank. The family reference standardizes each rule's rotation distribution and records the maximum absolute standardized coefficient across all 64 rules at each identical displacement. Under the maintained null that simultaneous cyclic shifts of the state sequences relative to returns are exchangeable, the resulting comparison controls the declared family. Without that assumption it is a finite common-calendar rotation-reference diagnostic, not an unconditional randomization probability.
+
+\input{generated/tables/v03_public_proxy_summary.tex}
+
+The baseline-like estimate is $-3.20$ percentage points per year, with raw rotation-reference value $0.335$ and common-calendar maximum-standardized-coefficient reference value $1.000$. Forty-one of 64 rules are negative; none meets the 5-percent family reference criterion. Figure~\ref{fig:v03-public-spec-curve} orders rules by active-state frequency and then their declared fields, not by the estimated return. The baseline-like rule ranks 22nd from most negative to most positive.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.94\textwidth]{generated/v03_public_specification_curve.png}
+  \caption{Complete public 10Y--3M rule family. Blue points are live states, gray points raw current-inversion states, and the red point is the baseline-like rule. Specifications are ordered by active-state frequency and fixed rule fields.}
+  \label{fig:v03-public-spec-curve}
+\end{figure}
+
+\subsubsection{Exclusions, disjoint signals, and episodes}
+
+Removing each currency from both the public curve state and the outcome produces nine negative estimates. The samples and calendars overlap, so the signs are a sensitivity pattern rather than nine independent successes. For these influence and disjoint checks, the auxiliary reference rotates each complete-case sequence after dropping missing observations; it therefore compresses internal calendar gaps. The two geographically disjoint constructions produce different results: European curves precede a negative non-European basket difference, whereas non-European curves do not precede losses in the European basket.
+
+\input{generated/tables/v03_public_loo_disjoint.tex}
+
+The public state produces eighteen episodes. Their cumulative outcomes are heterogeneous, with large negative contributions from the 1998 and 2008 episodes and several positive episodes. Removing episodes containing September 1998, October 2008, or March 2020 attenuates the baseline difference from $-3.20$ to $-0.46$ points. Deleting the five worst active months changes it to $+0.94$. The complete episode ledger makes this concentration inspectable.
+
+\input{generated/tables/v03_public_episode_ledger.tex}
+
+The public audit produces an ambitious but bounded result. A nearby cross-country curve configuration yields negative coefficients in a majority of declared rules and in every joint delete-one influence check, yet the common-calendar family reference and crisis deletion remove conventional statistical detection. The exercise exposes measurement sensitivity using an independently executable current-vintage snapshot.
+
+\subsection{Delivered-easing mechanism proxy}
+
+The second exercise uses public data to examine outcomes around synchronized delivered policy easing. The event is intentionally later than the yield-curve state: inversions can encode expected easing, whereas policy-rate cuts record policymakers' actions. It tests selected mechanism implications but does not validate the inversion classifier.
+
+\subsubsection{Event construction}
 
 The sample is January 1988 through December 2025. Let $r^{pol}_{i,t}$ be country $i$'s BIS end-of-period policy rate and define
 \begin{equation}
@@ -23,7 +66,7 @@ The public currency outcome is a spot-only proxy. BIS exchange rates are signed 
 
 Additional outcomes are CFTC non-commercial net positions scaled by open interest, the New York Fed ACM 10-year expected-rate and term-premium components \citep{adrian2013}, the OECD G7 composite leading indicator, NFCI, and VIX. CFTC coverage is limited to seven directly matchable contracts and uses a documented Deutsche-mark/euro convention. ACM is a U.S. diagnostic, not a decomposition of the nine foreign slopes. The macro and financial-condition series are current vintage.
 
-\subsection{Event estimands and inference}
+\subsubsection{Event estimands and inference}
 
 The code uses two estimands. For a level outcome $Y$, the horizon-$h$ event response is
 \begin{equation}
@@ -41,11 +84,11 @@ For a monthly return flow $R$, it is
 \end{equation}
 where $\tau_j$ indexes valid onset dates. Ninety-percent intervals resample onset episodes; leave-one-onset ranges diagnose influence. The reference distribution enumerates circular shifts of the complete onset sequence, retains shifts with the observed number of valid event outcomes, includes the observed assignment, and doubles the smaller inclusive-tail rank. With irregular missingness, the retained shifts need not form a transformation group; the resulting values are conditional finite-rotation references, not exact causal randomization tests.
 
-Six declared primary outcomes receive Holm adjustment: the shadow-carry spot return over months 0--1; the CFTC positioning change through month 3; ACM expected-rate and term-premium changes through month 3; the CLI change through month 6; and the NFCI change through month 3. The declaration is recorded in the analysis configuration and run manifest, but not in an immutable pre-analysis registration. VIX and other horizons are descriptive.
+Six declared primary outcomes receive Holm adjustment of their finite-rotation reference values: the shadow-carry spot return over months 0--1; the CFTC positioning change through month 3; ACM expected-rate and term-premium changes through month 3; the CLI change through month 6; and the NFCI change through month 3. The declaration is recorded in the analysis configuration and run manifest, but not in an immutable pre-analysis registration. VIX and other horizons are descriptive.
 
 \input{generated/public_mechanism_checks.tex}
 
-The signs mostly fit a broad stress-and-easing chronology: the shadow carry proxy depreciates, carry-aligned positions decline, the expected-rate component falls, and the leading indicator weakens. Estimates are imprecise, and no primary outcome survives the Holm adjustment. The U.S. term-premium estimate is nearly flat at three months. These results are directional mechanism evidence around policy delivery, not evidence that the inversion state predicts them.
+The signs mostly fit a broad stress-and-easing chronology: the shadow carry proxy depreciates, carry-aligned positions decline, the expected-rate component falls, and the leading indicator weakens. Estimates are imprecise, and no primary outcome meets the 5-percent Holm-adjusted reference criterion. The U.S. term-premium estimate is nearly flat at three months. These results are directional mechanism evidence around policy delivery, not evidence that the inversion state predicts them.
 
 \begin{figure}[H]
   \centering
@@ -54,7 +97,7 @@ The signs mostly fit a broad stress-and-easing chronology: the shadow carry prox
   \label{fig:public-event-study}
 \end{figure}
 
-\subsection{Sensitivity and interpretation}
+\subsubsection{Sensitivity and interpretation}
 
 The shadow-carry response is recomputed using two- and four-country event thresholds and after omitting each event currency. Every threshold recomputes its own quiet period, so onset counts need not be monotone in the required number of cutting countries.
 

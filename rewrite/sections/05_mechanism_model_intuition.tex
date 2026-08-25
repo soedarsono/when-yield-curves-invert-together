@@ -1,57 +1,55 @@
-\section{Where the Losses Land}
+\section{Where the Losses Fall}
 \label{sec:mechanism}
 
-\subsection{Rates and predetermined equity exposure}
+\subsection{Interest rates and predetermined equity exposure}
 
-The carry result already contains one cross-sectional ordering: the portfolio loses because the high-rate currencies it buys depreciate relative to the low-rate funding currencies. The bilateral estimates in equation~\eqref{eq:bilateral_state} provide a second ordering. State coefficients become more negative as currencies' predetermined equity-market betas rise.
+The carry result contains a cross-sectional ordering before any beta is estimated. The portfolio loses because the high-interest-rate currencies it buys depreciate relative to the low-interest-rate currencies used for funding. The bilateral regression
+\[
+    \Delta s_{i,t+1}=a_i+b_iS_t+e_{i,t+1}
+\]
+asks whether a second predetermined characteristic orders the nine currency coefficients.
 
-Australia and New Zealand have average betas of 0.20 and 0.13 and annualized state spot coefficients of $-13.21$ and $-13.28$ percentage points. Japan and Switzerland have betas near zero and imprecise coefficients of 2.35 and $-0.89$. Across all nine currencies, regressing the state coefficient on average beta gives a slope near $-60$ percentage points per beta unit, an intercept of $-0.75$, and $R^2=0.77$. With nine observations and no displayed confidence region for the fitted intercept, this is descriptive evidence of a gradient; it does not show that all global exposure vanishes at zero equity beta.
+Australia and New Zealand have average S\&P equity betas of 0.20 and 0.13 and annualized state spot coefficients of $-13.21$ and $-13.28$ percentage points. Japan and Switzerland have betas near zero and coefficients of $+2.35$ and $-0.89$. Regressing the nine state coefficients on average predetermined beta produces a slope near $-60$ percentage points per beta unit, an intercept of $-0.75$, and $R^2=0.77$.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.94\textwidth]{assets/original/figure_05_main.png}
-    \caption{State-dependent spot-return coefficients and predetermined equity beta, one point per currency. Circles and the solid fit show the baseline state (slope $-60$, $R^2=0.77$). Squares and the dashed fit exclude exploratory downcurve months. The baseline inference uses the solid fit.}
+    \includegraphics[width=0.92\textwidth]{assets/original/figure_05_main.png}
+    \caption{Currency state coefficients and predetermined equity beta. Each point is one bilateral spot-return coefficient. The solid line is the baseline fit (slope $-60$, intercept $-0.75$, $R^2=0.77$); the dashed fit excludes the exploratory downcurve months.}
     \label{fig:inherited_beta_gradient}
 \end{figure}
 
+The nine-point gradient is economically sharp and statistically limited. It has no displayed confidence region for the fitted intercept, and Australia and New Zealand exert substantial leverage. It does not establish a structural beta or prove that exposure vanishes at zero. It documents a descriptive restriction that a uniform dollar shift does not match: in the S\&P-based ranking, currencies with greater predetermined market exposure have larger state-conditioned losses.
+
 \input{generated/tables/inherited_exposure_ordering.tex}
 
-The beta-sorted portfolio uses a different predetermined ranking variable but the same underlying currency histories. Its spot return is 7.53 percentage points per year lower in the state, with episode-bootstrap $p=0.010$. The panel interaction between the state and monthly predetermined beta is also negative, about $-27$ percentage points per beta unit, but has $p=0.210$. Thus the carry portfolio establishes the return fact, the beta portfolio supports exposure ordering, the nine-currency scatter is descriptive, and the panel interaction is imprecise.
+The beta-sorted portfolio supplies a portfolio-level implementation of that restriction. It buys the three currencies with the highest expanding-window betas and sells the three lowest, using estimates available before the return. Its spot return is 7.53 percentage points per year lower in the state, with episode-bootstrap $p=0.010$. The monthly panel interaction between the state and predetermined beta is also negative, about $-27$ points per beta unit, but its episode-bootstrap $p$-value is 0.210. The portfolio and bilateral gradient carry the exposure evidence; the panel interaction shows that its precision should not be inferred from the number of currency-month observations.
 
-The high-beta distribution also differs from carry's broad location shift. Its probability of a bottom-decile month rises from 8.5 percent outside the state to 16.3 percent inside ($p=0.046$), while its variance ratio is 1.05 ($p=0.80$). The active state is associated with a higher frequency of adverse returns, not a statistically detectable increase in unconditional variance. The cutoff and several distributional tests were examined jointly, so this remains supporting evidence rather than a separate discovery.
+\subsection{The cluster and each currency's own curve}
 
-The ordering reflects persistent portfolio membership rather than a wholesale signal-month rotation. New Zealand occupies the carry long leg in 85 percent of all months and 91 percent of active-state months; Australia does so in 71 and 73 percent. Japan and Switzerland remain the core funding currencies. Thus the state primarily reprices standing cross-country exposure rather than changing which currencies the sort holds.
+Country-level regressions compare four objects: a currency's own live state alone, the synchronized cluster alone, both together, and a full specification adding own-slope variables and the average G10 slope. The cluster in these regressions still includes the predicted country's curve. This is an own-curve horse race, not a leave-one-country-out design.
 
-The economics is consistent with several established explanations for persistent currency rankings. Small-country exposure, commodity-export sensitivity, trade-network position, and global intermediary demand can all make high-rate currencies covary more positively with global conditions \citep{hassan2013,ready2017,dellaCorte2016,richmond2019,hassanMano2019,gabaixMaggiori2015}. Common currency factors and business-cycle exposure provide related asset-pricing interpretations \citep{lustigVerdelhan2007,lustig2011,lettau2014,colacito2020}. The rate-beta rank correlation is 0.72 in this sample; it does not establish that one primitive channel generates both rankings.
+The Australian own state is the only own-state coefficient detected on its own: $-8.76$ points with $p=0.044$. Conditional on the cluster, every own-state coefficient is imprecise. Cluster-alone estimates are $-13.21$ for Australia ($p=0.015$) and $-13.28$ for New Zealand ($p=0.011$). In the full specification their point estimates remain negative, at $-12.92$ and $-8.56$, but episode-bootstrap precision weakens. Across the pooled bilateral panel, the cluster coefficient is $-4.74$ with Newey--West $t=-2.34$, while the pooled own-state coefficient is $-0.01$ with $t=-0.01$.
 
-\subsection{Spot repricing versus predetermined compensation}
+Own-curve controls are jointly detected for Japan and not for the other eight currencies. This is an economically useful exception: the bundle of Japanese own-state, relative-slope, and relative-level controls is jointly detected even though the yen's cluster coefficient is positive. The joint test does not isolate which own-curve component supplies the information. More generally, the own-curve specifications do not reproduce the adverse long-minus-short portfolio pattern. A stronger claim—that other countries' curves predict a currency after its own curve is excluded—requires the unavailable country-month 10Y--2Y state matrix.
 
-Seven floating emerging-market currencies provide a directional out-of-construction check because none enters the G10 state definition. All seven bilateral state coefficients are negative. Pooling them gives annualized spot and total-return effects of $-14.37$ and $-13.35$ percentage points, with episode-bootstrap $p$-values of 0.104 and 0.079. The signs and magnitudes are consistent with a broad international state, but the sample overlaps the G10 episodes and is neither an independent signal replication nor a frozen holdout \citep{bansalDahlquist2000,ilzetzkiReinhartRogoff2019}.
+\subsection{Persistent portfolio cores with some rotation}
 
-The combined G10-plus-emerging-market carry portfolio isolates the role of compensation. On the common 1996--2026 sample, active-state spot returns are almost identical for G10 carry and G10-plus-emerging-market carry: $-12.79$ and $-12.51$ percent per year. Total returns differ: $-8.67$ for G10 and $+2.51$ for G10 plus emerging markets. The implied active-state income legs are approximately 4.12 and 15.02 percent. The state still lowers the broader portfolio's total return by 9.18 percentage points relative to inactive months, but that estimate is imprecise ($p=0.235$).
+The rate and beta sorts hold persistent currency blocs. New Zealand occupies the carry long leg in 85 percent of all months and 91 percent of active-state months; Australia does so in 71 and 73 percent. Japan is in the funding leg in 83 percent of all months and 97 percent of active months; Switzerland's corresponding shares are 96 and 100 percent. For the beta sort, Canada is always in the long leg, Australia is long in 97 percent of all months and 92 percent of state months, and New Zealand in 77 and 76 percent.
 
-This comparison separates two economic objects that the baseline G10 portfolio alone cannot. Synchronized curves locate a similar international spot repricing across the two carry universes; predetermined interest income determines whether that spot loss produces a negative total mean. The state is therefore more naturally interpreted as a spot-risk state than as a universal negative-total-return rule. Online Appendix C reports the common-sample comparison.
+The state-conditioned portfolios retain persistent cores, so the result is not created solely by resorting when the signal turns on. There is meaningful rotation around those cores: Norway's carry-long share falls from 62 percent overall to 34 percent in state months, while the pound's rises from 43 to 70 percent. Interest rates matter twice: they deliver known carry income and identify a persistent long-leg core that bears the spot loss. The sample rank correlation between average rate and beta rankings is 0.72. Country size, commodity exposure, trade position, and intermediary demand can all contribute to that alignment \citep{hassan2013,ready2017,dellaCorte2016,richmond2019,hassanMano2019,gabaixMaggiori2015}. The analysis does not select a unique primitive; it shows that two predetermined rankings point toward the same loss-bearing currencies.
 
-\subsection{Supporting conditional moments}
+\input{generated/tables/v03_portfolio_composition.tex}
 
-Two additional results are economically coherent but statistically weaker. In a conditional Fama regression, the pooled appreciation slope on the lagged interest differential moves from 0.50 outside the state to $-1.33$ inside it. High-rate currencies therefore depreciate in the active state in point estimates, but the episode-bootstrap $p$-value for the interaction is 0.340. The result is a descriptive regression image of the carry loss, not precise evidence that uncovered interest parity is restored.
+\subsection{How stable is the beta ordering?}
 
-The OECD composite leading indicator declines about 0.6 percent over six months after a state month and remains similar around episode onsets and with lag controls. Industrial production also declines in baseline projections but becomes imprecise with the fullest controls. The leading-indicator response is consistent with the yield-curve literature's expected-slowdown interpretation \citep{harvey1988,estrellaHardouvelis1991,estrellaMishkin1998}; the estimates do not establish that synchronized inversions cause activity to fall. Online Appendix C reports the conditional-UIP and local-projection details.
+Across the reported state-definition neighborhood, the S\&P-beta portfolio is more stable than carry. Its spot coefficient is $-10.35$ under one-month release, $-4.23$ under three-month release, and $-5.25$ under the 10Y--3M construction; all three are statistically detected at the reported levels. Removing fitted exposure to the U.S. ACM slope term premium leaves a $-6.17$-point beta coefficient with $p=0.004$, even as the carry coefficient attenuates.
 
-\subsection{A compact compensation benchmark}
+The exposure measure itself has an important failure. Rebuilding the portfolio with expanding MSCI World betas produces a full-sample spot coefficient of $-2.93$ with $p=0.319$, compared with $-7.93$ and $p=0.005$ for S\&P betas on the same maximal sample. After 1999, both definitions are negative and detected. Early Japanese equity weight can explain why an external U.S. index and a capitalization-weighted world index rank the yen differently, but it does not erase the full-sample benchmark dependence.
 
-A predictable negative conditional return is not implied mechanically by bad-state exposure. The frictionless Euler condition $\E_t[m_{t+1}rx_{t+1}]=0$ says that exposure to high-marginal-utility states should command compensation. To state the timing problem compactly, let an adverse event of size $J>0$ occur at $t+1$ with conditional probability $p_t$. Suppose the known carry income can be written as $C_t=\bar C_t+\mu J\E_{t-1}[p_t]$, where $\bar C_t$ is ordinary carry income and the second term is compensation based on the earlier information set, with $\mu\geq1$. Then
-\begin{equation}
-    \E_t[rx_{t+1}]
-      =\bar C_t+J\bigl(\mu\E_{t-1}[p_t]-p_t\bigr).
-    \label{eq:predetermined_compensation}
-\end{equation}
-A negative conditional mean requires the current perceived loss probability to exceed both previously priced risk and ordinary carry income: $p_t>\mu\E_{t-1}[p_t]+\bar C_t/J$. Fresh synchronized inversions can produce that inequality if bond-market information changes before currency compensation fully adjusts. Slow portfolio adjustment or constrained intermediary capacity are possible frictions \citep{bacchettaWincoop2010,gabaixMaggiori2015}; the reduced-form evidence does not identify either one. Online Appendix B gives the payoff derivation.
+\IfFileExists{generated/tables/v03_beta_benchmark.tex}{%
+  \input{generated/tables/v03_beta_benchmark.tex}%
+}{%
+  \input{generated/tables/inherited_beta_benchmark_sensitivity.tex}%
+}
 
-\subsection{Alternative common-state interpretations}
-
-Expected-rate news is one candidate. Synchronized curves can reflect coordinated changes in expected policy paths, but lagging the state establishes chronology rather than exogeneity. Common inflation news is another: international yield-curve components contain substantial inflation variation, and disinflation can synchronize inversions without a global growth shock \citep{jotikasthiraLeLundblad2015}. A common term-premium shock is also possible because an inversion is not a pure expectations measure. The asymmetric ACM result---a robust high-beta effect but an attenuated carry effect after the adjustment---keeps that channel open.
-
-Intermediary constraints can jointly affect bonds and exchange rates. Lagged NFCI and VIX do not span the state, but those variables are incomplete proxies for dealer balance sheets, funding conditions, and global risk-bearing capacity \citep{brunnermeier2008,he2017,mirandaRey2020}. Finally, heterogeneous responses to a broad dollar shock can generate some beta ordering even when the average dollar factor is controlled. The evidence makes a uniform one-for-one dollar account less plausible; it does not eliminate every dollar-based mechanism.
-
-The economic conclusion is comparative. The state predicts losses that are ordered by both interest rates and predetermined equity exposure, and the fitted response is small for near-zero-beta currencies. That pattern supports the interpretation that synchronized inversions contain information about a shared international risk rather than only separate national disturbances. It does not identify the primitive shock or the friction that prices it.
+The state forecasts losses in the high-rate leg, and a predetermined S\&P-beta rank orders them across currencies and in a separate portfolio. This benchmark-sensitive gradient turns a time-series gap into a testable statement about who bears it; it is not a structural mechanism.

@@ -11,8 +11,8 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from mechanism.inference import circular_shift_pvalue, event_values, hac_intercept_slope, holm_adjust
-from mechanism.panel import at_least_rate_cut
+from mechanism.inference import circular_shift_reference_value, event_values, hac_intercept_slope, holm_adjust
+from mechanism.panel import aggregate_shadow_spot, assign_carry_weights, at_least_rate_cut
 from mechanism.simulation import live_state
 import run_mechanism_checks
 
@@ -22,6 +22,30 @@ class MechanismInferenceTests(unittest.TestCase):
         changes = pd.Series([-0.10, -0.09999999999999964, -0.0999999, -0.1000001, np.nan])
         classified = at_least_rate_cut(changes, 0.10).tolist()
         self.assertEqual(classified, [True, True, False, True, False])
+
+    def test_policy_rate_cutoff_ties_expand_and_are_equally_weighted(self):
+        panel = pd.DataFrame(
+            {
+                "month": [pd.Period("2000-01", "M")] * 9,
+                "formation_policy_diff": [-2.0, -1.0, -1.0, -1.0, 0.0, 1.0, 1.0, 1.0, 2.0],
+            }
+        )
+        spec = {"carry_sort": {"long_count": 3, "short_count": 3}}
+        weighted = assign_carry_weights(panel, spec)
+        self.assertEqual(int(weighted["carry_weight"].ne(0).sum()), 8)
+        self.assertAlmostEqual(weighted["carry_weight"].clip(lower=0).sum(), 1.0)
+        self.assertAlmostEqual(weighted["carry_weight"].clip(upper=0).sum(), -1.0)
+
+    def test_shadow_spot_requires_every_selected_return(self):
+        group = pd.DataFrame(
+            {
+                "carry_weight": [-0.5, -0.5, 0.0, 0.5, 0.5],
+                "fx_usd_return_pct": [1.0, np.nan, np.nan, 2.0, 2.0],
+            }
+        )
+        self.assertTrue(np.isnan(aggregate_shadow_spot(group, minimum_target_count=4)))
+        group.loc[1, "fx_usd_return_pct"] = 1.0
+        self.assertAlmostEqual(aggregate_shadow_spot(group, minimum_target_count=4), 1.0)
 
     def test_event_change_uses_pre_event_baseline(self):
         values = np.array([1.0, 2.0, 5.0, 8.0, 13.0])
@@ -49,7 +73,7 @@ class MechanismInferenceTests(unittest.TestCase):
         values = np.arange(12, dtype=float)
         events = np.zeros(12, dtype=bool)
         events[[2, 7]] = True
-        estimate, p, event_count, reference_count = circular_shift_pvalue(values, events, 0, "sum")
+        estimate, p, event_count, reference_count = circular_shift_reference_value(values, events, 0, "sum")
         self.assertEqual(event_count, 2)
         self.assertEqual(reference_count, 12)
         self.assertTrue(0.0 <= p <= 1.0)
@@ -60,7 +84,7 @@ class MechanismInferenceTests(unittest.TestCase):
         values[5] = np.nan
         events = np.zeros(10, dtype=bool)
         events[[1, 4]] = True
-        _, _, event_count, reference_count = circular_shift_pvalue(values, events, 0, "sum")
+        _, _, event_count, reference_count = circular_shift_reference_value(values, events, 0, "sum")
         self.assertEqual(event_count, 2)
         self.assertLess(reference_count, 10)
         self.assertGreaterEqual(reference_count, 1)
@@ -68,7 +92,7 @@ class MechanismInferenceTests(unittest.TestCase):
     def test_doubled_tail_rank_is_not_abs_zero_statistic(self):
         values = np.array([10.0, 11.0, 12.0, 13.0, 14.0, 40.0])
         events = np.array([True, False, False, False, False, False])
-        _, p, _, reference_count = circular_shift_pvalue(values, events, 0, "sum")
+        _, p, _, reference_count = circular_shift_reference_value(values, events, 0, "sum")
         self.assertEqual(reference_count, 6)
         # The observed value is the minimum: doubled inclusive lower-tail rank.
         self.assertAlmostEqual(p, 2.0 / 6.0)

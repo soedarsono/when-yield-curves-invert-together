@@ -34,18 +34,18 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
     table_dir = OUTPUT_ROOT / "tables"
     table_dir.mkdir(parents=True, exist_ok=True)
     lines = [
-        r"\begin{table}[!htbp]", r"\centering", r"\caption{Outcomes around synchronized delivered-easing onsets}",
+        r"\begin{table}[H]", r"\centering", r"\caption{Outcomes around synchronized delivered-easing onsets}",
         r"\label{tab:public_mechanism_checks}", r"\small", r"\begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm}rrrrr}",
-        r"\toprule", r"Outcome & Estimate & 90\% CI & RI $p$ & Holm $p$ & Rotations \\", r"\midrule",
+        r"\toprule", r"Outcome & Estimate & 90\% CI & Rotation ref. & Holm adj. & Rotations \\", r"\midrule",
     ]
     for row in results.itertuples(index=False):
         ci = f"[{_fmt(row.ci90_episode_bootstrap_low)}, {_fmt(row.ci90_episode_bootstrap_high)}]"
         lines.append(
-            f"{_latex_escape(row.label)} & {_fmt(row.estimate)} & {ci} & {_fmt(row.p_randomization_raw, 3)} & {_fmt(row.p_holm_primary_family, 3)} & {int(row.rotation_reference_count_including_observed)} \\\\"
+            f"{_latex_escape(row.label)} & {_fmt(row.estimate)} & {ci} & {_fmt(row.rotation_reference_value, 3)} & {_fmt(row.holm_adjusted_rotation_reference, 3)} & {int(row.rotation_reference_count_including_observed)} \\\\"
         )
     lines.extend([
         r"\bottomrule", r"\end{tabular}",
-        r"\begin{minipage}{0.96\linewidth}\footnotesize Notes: Events are synchronized delivered-easing onsets constructed from public BIS policy rates. They are a downstream policy-rate state, distinct from the paper's predictive IYC state. RI $p$-values enumerate every circular rotation, condition on the observed number of valid episode outcomes, include the observed assignment, and double the smaller inclusive tail rank. Rotations reports the resulting finite reference count. The CFTC reference is small because missing contract coverage makes most rotations change the valid event count; its RI result is correspondingly coarse. With irregular missingness, the same-count rotations need not form a transformation group, so these are conditional finite-rotation references rather than exact causal randomization tests. Intervals resample onset episodes. Holm $p$-values adjust the six prespecified primary outcomes. Currency returns and CFTC positioning are percentage points, with CFTC positions measured as a share of open interest; ACM components are percentage points; CLI, NFCI, and VIX are index points.\end{minipage}",
+        r"\begin{minipage}{0.96\linewidth}\footnotesize Notes: Events are synchronized delivered-easing onsets constructed from public BIS policy rates. They are a downstream policy-rate state, distinct from the paper's predictive IYC state. Rotation-reference values enumerate every circular shift, condition on the observed number of valid episode outcomes, include the observed assignment, and double the smaller inclusive tail rank. Rotations reports the resulting finite reference count. The CFTC reference is small because missing contract coverage makes most rotations change the valid event count; its reference is correspondingly coarse. With irregular missingness, the same-count rotations need not form a transformation group, so these are conditional finite-rotation references rather than exact causal randomization tests. Intervals resample onset episodes. The Holm column adjusts the six declared primary reference values. Currency returns and CFTC positioning are percentage points, with CFTC positions measured as a share of open interest; ACM components are percentage points; CLI, NFCI, and VIX are index points.\end{minipage}",
         r"\end{table}", "",
     ])
     main = table_dir / "public_mechanism_checks.tex"
@@ -62,7 +62,7 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
     ]
     labels = {"static_state": "Static count", "latched_state": "Path-dependent latch"}
     for row in sim_summary.itertuples(index=False):
-        sim_lines.append(f"{labels[row.state]} & {_fmt(row.crash_capture_rate, 3)} & {_fmt(row.state_month_share, 3)} & {_fmt(row.false_positive_months, 1)} & {_fmt(row.mean_carry_on_pct, 3)} \\\\ ")
+        sim_lines.append(f"{labels[row.state]} & {_fmt(row.crash_capture_rate, 3)} & {_fmt(row.state_month_share, 3)} & {_fmt(row.false_positive_months, 1)} & {_fmt(row.mean_carry_on_pct, 3)} \\\\")
     capture_path_count = int(simulation.loc[simulation["crashes"] > 0, "simulation"].nunique())
     sim_lines.extend([
         r"\bottomrule", r"\end{tabular}",
@@ -73,9 +73,9 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
     sim_path.write_text("\n".join(sim_lines), encoding="utf-8")
 
     sens_lines = [
-        r"\begin{table}[!htbp]", r"\centering", r"\caption{Public-proxy sensitivity: shadow carry spot return}",
+        r"\begin{table}[H]", r"\centering", r"\caption{Public-proxy sensitivity: shadow carry spot return}",
         r"\label{tab:public_proxy_sensitivity}", r"\small", r"\begin{tabular}{lrrrr}", r"\toprule",
-        r"Construction & Estimate & RI $p$ & Events & Rotations \\", r"\midrule",
+        r"Construction & Estimate & Rotation ref. & Events & Rotations \\", r"\midrule",
     ]
     sensitivity_labels = {
         "cut_count_threshold_2": "At least two countries easing",
@@ -88,7 +88,7 @@ def write_tables(results: pd.DataFrame, sensitivity: pd.DataFrame, simulation: p
             label = f"Exclude {row.sensitivity.rsplit('_', 1)[-1]} from event rule"
         if label is None:
             label = row.sensitivity
-        sens_lines.append(f"{_latex_escape(label)} & {_fmt(row.estimate)} & {_fmt(row.p_randomization, 3)} & {int(row.event_count)} & {int(row.rotation_reference_count_including_observed)} \\\\ ")
+        sens_lines.append(f"{_latex_escape(label)} & {_fmt(row.estimate)} & {_fmt(row.rotation_reference_value, 3)} & {int(row.event_count)} & {int(row.rotation_reference_count_including_observed)} \\\\")
     sens_lines.extend([
         r"\bottomrule", r"\end{tabular}",
         r"\begin{minipage}{0.92\linewidth}\footnotesize Notes: Each threshold definition recomputes its own three-month quiet window. Onset counts therefore need not be monotone in the number of countries required to cut. Leave-one-currency rows omit that currency from the event rule.\end{minipage}",
@@ -215,7 +215,7 @@ def write_ledgers(results: pd.DataFrame, onsets: pd.DataFrame, spec: dict, sampl
     sim_path = ledger_dir / "simulation_result_ledger.csv"
     sim_summary.to_csv(sim_path, index=False)
     metadata = {
-        "design_status": "Prespecified public proxy; not an IYC signal replication",
+        "design_status": "Declared public proxy family; no immutable preregistration; not an IYC signal replication",
         "sample_start": spec["sample_start"], "sample_end": spec["sample_end"],
         "monthly_rows": len(sample), "onset_count": len(onsets),
         "policy_event_definition": spec["synchronized_easing"],
@@ -241,25 +241,25 @@ def write_report(results: pd.DataFrame, sensitivity: pd.DataFrame, hac: pd.DataF
         f"- Sample: {spec['sample_start']} through {spec['sample_end']}.",
         f"- Onset: at least {spec['synchronized_easing']['baseline_country_count']} of nine policy rates fall by at least {spec['synchronized_easing']['minimum_cut_pp']:.2f} percentage point after {spec['synchronized_easing']['quiet_months_before_onset']} months without another synchronized cut.",
         "- Currency return: negative log change in BIS local-currency-per-USD exchange rate; positive means foreign-currency appreciation against USD.",
-        "- Public carry proxy: equal-weight long the three highest and short the three lowest policy differentials, ranked with a one-month lag; spot leg only.",
+        "- Public carry proxy: target three currencies per side, ranked on one-month-lagged policy differentials; all cutoff ties enter with equal weight, so realized legs can be larger; log spot-return leg only.",
         f"- Events found: {len(onsets)}. Exact dates and country counts are in `outputs/mechanism/ledgers/synchronized_easing_onsets.csv`.",
         "- Inference: every circular rotation preserves the complete event sequence. The reference set retains only rotations with the observed number of valid episode outcomes, includes the observed assignment, and doubles the smaller inclusive tail rank. This is a conditional finite-rotation reference rather than a causal exact test because irregular missingness can make the same-N subset fail to form a transformation group. Every retained and rejected rotation is recorded in `outputs/mechanism/data/rotation_audit.csv`. Ninety-percent intervals resample episodes; leave-one-episode ranges report influence. A monthly HAC regression is secondary.",
         "- Multiplicity: the six outcomes in `mechanism_spec.json` form one primary family and receive Holm adjustment. Other horizons and VIX are descriptive.", "",
         "## Primary estimates", "",
-        "| Outcome | Estimate | Unit | Events | Rotations | RI p | Holm p | Leave-one-event range |", "|---|---:|---|---:|---:|---:|---:|---:|",
+        "| Outcome | Estimate | Unit | Events | Rotations | Rotation ref. | Holm-adjusted ref. | Leave-one-event range |", "|---|---:|---|---:|---:|---:|---:|---:|",
     ]
     for row in primary.itertuples(index=False):
-        lines.append(f"| {row.label} | {_fmt(row.estimate)} | {row.unit} | {int(row.event_count)} | {int(row.rotation_reference_count_including_observed)} | {_fmt(row.p_randomization_raw,3)} | {_fmt(row.p_holm_primary_family,3)} | [{_fmt(row.leave_one_episode_low)}, {_fmt(row.leave_one_episode_high)}] |")
+        lines.append(f"| {row.label} | {_fmt(row.estimate)} | {row.unit} | {int(row.event_count)} | {int(row.rotation_reference_count_including_observed)} | {_fmt(row.rotation_reference_value,3)} | {_fmt(row.holm_adjusted_rotation_reference,3)} | [{_fmt(row.leave_one_episode_low)}, {_fmt(row.leave_one_episode_high)}] |")
     lines.extend([
         "", "## Secondary diagnostics", "",
-        f"The monthly HAC regression of the shadow carry spot return on the synchronized-easing state gives {hac.iloc[0]['estimate']:.3f} percentage point per month (Newey-West SE {hac.iloc[0]['se']:.3f}, t={hac.iloc[0]['t']:.2f}, normal-reference p={hac.iloc[0]['p']:.3f}). The episode randomization result is the preferred small-event inference.", "",
+        f"The monthly HAC regression of the shadow carry spot return on the synchronized-easing state gives {hac.iloc[0]['estimate']:.3f} percentage point per month (Newey-West SE {hac.iloc[0]['se']:.3f}, t={hac.iloc[0]['t']:.2f}, normal-reference p={hac.iloc[0]['p']:.3f}). The episode finite-rotation result is the preferred small-event reference.", "",
         "Threshold and leave-one-currency constructions are reported in `outputs/mechanism/tables/public_proxy_sensitivity.tex` and the machine-readable sensitivity CSV. These checks vary the event proxy, not the unavailable IYC signal. Onset counts need not be monotone in the cut threshold because every threshold definition applies its own three-month quiet-window rule.", "",
         "## Simulation boundary", "",
         "The synthetic exercise makes one structural point: if delivered easing re-steepens curves after a latent stress state begins, a static contemporaneous inversion count can switch off before delayed losses, while a fresh-entry/confirmed-exit latch can remain on. The simulation is deliberately not calibrated. It cannot establish that the historical latch was chosen independently, that the paper's episodes are correct, or that its return estimates generalize.", "",
         "## Interpretation limits", "",
         "- Synchronized policy easing is partly a response to stress, so all empirical results are associations around a downstream event, not causal effects or predictive tests.",
         "- Policy-rate ranks are an imperfect substitute for money-market or forward rates. Spot returns omit the carry income leg and transaction costs.",
-        "- CFTC coverage is limited to directly matchable futures contracts. NOK and SEK are absent, and the DEM/EUR splice is a documented proxy. Only the same-N rotations enter its finite reference, so its p-value is discrete and low-powered; the exact reference count is reported beside the estimate.",
+        "- CFTC coverage is limited to directly matchable futures contracts. NOK and SEK are absent, and the DEM/EUR splice is a documented proxy. Only the same-N rotations enter its finite reference, so its reference value is discrete and low-powered; the exact reference count is reported beside the estimate.",
         "- ACM describes the U.S. Treasury curve. It cannot remove country-specific or regional term premia from foreign curves.",
         "- OECD CLI and FRED graph histories are current-vintage. The CLI may include financial information and therefore is secondary mechanism evidence.",
         "- Holm adjustment covers the declared primary family, but specification search in the original paper remains outside this public-proxy exercise.", "",

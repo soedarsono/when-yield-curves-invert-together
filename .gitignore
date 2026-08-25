@@ -6,6 +6,7 @@ research_pipeline/data/processed/
 # Rebuildable local analysis outputs; keep ledgers/reports intentionally if desired
 research_pipeline/tmp/
 tmp/
+tmp_*.txt
 
 # Python
 .venv/

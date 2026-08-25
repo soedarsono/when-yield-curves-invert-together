@@ -1,13 +1,13 @@
 # Public-data access audit
 
-Generated: 2026-08-25T19:27:54+00:00
+Generated: 2026-08-25T22:57:01+00:00
 
 This report verifies acquisition and basic parseability. Analytical use still requires the purpose-ledger gates.
 
 ## Acquisition summary
 
-- Files audited: 38
-- Download size excluding extracted CFTC duplicates: 58.8 MB
+- Files audited: 58
+- Download size excluding extracted CFTC duplicates: 59.1 MB
 - Unresolved failures among currently configured downloads: 0
 - Configured downloads missing locally: 0
 - Raw files with missing or mismatched manifest hashes: 0
@@ -19,6 +19,7 @@ This report verifies acquisition and basic parseability. Analytical use still re
 - `fred_controls`: 5 file(s)
 - `nyfed_acm`: 2 file(s)
 - `oecd_cli`: 1 file(s)
+- `oecd_yield_curve_proxy`: 20 file(s)
 
 ## Date coverage
 
@@ -62,6 +63,26 @@ This report verifies acquisition and basic parseability. Analytical use still re
 | nyfed_acm | `acmPlot_data.csv` | 782 | 1961-06-30 | 2026-07-31 |
 | nyfed_acm | `ACMTermPremium.xls` |  |  |  |
 | oecd_cli | `oecd_cli_1988_present.csv` | 9877 | 1988-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01AUM156N.csv` | 702 | 1968-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01CAM156N.csv` | 846 | 1956-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01CHM156N.csv` | 324 | 1999-07-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01DEM156N.csv` | 798 | 1960-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01EZM156N.csv` | 385 | 1994-01-01 | 2026-01-01 |
+| oecd_yield_curve_proxy | `IR3TIB01GBM156N.csv` | 829 | 1957-01-01 | 2026-01-01 |
+| oecd_yield_curve_proxy | `IR3TIB01JPM156N.csv` | 290 | 2002-04-01 | 2026-05-01 |
+| oecd_yield_curve_proxy | `IR3TIB01NOM156N.csv` | 570 | 1979-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01NZM156N.csv` | 631 | 1973-12-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IR3TIB01SEM156N.csv` | 534 | 1982-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01AUM156N.csv` | 684 | 1969-07-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01CAM156N.csv` | 858 | 1955-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01CHM156N.csv` | 858 | 1955-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01DEM156N.csv` | 842 | 1956-05-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01EZM156N.csv` | 673 | 1970-01-01 | 2026-01-01 |
+| oecd_yield_curve_proxy | `IRLTLT01GBM156N.csv` | 798 | 1960-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01JPM156N.csv` | 450 | 1989-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01NOM156N.csv` | 498 | 1985-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01NZM156N.csv` | 678 | 1970-01-01 | 2026-06-01 |
+| oecd_yield_curve_proxy | `IRLTLT01SEM156N.csv` | 475 | 1986-12-01 | 2026-06-01 |
 
 ## Failed requests
 

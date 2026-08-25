@@ -1,6 +1,6 @@
 \section{Data provenance and reproducibility boundary}\label{app:provenance}
 
-This reconstruction has two data layers. The inherited layer consists of estimates and exhibits in the August 25, 2026 source PDF. The public layer consists of official downloads acquired and hashed by the accompanying pipeline. The public layer is designed to challenge pieces of the mechanism; it is not a substitute for the absent author panel.
+The project has two data layers. The source-reported layer consists of estimates and exhibits transcribed from the August 25, 2026 source PDF. The public layer consists of official downloads acquired and hashed by the accompanying pipeline. The public layer provides separately executable mechanism and nearby-measurement checks; it is not a substitute for the absent author panel.
 
 \subsection{Unavailable author inputs}
 
@@ -16,7 +16,8 @@ The public pipeline currently records the following inputs, source URLs, retriev
   \item BIS monthly end-of-period central-bank policy rates for those countries and the United States;
   \item New York Fed Adrian--Crump--Moench term-premium data, used only as a U.S. common-component diagnostic;
   \item OECD monthly composite leading indicators, recognized as current-vintage and revisable rather than a real-time forecast record;
-  \item FRED series for U.S. financial conditions, equity volatility, the broad dollar, high-yield spreads, and WTI oil prices.
+  \item FRED series for U.S. financial conditions, equity volatility, the broad dollar, high-yield spreads, and WTI oil prices; and
+  \item twenty OECD interest-rate series delivered through FRED: monthly observations of 10-year government-bond yields and 3-month interbank rates for Australia, Canada, Switzerland, the United Kingdom, Japan, Norway, New Zealand, Sweden, Germany, and the euro area. These inputs form the current-vintage public 10-year-minus-3-month proxy used in the v0.3 nearby-measurement and specification-search audit.
 \end{itemize}
 
 Each dataset has a named hypothesis, merge key, timing rule, target exhibit, retention decision, and limitation in the machine-readable data-purpose ledger. The pipeline rejects orphan downloads: availability alone is not a research purpose.
@@ -25,11 +26,12 @@ Each dataset has a named hypothesis, merge key, timing rule, target exhibit, ret
 
 BIS policy rates are official or representative rates whose definitions change across countries and history. They are not one-month deposit rates or forward-implied rates. BIS exchange rates support spot-return checks but not feasible carry returns. The CFTC categories are weekly, coarse, and available for only a subset of currency futures; the Deutsche-mark/euro transition requires an explicit splice, and New Zealand-dollar coverage is shorter. The ACM series describes U.S. Treasury term premia, not country-specific foreign term premia. OECD leading indicators are revised and may contain financial inputs related to the paper's predictor.
 
+The public yield proxy subtracts each country's 3-month interbank rate from its 10-year government-bond yield. It therefore differs from the original paper's 10-year-minus-2-year government-curve slope in both tenor and short-rate instrument. The euro input uses Germany through 1998 and the EA19 aggregate from 1999, so the splice changes geographic concept at the transition. The observations are current-vintage monthly series, may be revised, and are not documented here as month-end market quotes. Swiss and Japanese short-rate coverage begins later than coverage for several other countries. These features make the exercise a transparent nearby-measurement audit, not external validation or replication of the original state.
+
 These limits determine language in the paper. The public panel can establish whether broad position, policy, and currency patterns are consistent with the mechanism. It cannot establish that the original signal predicts them, reconcile exact source-PDF estimates, or support claims about implementable forward returns.
 
 \subsection{Build and audit contract}
 
 A clean run must download only approved URLs, verify hashes or record intentional vintage changes, build derived panels without editing source code, generate every public-data table and figure, and emit a result ledger. The ledger records specification, sample, unit, estimator, uncertainty, result type, paper claim, and interpretation limit. A failed acquisition or schema test must stop the dependent analysis rather than silently drop the source.
 
-The eventual public release should pin the software environment, include small legal fixtures for automated tests, document licensed-data boundaries, and archive a versioned release. The source-PDF exhibits should be replaced with code-generated originals when the author package becomes available. Until then they retain an explicit inherited-evidence status.
-
+The eventual public release should pin the software environment, include small legal fixtures for automated tests, document licensed-data boundaries, and archive a versioned release. The source-PDF exhibits should be replaced with code-generated originals when the author package becomes available. Until then they retain an explicit source-reported-evidence status.

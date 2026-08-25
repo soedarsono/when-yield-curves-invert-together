@@ -1,0 +1,22 @@
+% EXECUTABLE PUBLIC OUTPUT: generated from the declared v0.3 10Y--3M proxy family.
+\begin{table}[H]
+\centering
+\caption{Independent public 10Y--3M proxy audit}
+\label{tab:v03-public-proxy}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xrrrr}
+\toprule
+Public-data specification & Log spot difference & Raw rotation ref. & Active months & Episodes \\
+\midrule
+Baseline-like rule & $-3.20$ & 0.335 & 99 & 18 \\
+Exclude episodes containing 1998:09, 2008:10, or 2020:03 & $-0.46$ & 0.826 & 88 & 15 \\
+First calendar half, 1988--2004 & $-5.73$ & 0.382 & 49 & 9 \\
+Second calendar half, 2005--2025 & $-1.02$ & 0.776 & 50 & 10 \\
+Delete five worst active months & $+0.94$ & --- & 94 & --- \\
+\bottomrule
+\end{tabularx}
+
+\begin{minipage}{0.94\textwidth}
+\footnotesize\emph{Notes:} Annualized percentage-point active-minus-inactive differences in a BIS policy-ranked log spot-return proxy. Each leg targets three currencies; all currencies tied at a cutoff enter with equal weight, so realized leg size can exceed three. The baseline-like rule uses current-vintage OECD monthly 10-year government yields minus 3-month interbank rates distributed through FRED, fresh entry, breadth two, two consecutive increases for release, and a one-month return lag. It is distinct from the baseline 10Y--2Y state and is not an executable forward return. Across the complete declared family, 41 of 64 coefficients are negative, the baseline ranks 22nd from most negative to most positive, and the common-calendar max-$|z|$ rotation-reference value is 1.000. The crisis-deletion reference rotates the resulting complete-case sequence after excluded episodes are removed. The last row is outcome-conditioned and intentionally has neither a $p$-value nor an episode count, because deleting realized months mechanically splits state runs.
+\end{minipage}
+\end{table}

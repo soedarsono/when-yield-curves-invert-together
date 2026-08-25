@@ -1,19 +1,19 @@
 \section{Which countries matter in the public proxy?}
 \label{app:country-combinations}
 
-This appendix asks whether particular country pairs or triples dominate the public delivered-easing association. It does not observe the original nine-country yield-slope panel and therefore cannot identify which curves created the paper's fifteen inversion episodes. The analysis uses the same BIS policy-rate and exchange-rate data as Appendix~\ref{app:public-checks}.
+This appendix asks whether particular country pairs or triples dominate the public delivered-easing association. The public policy-rate exercise does not reveal which curves created the baseline fifteen inversion episodes. The analysis uses the same BIS policy-rate and exchange-rate data as Appendix~\ref{app:public-checks}.
 
 \subsection{Combination screen}
 
 All 36 currency pairs and 84 triples are enumerated. For a given combination, an onset occurs when every member cuts its policy rate by at least 10 basis points after three months without that same joint cut. The outcome is the public shadow-carry spot return accumulated over event months zero and one. The ranking of all nine currencies uses lagged policy-rate differentials; the tested country combination defines the event, not the portfolio.
 
-Inference is reported only for combinations with at least six valid events. Every eligible event sequence is shifted through every circular calendar rotation. Raw two-sided rotation $p$-values are supplemented with a common-rotation maximum absolute standardized statistic that controls family-wise error across every eligible pair and triple. Episode-resampling intervals, leave-one-event means, and alternative minimum-event rules diagnose small-sample fragility.
+Reference values are reported only for combinations with at least six valid events. Every eligible event sequence is shifted through every circular calendar rotation. Raw two-sided rotation references are supplemented with a common-rotation maximum absolute standardized reference across every eligible pair and triple. Under the maintained null that simultaneous cyclic shifts are exchangeable, the maximum reference controls the declared family; otherwise it is a finite family diagnostic. The 120-combination family was declared in code and exhaustively reported but was not preregistered. Episode-resampling intervals, leave-one-event means, and alternative minimum-event rules diagnose small-sample fragility.
 
 \input{generated/public_country_combination_proxy.tex}
 
-Of 120 combinations, 42 have at least six events. CHF--GBP is the only 5-percent family-wide result: six joint-cut onsets have a two-month mean shadow-carry spot return of $-4.63$ percentage points, raw $p=0.009$, and adjusted $p=0.042$. The 90-percent episode-bootstrap interval is $[-9.52,0.26]$, however, and deleting October 2008 reduces the mean to $-2.62$. CAD--NOK--NZD is next, with seven events, a $-4.29$-point mean, and adjusted $p=0.055$.
+Of 120 combinations, 42 have at least six events. CHF--GBP is the only combination meeting the 5-percent common-rotation criterion: six joint-cut onsets have a mean cumulative two-month shadow-carry log spot-return proxy of $-4.54$ percentage points, raw reference $0.009$, and maximum-$|z|$ reference $0.035$. The 90-percent episode-bootstrap interval is $[-9.52,0.31]$, however, and deleting October 2008 reduces the mean to $-2.52$. AUD--EUR is the next-most-negative pair, at $-4.26$ with maximum-$|z|$ reference $0.055$. CAD--NOK--NZD is the most-negative triple, at $-4.09$ with reference $0.066$.
 
-The family result depends on admitting sparse combinations. With a six-event minimum, 42 combinations are eligible and one clears 5 percent. With minimums of eight or ten events, 25 and 15 combinations remain, no adjusted result clears 5 percent, and the smallest adjusted $p$-values are 0.105 and 0.224. The evidence does not establish a stable country bloc.
+The family result depends on admitting sparse combinations. With a six-event minimum, 42 combinations are eligible and one meets the 5-percent reference criterion. With minimums of eight or ten events, 25 and 15 combinations remain, no result meets that criterion, and the smallest maximum-$|z|$ reference values are 0.064 and 0.229. The evidence does not establish a stable country bloc.
 
 \subsection{Sensor countries versus loss-bearing currencies}
 

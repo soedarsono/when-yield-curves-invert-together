@@ -1,0 +1,30 @@
+% EXECUTABLE PUBLIC OUTPUT: leave_one_country_out.csv and geographically_disjoint.csv
+\begin{table}[H]
+\centering
+\caption{Public proxy exclusions and disjoint signals}
+\label{tab:v03-public-exclusions}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xrrrr}
+\toprule
+Excluded from curve state and outcome & Log spot difference & Raw rotation ref. & Active months & Episodes \\
+\midrule
+AUD & $-5.08$ & 0.133 & 69 & 16 \\
+CAD & $-1.96$ & 0.554 & 92 & 17 \\
+CHF & $-4.51$ & 0.204 & 92 & 17 \\
+EUR & $-2.90$ & 0.391 & 88 & 18 \\
+GBP & $-0.60$ & 0.827 & 88 & 16 \\
+JPY & $-2.33$ & 0.404 & 98 & 18 \\
+NOK & $-1.32$ & 0.655 & 70 & 14 \\
+NZD & $-1.93$ & 0.538 & 82 & 14 \\
+SEK & $-1.95$ & 0.591 & 91 & 16 \\
+\midrule
+\multicolumn{5}{l}{\emph{Geographically disjoint curve state and outcome}} \\
+European curves $\rightarrow$ AUD/CAD/JPY/NZD & $-15.84$ & 0.062 & 38 & 10 \\
+Non-European curves $\rightarrow$ CHF/EUR/GBP/NOK/SEK & $-0.34$ & 0.887 & 44 & 9 \\
+\bottomrule
+\end{tabularx}
+
+\begin{minipage}{0.94\textwidth}
+\footnotesize\emph{Notes:} Annualized active-minus-inactive differences in the log spot-return proxy. Each joint deletion removes a currency from both the public curve state and the public spot basket and requires five of the remaining eight curves. The resulting influence estimates overlap heavily and are not independent tests. Disjoint rows use no curve from a currency in the outcome basket. The European sensor requires four of five curves and targets one currency per side over four outcomes; the non-European sensor requires three of four curves and targets two per side over five. All cutoff ties are included and equally weighted. Reference values use inclusive circular shifts of each complete-case sequence after missing observations are dropped, compressing internal calendar gaps. They are not adjusted as an eleven-test family.
+\end{minipage}
+\end{table}

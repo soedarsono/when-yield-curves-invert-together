@@ -1,42 +1,47 @@
 # Equation provenance and simplification ledger
 
-This external ledger maps the mathematics in the 94-page original PDF to the simplified paper and attached appendix. The machine-readable companion is `equation_provenance_ledger.csv`.
+Final audit date: 2026-08-26
+Source: `AI JMP.pdf` (94 pages)
+Reader builds: 38-page main paper and 27-page online appendix, 65 pages combined
+Machine-readable companion: `equation_provenance_ledger.csv`
 
-## Outcome
+The final main paper has ten numbered equations. The online appendix has seven numbered equations in Appendix B and four in Appendix D. Appendix A implements the state as a transition table rather than another numbered recursion.
 
-The main paper now contains eight numbered equations rather than seventeen:
+## Main-paper equations
 
-| Main equation | Purpose | Source relationship |
-|---|---|---|
-| (1) | Currency return proxy, $rx_{i,t+1}=d_{i,t}+\Delta s_{i,t+1}$ | Direct restatement of original equation (1) |
-| (2) | Three-by-three carry portfolio and income/spot decomposition | Combined restatement of original equation (2); fixes the former double-numbered `align` block |
-| (3) | Schematic shared-return exposure | Cautious restatement of original equation (5) |
-| (4) | Live-curve count and synchronized state | Aggregation portion of original equation (9); exact recursion moved to Appendix A |
-| (5) | Predetermined expanding equity beta | Direct restatement of original equation (3), with explicit one-month information buffer |
-| (6) | General predictive regression | Editorial formalization of the regressions behind original Tables 4, 7, and 14 |
-| (7) | Bilateral currency state regression | Editorial formalization of original Table 2 and Figure 5 |
-| (8) | Conditional mean under earlier-information-set compensation | Compression of original equations (10)--(13) |
+| No. | Label | Page | Purpose | Provenance |
+|---:|---|---:|---|---|
+| (1) | `eq:slope_information` | 6 | Country level + shared curve information + idiosyncratic component | Editorial signal-extraction formalization motivated by original pp. 14--17; not an estimated structural factor |
+| (2) | `eq:inversion_threshold` | 6 | Curve-level inversion indicator | Editorial formalization of the indicator inside original equation (9), p. 16 |
+| (3) | `eq:factor_decomposition` | 6 | Shared/idiosyncratic currency return exposure | Schematic restatement of original equation (5), p. 13 |
+| (4) | `eq:currency_return` | 7 | Monthly currency return proxy | Direct restatement of original equation (1), p. 11 |
+| (5) | `eq:carry_return` | 7 | Three-by-three carry and income/spot decomposition | Combined restatement of original equation (2), p. 12 |
+| (6) | `eq:signal` | 8 | Live-count aggregation and at-least-two state | Aggregation part of original equation (9), p. 16; transition is in Appendix A |
+| (7) | `eq:currency_beta` | 10 | Predetermined expanding-window equity beta | Direct restatement of original equation (3), p. 12, with returns ending at `t-1` |
+| (8) | `eq:state_regression` | 11 | General next-month predictive regression | Editorial formalization of source Tables 4, 7, and 14 |
+| (9) | `eq:bilateral_state` | 12 | Currency-specific next-month spot regression | Editorial formalization of source Table 2/Figure 5 and Table 8 |
+| (10) | `eq:predetermined_compensation` | 31 | Condition for current expected loss after predetermined compensation | Compression of original equations (10)--(13), pp. 19--21 |
 
-All predictive mathematics uses one convention: information observed at the end of $t$ predicts the return realized during $t+1$. Tables indexed by return month may equivalently describe the regressor as $S_{t-1}$.
+## Appendix equations
 
-## Important substantive corrections
+Appendix B equations (1)--(7), on pp. 6--7, restate the accounting, schematic exposure, adverse-payoff, compensation, negative-mean, and conditional-Fama objects from original equations (1)--(5) and (10)--(14). Appendix D equations (8)--(11), on pp. 20--21, are new code-exact definitions for the independently reproduced public delivered-easing proxy: country cuts, synchronized onsets, endpoint changes, and cumulative return flows.
 
-1. The carry construction is one numbered `equation`/`aligned` block. The previous `align` environment silently consumed two numbers and attached its label only to the decomposition line.
-2. Portfolio sets are $\mathcal H_t$ and $\mathcal F_t$, avoiding visual collision between the former $\mathcal L_t$ and the live-curve indicator $L_{i,t}$.
-3. $\lambda_i$ denotes a latent shared-factor loading; $\widehat\beta_{i,t}$ denotes an estimated equity-beta proxy. The appendix no longer calls both objects beta.
-4. $W_t$ denotes benchmarks and controls; $A_{t+1}$ denotes an adverse payoff event. The symbol $Z$ no longer performs two unrelated jobs.
-5. The delayed-compensation expression uses $\mathbb E_{t-1}[p_t]$, matching the original earlier-information-set commitment. Replacing it by $p_{t-1}$ would require an additional transition or martingale assumption.
-6. The conditional Fama regression and downcurve inequality are now appendix equations because their empirical evidence is supporting or exploratory.
+## Timing correction and information clock
 
-## Removed mathematics
+The authoritative v0.3 clock is:
 
-- Original equations (6)--(7) and the iid/sufficiency apparatus were removed because they impose stronger structure than the empirical contribution requires.
-- The strategy payoff equation was removed with the trading overlays because executable forwards, costs, and frozen strategy construction are unavailable.
-- The calibrated threshold proposition was removed because the illustrative parameters can imply a different threshold; the paper instead reports the exact-one/exact-two data contrast and clearly labels it in-sample.
-- The synthetic simulation was removed from the reader-facing appendix. Its delayed-loss timing was built into its data-generating process, so it was a possibility illustration rather than robustness evidence. Code and outputs remain in the repository and are logged externally.
+1. A fresh crossing is observed at month-end `t-1`: `I_{i,t-2}=0` and `I_{i,t-1}=1`.
+2. That curve first becomes live at `t`: `L_{i,t}=1`.
+3. The cross-country count and state are formed at `t`.
+4. `S_t` positions/predicts the payoff realized during `t+1`.
 
-## Appendix mathematics
+This is the source equation-(9) timing on original p. 16. Merely setting a live state in the crossing month would be one month too early. Tables indexed by payoff month may equivalently write the predetermined regressor as `S_{t-1}`.
 
-Appendix A gives the exact state transition and raw benchmark. Appendix B retains the full payoff accounting, Euler benchmark, compensation derivation, negative-mean condition, conditional Fama regression, and exploratory downcurve definition. Appendix D adds code-exact definitions for the public delivered-easing proxy and distinguishes endpoint-change estimands from summed return-flow estimands.
+## Simplification decisions
 
-No equation in the rewritten paper is represented as newly estimated unless it belongs to the explicitly separate public-data analysis. The original author-panel equations and estimates remain source-derived because the author panel and code are unavailable.
+- Original equations (6)--(7) and the iid/identical-loading sufficiency apparatus were removed because they impose structure not identified by nine-currency descriptive evidence.
+- Original equation (8), the expectations/term-premium discussion, is retained in cautious prose because the displayed source expression is schematic without full maturity-specific definitions.
+- Original strategy equation (15) was removed with the trading overlays.
+- Original equations (16)--(17) are retained only as inline exploratory curve-shape definitions in Appendix B/C.
+- The compensation benchmark preserves earlier-information-set compensation through `E_{t-1}[p_t]`; replacing it with `p_{t-1}` would add a transition/martingale assumption.
+- Public Appendix D equations are independent proxy definitions. They are not source equations and do not replicate the original 10Y--2Y state.
